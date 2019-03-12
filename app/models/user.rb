@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   has_many :role_associations
   has_many :roles, through: :role_associations
-
   has_many :orders
   has_many :carts
   has_many :reviews
@@ -15,4 +14,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :posts
 
+<<<<<<< HEAD
 end
+=======
+
+end
+
+>>>>>>> delivery
