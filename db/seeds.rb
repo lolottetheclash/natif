@@ -173,14 +173,28 @@ deliveryStatusArray = ["Sent", "Not delivered", "Lost", "Delivered"]
 #Then you only need to add a status to the array
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table Delivery (5 Delivery Status)"
+puts "\nSeed of table Delivery (4 Delivery Status)"
 deliveryStatusArray.each do |statusOfDelivery|
 	Delivery.create(
 		status: statusOfDelivery
 		)
-	puts "created #{deliveryStatusArray.length}"
 end
+puts "Created #{deliveryStatusArray.length}"
 puts "\nSeed of table Delivery has been successfully performed"
+puts "-" *60
+
+optionArray = ["Clothe Size"]
+#Then you only need to add a status to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Option"
+optionArray.each do |optionseed|
+	Option.create(
+		name: optionseed
+		)
+end
+puts "Created #{optionArray.length}"
+puts "\nSeed of table Option has been successfully performed"
 puts "-" *60
 
 clothesTopSize = ["XS", "S", "M", "L", "XL", "XXL", "3Xl", "4XL"]
@@ -191,12 +205,13 @@ itemweight = ["50 gr", "100 gr", "250 gr", "500 gr", "1 kg", "2,5 kg", "5 kg"]
 puts "\n"*2
 puts "$" *60
 puts "\nSeed of table OptionValue"
-clothesTopSize.each do |optionvalueclothesize|
-	Delivery.create(
+clothesTopSize.each do |optionvalueclothesize| #Liee a option plus haut
+	OptionValue.create(
 		name: optionvalueclothesize,
 		option: Option.all.sample
 		)
-	puts "created #{clothesTopSize.length}"
 end
-puts "\nSeed of table Delivery has been successfully performed"
+puts "Created #{clothesTopSize.length}"
+puts "\nSeed of table OptionValue has been successfully performed"
 puts "-" *60
+
