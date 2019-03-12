@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
   root 'items#index' 
->>>>>>> 4728f54bc4015a7f5140e12d39c4810386598749
   resources :wishlists
   resources :variants
   resources :posts

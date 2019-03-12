@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_03_12_154352) do
-=======
-
-
-ActiveRecord::Schema.define(version: 2019_03_12_154352) do
-
->>>>>>> 4728f54bc4015a7f5140e12d39c4810386598749
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,29 +60,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
-<<<<<<< HEAD
-=======
-
-  create_table "likes", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
-
-  create_table "option_values", force: :cascade do |t|
-    t.string "name"
-    t.bigint "option_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["option_id"], name: "index_option_values_on_option_id"
-  end
-
-
->>>>>>> 4728f54bc4015a7f5140e12d39c4810386598749
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
