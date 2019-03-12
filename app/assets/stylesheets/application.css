@@ -12,4 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require vendor.min
+ *= require swiper.min
+ *= require noty.min
+ *= require style.min
  */
+
