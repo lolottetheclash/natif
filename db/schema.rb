@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_163407) do
+ActiveRecord::Schema.define(version: 2019_03_12_165807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.index ["option_id"], name: "index_option_values_on_option_id"
   end
 
-
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -103,6 +102,17 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.datetime "updated_at", null: false
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_posts_on_theme_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -133,10 +143,21 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
+  create_table "tag_items", force: :cascade do |t|
+    t.string "imageable_type"
+    t.bigint "imageable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_tag_items_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "tagable_type"
+    t.bigint "tagable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tagable_type", "tagable_id"], name: "index_tags_on_tagable_type_and_tagable_id"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -167,9 +188,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "orders", "deliveries"
-  add_foreign_key "orders", "users"
-
   create_table "variants", force: :cascade do |t|
     t.string "title"
     t.bigint "item_id"
@@ -188,19 +206,5 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
     t.index ["variant_id"], name: "index_wishlists_on_variant_id"
   end
-
-  add_foreign_key "carts", "orders"
-  add_foreign_key "carts", "users"
-  add_foreign_key "carts", "variants"
-  add_foreign_key "items", "categories"
-  add_foreign_key "orders", "deliveries"
-  add_foreign_key "orders", "users"
-  add_foreign_key "reviews", "items"
-  add_foreign_key "reviews", "users"
-  add_foreign_key "role_assignations", "roles"
-  add_foreign_key "role_assignations", "users"
-  add_foreign_key "variants", "items"
-  add_foreign_key "wishlists", "users"
-  add_foreign_key "wishlists", "variants"
 
 end
