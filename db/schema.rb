@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_160808) do
+
+
+ActiveRecord::Schema.define(version: 2019_03_12_154352) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_160808) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"
@@ -69,11 +73,22 @@ ActiveRecord::Schema.define(version: 2019_03_12_160808) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+
+  create_table "option_values", force: :cascade do |t|
+    t.string "name"
+    t.bigint "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_option_values_on_option_id"
+  end
+
+
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
   create_table "orders", force: :cascade do |t|
     t.string "stripe_id"
@@ -159,6 +174,10 @@ ActiveRecord::Schema.define(version: 2019_03_12_160808) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
+  add_foreign_key "orders", "deliveries"
+  add_foreign_key "orders", "users"
+
   create_table "variants", force: :cascade do |t|
     t.string "title"
     t.bigint "item_id"
@@ -182,6 +201,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_160808) do
   add_foreign_key "carts", "users"
   add_foreign_key "carts", "variants"
   add_foreign_key "items", "categories"
+  add_foreign_key "option_values", "options"
   add_foreign_key "orders", "deliveries"
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "items"
@@ -191,4 +211,5 @@ ActiveRecord::Schema.define(version: 2019_03_12_160808) do
   add_foreign_key "variants", "items"
   add_foreign_key "wishlists", "users"
   add_foreign_key "wishlists", "variants"
+
 end

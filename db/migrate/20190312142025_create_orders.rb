@@ -4,9 +4,8 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :stripe_id
       t.string :address
       t.string :zipcode
-      t.references :user, foreign_key: true
-      t.references :delivery, foreign_key: true
-
+      t.references :user, index: true
+      t.references :delivery, index: true
       t.timestamps
     end
   end

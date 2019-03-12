@@ -1,9 +1,9 @@
 class CreateCarts < ActiveRecord::Migration[5.2]
   def change
     create_table :carts do |t|
-      t.references :order, foreign_key: true
-      t.references :variant, foreign_key: true
-      t.references :user, foreign_key: true
+      t.references :order, index: true
+      t.references :variant, index: true
+      t.references :user, index: true
       t.integer :quantity
 
       t.timestamps
