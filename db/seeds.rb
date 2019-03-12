@@ -152,6 +152,68 @@ end
 puts "\nSeed of table Category has been successfully performed"
 puts "-" *60
 
+deliveryStatusArray = ["Sent", "Not delivered", "Lost", "Delivered"]
+#Then you only need to add a status to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Delivery (4 Delivery Status)"
+deliveryStatusArray.each do |statusOfDelivery|
+	Delivery.create(
+		status: statusOfDelivery
+		)
+end
+puts "Created #{deliveryStatusArray.length}"
+puts "\nSeed of table Delivery has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Order (5 Past Orders)"
+5.times do |i|
+	Order.create(
+		stripe_id: "StripeIdGoesHere",
+		address: Faker::Address.full_address,
+		zipcode: Faker::Address.zip_code,
+		user: User.all.sample,
+		delivery: Delivery.all.sample
+		)
+	print "\r#{i+1} Order created over 5"
+end
+puts "\nSeed of table Order has been successfully performed"
+puts "-" *60
+
+optionArray = ["Clothe Size"]
+#Then you only need to add a status to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Option"
+optionArray.each do |optionseed|
+	Option.create(
+		name: optionseed
+		)
+end
+puts "Created #{optionArray.length}"
+puts "\nSeed of table Option has been successfully performed"
+puts "-" *60
+
+clothesTopSize = ["XS", "S", "M", "L", "XL", "XXL", "3Xl", "4XL"]
+colorsClothes = ["Black", "Dove", "Dark Chocolate", "Milk Chocolate", "Sand", "Peacock", "Tiffany", "Blueberry", "French", "Rain", "Navy", "Plum", "Grape", "Lavender", "Perwinkle", "Merlot", "Scarlet", "Cherry", "lipstick", "Magnolia", "Rust", "Sunset", "Tangerine", "Melon", "Marigold", "Mimosa", "Lemon"]
+perfumeBottle = ["50 ml", "80 ml", "150 ml", "250 ml", "300 ml", "350 ml"]
+itemweight = ["50 gr", "100 gr", "250 gr", "500 gr", "1 kg", "2,5 kg", "5 kg"]
+#Then you only need to add an option to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table OptionValue"
+clothesTopSize.each do |optionvalueclothesize| #Liee a option plus haut
+	OptionValue.create(
+		name: optionvalueclothesize,
+		option: Option.all.sample
+		)
+end
+puts "Created #{clothesTopSize.length}"
+puts "\nSeed of table OptionValue has been successfully performed"
+puts "-" *60
+
 puts "\n"*2
 puts "$" *60
 puts "\nSeed of table Item (100 Items)"
@@ -159,7 +221,7 @@ puts "\nSeed of table Item (100 Items)"
 	Item.create(
 		title: Faker::Book.title,
 		description: Faker::Lorem.paragraph,
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 4).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 4).sample.user_id).id,
 		category: Category.all.sample
 		)
 	print "\r#{i+1} items created over 100"
@@ -175,7 +237,7 @@ puts "\nSeed of table Review (50 Reviews)"
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
 		rating: rand(0..5),
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		item: Item.all.sample
 		)
 	print "\r#{i+1} reviews created over 50"
@@ -190,7 +252,7 @@ puts "\nSeed of table Post (100 Posts)"
 	Post.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id).id,
 		theme: Theme.all.sample
 		)
 	print "\r#{i+1} posts created over 100"
@@ -205,7 +267,7 @@ puts "\nSeed of table Comments (200 Comments)"
 	Comment.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		commentable: Post.all.sample
 		)
 	print "\r#{i+1} comments created over 200"
@@ -214,7 +276,7 @@ end
 	Comment.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		commentable: Comment.all.sample
 		)
 	print "\r#{i+101} comments created over 200"
@@ -227,7 +289,7 @@ puts "$" *60
 puts "\nSeed of table Like (200 Likes)"
 200.times do |i|
 	Like.create(
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		post: Post.all.sample
 		)
 	print "\r#{i+1} likes created over 200"
@@ -255,7 +317,7 @@ puts "$" *60
 puts "\nSeed of table Wishlist (50 Wishlists)"
 50.times do |i|
 	Wishlist.create(
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		variant: Variant.all.sample
 		)
 	print "\r#{i+1} wishlists created over 50"
@@ -288,4 +350,32 @@ end
 	print "\r#{i+41} TagItem created over 60"
 end
 puts "\nSeed of table TagItem has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Cart (200 carts)"
+200.times do |i|
+	Cart.create(
+		quantity: rand(1..5),
+		order: Order.all.sample,
+		variant: Variant.all.sample,
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id
+		)
+	print "\r#{i+1} carts created over 200"
+end
+puts "\nSeed of table Cart has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table OptionAssociation (100 option_associations)"
+100.times do |i|
+	OptionAssociation.create(
+		variant: Variant.all.sample,
+		option_value: OptionValue.all.sample
+		)
+	print "\r#{i+1} option_associations created over 100"
+end
+puts "\nSeed of table OptionAssociation has been successfully performed"
 puts "-" *60
