@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_03_12_154352) do
+ActiveRecord::Schema.define(version: 2019_03_12_160808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +60,14 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "options", force: :cascade do |t|
     t.string "name"
@@ -78,6 +85,17 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
     t.datetime "updated_at", null: false
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_posts_on_theme_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -144,11 +162,20 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
   create_table "variants", force: :cascade do |t|
     t.string "title"
     t.bigint "item_id"
-    t.integer "price"
+    t.decimal "price"
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_variants_on_item_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+    t.index ["variant_id"], name: "index_wishlists_on_variant_id"
   end
 
   add_foreign_key "carts", "orders"
@@ -162,4 +189,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
   add_foreign_key "role_assignations", "roles"
   add_foreign_key "role_assignations", "users"
   add_foreign_key "variants", "items"
+  add_foreign_key "wishlists", "users"
+  add_foreign_key "wishlists", "variants"
 end
