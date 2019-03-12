@@ -151,3 +151,114 @@ puts "\nSeed of table Category (5 Categories)"
 end
 puts "\nSeed of table Category has been successfully performed"
 puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Item (100 Items)"
+100.times do |i|
+	Item.create(
+		title: Faker::Book.title,
+		description: Faker::Lorem.paragraph,
+		user: User.find(RoleAssignation.where(role_id: 3).sample.user_id),
+		category: Category.all.sample
+		)
+	print "\r#{i+1} items created over 100"
+end
+puts "\nSeed of table Item has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Review (50 Reviews)"
+50.times do |i|
+	Review.create(
+		title: Faker::Book.title,
+		content: Faker::Lorem.paragraph,
+		rating: rand(0..5),
+		user: User.find(RoleAssignation.where(role_id: 1).sample.user_id),
+		item: Item.all.sample
+		)
+	print "\r#{i+1} reviews created over 50"
+end
+puts "\nSeed of table Review has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Post (100 Posts)"
+100.times do |i|
+	Post.create(
+		title: Faker::Book.title,
+		content: Faker::Lorem.paragraph,
+		user: User.find(RoleAssignation.where(role_id: 2).sample.user_id),
+		theme: Theme.all.sample
+		)
+	print "\r#{i+1} posts created over 100"
+end
+puts "\nSeed of table Post has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Comments (200 Comments)"
+100.times do |i|
+	Comments.create(
+		title: Faker::Book.title,
+		content: Faker::Lorem.paragraph,
+		user: User.find(RoleAssignation.where(role_id: 1).sample.user_id),
+		commentable: Post.all.sample
+		)
+	print "\r#{i+1} comments created over 200"
+end
+100.times do |i|
+	Comments.create(
+		title: Faker::Book.title,
+		content: Faker::Lorem.paragraph,
+		user: User.find(RoleAssignation.where(role_id: 1).sample.user_id),
+		commentable: Comment.all.sample
+		)
+	print "\r#{i+101} comments created over 200"
+end
+puts "\nSeed of table Comments has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Like (200 Likes)"
+200.times do |i|
+	Like.create(
+		user: User.find(RoleAssignation.where(role_id: 2).sample.user_id),
+		post: Post.all.sample
+		)
+	print "\r#{i+1} likes created over 200"
+end
+puts "\nSeed of table Like has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Variant (200 Variants)"
+200.times do |i|
+	Variant.create(
+		title: Faker::Book.title,
+		price: Faker::Number.decimal(2),
+		stock: rand(0..10),
+		item: Item.all.sample
+		)
+	print "\r#{i+1} variants created over 200"
+end
+puts "\nSeed of table Variant has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Wishlist (50 Variants)"
+50.times do |i|
+	Wishlist.create(
+		user: User.find(RoleAssignation.where(role_id: 2).sample.user_id),
+		variant: Variant.all.sample
+		)
+	print "\r#{i+1} wishlists created over 50"
+end
+puts "\nSeed of table Wishlist has been successfully performed"
+puts "-" *60

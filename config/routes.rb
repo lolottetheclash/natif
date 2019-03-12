@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
+
   resources :wishlists
->>>>>>> 9e6164ada9c9c50bccdb4229d86a062881a61639
   resources :variants
   resources :posts
   resources :reviews
