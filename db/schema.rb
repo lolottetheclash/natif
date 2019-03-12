@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_03_12_154339) do
+=======
+ActiveRecord::Schema.define(version: 2019_03_12_154352) do
+>>>>>>> e65c4e498bc1b2bfb9b8e86d422c4e6f85237f71
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +64,15 @@ ActiveRecord::Schema.define(version: 2019_03_12_154339) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+>>>>>>> e65c4e498bc1b2bfb9b8e86d422c4e6f85237f71
   create_table "orders", force: :cascade do |t|
     t.string "stripe_id"
     t.string "address"
