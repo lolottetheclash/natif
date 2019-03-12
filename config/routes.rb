@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :carts
   resources :items
   devise_for :users
