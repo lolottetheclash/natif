@@ -206,5 +206,4 @@ ActiveRecord::Schema.define(version: 2019_03_12_165807) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
     t.index ["variant_id"], name: "index_wishlists_on_variant_id"
   end
-
 end

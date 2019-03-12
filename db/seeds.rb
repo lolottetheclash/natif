@@ -154,6 +154,67 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
+puts "\nSeed of table Order (5 Past Orders)"
+5.times do |i|
+	Order.create(
+		stripe_id: "StripeIdGoesHere",
+		address: Faker::Address.full_address,
+		zipcode: Faker::Address.zip_code,
+		user: User.all.sample,
+		delivery: Delivery.all.sample
+		)
+	print "\r#{i+1} Order created over 5"
+end
+puts "\nSeed of table Order has been successfully performed"
+puts "-" *60
+
+
+deliveryStatusArray = ["Sent", "Not delivered", "Lost", "Delivered"]
+#Then you only need to add a status to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Delivery (4 Delivery Status)"
+deliveryStatusArray.each do |statusOfDelivery|
+	Delivery.create(
+		status: statusOfDelivery
+		)
+end
+puts "Created #{deliveryStatusArray.length}"
+puts "\nSeed of table Delivery has been successfully performed"
+puts "-" *60
+
+optionArray = ["Clothe Size"]
+#Then you only need to add a status to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table Option"
+optionArray.each do |optionseed|
+	Option.create(
+		name: optionseed
+		)
+end
+puts "Created #{optionArray.length}"
+puts "\nSeed of table Option has been successfully performed"
+puts "-" *60
+
+clothesTopSize = ["XS", "S", "M", "L", "XL", "XXL", "3Xl", "4XL"]
+colorsClothes = ["Black", "Dove", "Dark Chocolate", "Milk Chocolate", "Sand", "Peacock", "Tiffany", "Blueberry", "French", "Rain", "Navy", "Plum", "Grape", "Lavender", "Perwinkle", "Merlot", "Scarlet", "Cherry", "lipstick", "Magnolia", "Rust", "Sunset", "Tangerine", "Melon", "Marigold", "Mimosa", "Lemon"]
+perfumeBottle = ["50 ml", "80 ml", "150 ml", "250 ml", "300 ml", "350 ml"]
+itemweight = ["50 gr", "100 gr", "250 gr", "500 gr", "1 kg", "2,5 kg", "5 kg"]
+#Then you only need to add an option to the array
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table OptionValue"
+clothesTopSize.each do |optionvalueclothesize| #Liee a option plus haut
+	OptionValue.create(
+		name: optionvalueclothesize,
+		option: Option.all.sample
+		)
+end
+puts "Created #{clothesTopSize.length}"
+puts "\nSeed of table OptionValue has been successfully performed"
+puts "-" *60
+
 puts "\nSeed of table Item (100 Items)"
 100.times do |i|
 	Item.create(
