@@ -104,17 +104,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.bigint "user_id"
-    t.bigint "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["theme_id"], name: "index_posts_on_theme_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -195,5 +184,4 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
     t.index ["variant_id"], name: "index_wishlists_on_variant_id"
   end
-
 end

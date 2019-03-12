@@ -13,4 +13,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery.min
+//= require bootstrap.bundle.min
+//= require feather.min
+//= require metisMenu.min
+//= require perfect-scrollbar.min
+//= require swiper.min
+//= require noty.min
+//= require jquery.countdown.min
+//= require script.min
 //= require_tree .
+
