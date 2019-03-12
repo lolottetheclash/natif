@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-	belongs_to: item
+	has_many :targets, :through => :tag_item
 end
