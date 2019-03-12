@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :confirmable
 
+<<<<<<< HEAD
   has_many :role_associations
   has_many :roles, through: :role_associations
 
@@ -16,3 +17,9 @@ class User < ApplicationRecord
   has_many :posts
 
 end
+=======
+    has_many :role_associations
+	has_many :roles, through: :role_associations
+	has_many :orders
+end
+>>>>>>> a124920671ba8ffbf40cf9efd351544ff160bc6b

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_03_12_143639) do
+=======
+ActiveRecord::Schema.define(version: 2019_03_12_144247) do
+>>>>>>> a124920671ba8ffbf40cf9efd351544ff160bc6b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_143639) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -46,6 +51,27 @@ ActiveRecord::Schema.define(version: 2019_03_12_143639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+=======
+  create_table "orders", force: :cascade do |t|
+    t.string "stripe_id"
+    t.string "address"
+    t.string "zipcode"
+    t.bigint "user_id"
+    t.bigint "delivery_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["delivery_id"], name: "index_orders_on_delivery_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "role_assignations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_role_assignations_on_role_id"
+    t.index ["user_id"], name: "index_role_assignations_on_user_id"
+>>>>>>> a124920671ba8ffbf40cf9efd351544ff160bc6b
   end
 
   create_table "roles", force: :cascade do |t|
@@ -82,5 +108,12 @@ ActiveRecord::Schema.define(version: 2019_03_12_143639) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   add_foreign_key "items", "categories"
+=======
+  add_foreign_key "orders", "deliveries"
+  add_foreign_key "orders", "users"
+  add_foreign_key "role_assignations", "roles"
+  add_foreign_key "role_assignations", "users"
+>>>>>>> a124920671ba8ffbf40cf9efd351544ff160bc6b
 end
