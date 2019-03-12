@@ -4,4 +4,6 @@ class Item < ApplicationRecord
   has_many :reviews
   has_many :variants
 
+  has_many :tags, :through => :tag_item, :as => :target
+
 end
