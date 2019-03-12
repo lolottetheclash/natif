@@ -4,7 +4,8 @@ class Post < ApplicationRecord
 	has_many :comments
 	has_many :likes
 	has_many :users, through: :likes
-	has_many :comments,as: :commentable
+	has_many :comments, as: :commentable
 	
-	has_many :tags, :through => :tag_item, :as => :target
+  has_many :tag_items, as: :taggable
+  has_many :tags, through: :tag_items, as: :taggable
 end

@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 2019_03_12_165807) do
     t.string "title"
     t.text "description"
     t.bigint "category_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -144,11 +146,13 @@ ActiveRecord::Schema.define(version: 2019_03_12_165807) do
   end
 
   create_table "tag_items", force: :cascade do |t|
-    t.string "imageable_type"
-    t.bigint "imageable_id"
+    t.bigint "tag_id"
+    t.string "taggable_type"
+    t.bigint "taggable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_tag_items_on_imageable_type_and_imageable_id"
+    t.index ["tag_id"], name: "index_tag_items_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_tag_items_on_taggable_type_and_taggable_id"
   end
 
   create_table "tags", force: :cascade do |t|

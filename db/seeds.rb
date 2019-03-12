@@ -36,7 +36,7 @@ puts "\nSeed of table User (20 Users)"
 		email: Faker::Internet.email,
 		password: "aaaaaa"
 		)
-	RoleAssignation.create(user_id: i, role_id: 1)
+	RoleAssignation.create(user_id: i, role_id: 2)
 	print "\r#{i+1} user created over 20"
 end
 puts "\nSeed of table User has been successfully performed"
@@ -46,77 +46,77 @@ puts "\n"*2
 puts "$" *60
 puts "\nSeed of table User (with other profiles)"
 
-puts "Blog_Manager: username = blog_manager // password = admin -- Successfully Created"
+puts "Blog_Manager: username = blog_manager // password = admin123 -- Successfully Created"
 	User.create(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "blog_manager",
 		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "admin"
+		email: "blog_manager@gmail.com",
+		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 20, role_id: 2)
+	RoleAssignation.create(user_id: 21, role_id: 3)
 
-puts "Product_Manager: username = product_manager // password = admin -- Successfully Created"
+puts "Product_Manager: username = product_manager // password = admin123 -- Successfully Created"
 	User.create(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "product_manager",
 		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "admin"
+		email: "product_manager@gmail.com",
+		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 21, role_id: 3)
+	RoleAssignation.create(user_id: 22, role_id: 4)
 
-puts "Moderator: username = moderator // password = admin -- Successfully Created"
+puts "Moderator: username = moderator // password = admin123 -- Successfully Created"
 	User.create(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "moderator",
 		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "admin"
+		email: "moderator@gmail.com",
+		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 22, role_id: 4)
+	RoleAssignation.create(user_id: 23, role_id: 5)
 
-puts "Sale_Manager: username = sale_manager // password = admin -- Successfully Created"
+puts "Sale_Manager: username = sale_manager // password = admin123 -- Successfully Created"
 	User.create(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "sale_manager",
 		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "admin"
+		email: "sale_manager@gmail.com",
+		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 23, role_id: 5)
+	RoleAssignation.create(user_id: 24, role_id: 6)
 
-puts "Stock_and_Export_Mangager: username = stock_export_manager // password = admin -- Successfully Created"
+puts "Stock_and_Export_Mangager: username = stock_export_manager // password = admin123 -- Successfully Created"
 	User.create(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "stock_export_manager",
 		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "admin"
+		email: "stock_export_manager@gmail.com",
+		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 24, role_id: 6)
+	RoleAssignation.create(user_id: 25, role_id: 7)
 
-puts "Super_Admin: username = super_admin // password = admin -- Successfully Created"
+puts "Super_Admin: username = super_admin // password = admin123 -- Successfully Created"
 	User.create(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "super_admin",
 		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "admin"
+		email: "super_admin@gmail.com",
+		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 25, role_id: 7)
+	RoleAssignation.create(user_id: 26, role_id: 8)
 
 puts "\nCreation of one user per profile successfully performed"
 puts "-" *60
@@ -159,7 +159,7 @@ puts "\nSeed of table Item (100 Items)"
 	Item.create(
 		title: Faker::Book.title,
 		description: Faker::Lorem.paragraph,
-		user: User.find(RoleAssignation.where(role_id: 3).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 4).sample.user_id),
 		category: Category.all.sample
 		)
 	print "\r#{i+1} items created over 100"
@@ -175,7 +175,7 @@ puts "\nSeed of table Review (50 Reviews)"
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
 		rating: rand(0..5),
-		user: User.find(RoleAssignation.where(role_id: 1).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id),
 		item: Item.all.sample
 		)
 	print "\r#{i+1} reviews created over 50"
@@ -190,7 +190,7 @@ puts "\nSeed of table Post (100 Posts)"
 	Post.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user: User.find(RoleAssignation.where(role_id: 2).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
 		theme: Theme.all.sample
 		)
 	print "\r#{i+1} posts created over 100"
@@ -202,19 +202,19 @@ puts "\n"*2
 puts "$" *60
 puts "\nSeed of table Comments (200 Comments)"
 100.times do |i|
-	Comments.create(
+	Comment.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user: User.find(RoleAssignation.where(role_id: 1).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id),
 		commentable: Post.all.sample
 		)
 	print "\r#{i+1} comments created over 200"
 end
 100.times do |i|
-	Comments.create(
+	Comment.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user: User.find(RoleAssignation.where(role_id: 1).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id),
 		commentable: Comment.all.sample
 		)
 	print "\r#{i+101} comments created over 200"
@@ -227,7 +227,7 @@ puts "$" *60
 puts "\nSeed of table Like (200 Likes)"
 200.times do |i|
 	Like.create(
-		user: User.find(RoleAssignation.where(role_id: 2).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
 		post: Post.all.sample
 		)
 	print "\r#{i+1} likes created over 200"
@@ -252,13 +252,40 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table Wishlist (50 Variants)"
+puts "\nSeed of table Wishlist (50 Wishlists)"
 50.times do |i|
 	Wishlist.create(
-		user: User.find(RoleAssignation.where(role_id: 2).sample.user_id),
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
 		variant: Variant.all.sample
 		)
 	print "\r#{i+1} wishlists created over 50"
 end
 puts "\nSeed of table Wishlist has been successfully performed"
+puts "-" *60
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table TagItem (60 TagItems)"
+20.times do |i|
+	TagItem.create(
+		tag: Tag.all.sample,
+		taggable: Item.all.sample
+		)
+	print "\r#{i+1} TagItem created over 60"
+end
+20.times do |i|
+	TagItem.create(
+		tag: Tag.all.sample,
+		taggable: Post.all.sample
+		)
+	print "\r#{i+21} TagItem created over 60"
+end
+20.times do |i|
+	TagItem.create(
+		tag: Tag.all.sample,
+		taggable: Variant.all.sample
+		)
+	print "\r#{i+41} TagItem created over 60"
+end
+puts "\nSeed of table TagItem has been successfully performed"
 puts "-" *60
