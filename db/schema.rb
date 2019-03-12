@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_03_12_154352) do
+=======
+
+
+ActiveRecord::Schema.define(version: 2019_03_12_154352) do
+
+>>>>>>> 4728f54bc4015a7f5140e12d39c4810386598749
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,11 +67,35 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+<<<<<<< HEAD
+=======
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+
+  create_table "option_values", force: :cascade do |t|
+    t.string "name"
+    t.bigint "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_option_values_on_option_id"
+  end
+
+
+>>>>>>> 4728f54bc4015a7f5140e12d39c4810386598749
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
   create_table "orders", force: :cascade do |t|
     t.string "stripe_id"
@@ -139,14 +170,27 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
+  add_foreign_key "orders", "deliveries"
+  add_foreign_key "orders", "users"
+
   create_table "variants", force: :cascade do |t|
     t.string "title"
     t.bigint "item_id"
-    t.integer "price"
+    t.decimal "price"
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_variants_on_item_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "variant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+    t.index ["variant_id"], name: "index_wishlists_on_variant_id"
   end
 
   add_foreign_key "carts", "orders"
@@ -160,4 +204,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_154352) do
   add_foreign_key "role_assignations", "roles"
   add_foreign_key "role_assignations", "users"
   add_foreign_key "variants", "items"
+  add_foreign_key "wishlists", "users"
+  add_foreign_key "wishlists", "variants"
+
 end
