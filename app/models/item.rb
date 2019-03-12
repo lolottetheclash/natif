@@ -6,6 +6,4 @@ class Item < ApplicationRecord
   has_many :wishlists
   has_many :variants
 
-  has_many :tags, as: :tagable
-
 end
