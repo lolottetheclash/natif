@@ -55,11 +55,11 @@ ActiveRecord::Schema.define(version: 2019_03_12_165807) do
     t.string "title"
     t.text "description"
     t.bigint "category_id"
-    t.bigint "user_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_items_on_author_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -109,12 +109,12 @@ ActiveRecord::Schema.define(version: 2019_03_12_165807) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.bigint "user_id"
+    t.bigint "author_id"
     t.bigint "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["theme_id"], name: "index_posts_on_theme_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
