@@ -1,0 +1,39 @@
+<% 
+  rating = 0
+  if not Review.where(item_id: item.id).empty?
+    rating = Review.where(item_id: item.id).map(&:rating).instance_eval { reduce(:+) / size.to_f }
+  end 
+%>
+
+<div class="card card-product">
+  <div class="card-header">
+    <div class="row d-flex justify-content-between">
+      <div class="col-6"><i class="fas fa-tag"></i> <%= Category.find(item.category_id).name %></div>
+      <div class="col-6 rating-stars text-warning">
+        <% rating.to_i.times do %>
+          <i class="fas fa-star"></i>
+        <% end %> 
+        <% (5-rating.to_i).times do %>
+          <i class="far fa-star"></i>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-0 mb-3">
+    <div class="card zoom-hover">
+      <a href="<%= variant_path(item.id) %>"><img class="card-img-top m-0" src="http://lorempixel.com/246/265/" alt="Card image cap"></a> 
+    </div>
+    <h5 class="card-title"><%= item.title %></h5>
+    <div class="price"><span class="h5">€ <%= variant.price %></span></div>
+  </div>
+  <div class="card-header py-1">
+    <div class="row">
+      <a class="col-3" href="#"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+      <div class="col-9">
+        <a class="row text-info" href="#"><small>Posted by: <b><%= User.find_by_id(item.author_id).lastname %></b></small></a>
+        <div class="row"><small class="text-sm"><i class="far fa-clock"></i> <%= item.created_at.strftime("%B %d, %Y") %></small></div>
+      </div>
+    </div> 
+  </div>
+</div>
+
