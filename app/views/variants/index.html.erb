@@ -252,7 +252,7 @@
 
       <!-- Shop Grid -->
       <div class="card-deck card-deck-product with-sidebar mt-3"> 
-        <% Variant.order(:id).each do |current_variant| %>
+        <% @variants.order(:id).each do |current_variant| %>
          <%= render 'oneVariant', variant: current_variant, item: Item.find(current_variant.item_id), iSlice: -1 %> 
         <% end %>
       </div>
