@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_163407) do
+
+ActiveRecord::Schema.define(version: 2019_03_12_165807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +56,10 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.string "title"
     t.text "description"
     t.bigint "category_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_items_on_author_id"
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
@@ -107,12 +110,13 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.bigint "user_id"
+
+    t.bigint "author_id"
     t.bigint "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["theme_id"], name: "index_posts_on_theme_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -143,10 +147,23 @@ ActiveRecord::Schema.define(version: 2019_03_12_163407) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
+  create_table "tag_items", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.string "taggable_type"
+    t.bigint "taggable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_items_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_tag_items_on_taggable_type_and_taggable_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "tagable_type"
+    t.bigint "tagable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tagable_type", "tagable_id"], name: "index_tags_on_tagable_type_and_tagable_id"
   end
 
   create_table "themes", force: :cascade do |t|

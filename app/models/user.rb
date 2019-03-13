@@ -4,13 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :confirmable
 
-
   has_many :role_associations
   has_many :roles, through: :role_associations
   has_many :orders
-  has_many :carts
+  has_many :variants
+  has_many :carts, through: :variants
+  has_many :wishlists, through: :variants
   has_many :reviews
-  has_many :wishlists
   has_many :likes
   has_many :comments
   has_many :posts
@@ -18,5 +18,8 @@ class User < ApplicationRecord
 
   
 
-end
+  
+  has_many :posted_items, foreign_key: 'author_id', class_name: "Item"
+  has_many :posted_articles, foreign_key: 'author_id', class_name: "Post"
 
+end
