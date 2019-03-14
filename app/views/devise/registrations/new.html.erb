@@ -11,6 +11,18 @@
                       <div class="form-group text-center mb-2 ">
                         <h2 class="bold mb-0">Sign Up</h2>
                       </div>
+                       <div class="form-group input-icon">
+                        <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control", placeholder: "Firstname"%>
+                      </div>
+                      <div class="form-group input-icon">
+                        <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: "form-control", placeholder: "Lastname"%>
+                      </div>
+                      <div class="form-group input-icon">
+                        <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: "Username"%>
+                      </div>
+                      <div class="form-group input-icon">
+                          <%= f.text_field :age, autocomplete: "age", class: "form-control", type: "number", placeholder: "Age"%>
+                      </div>
                       <div class="form-group input-icon">
                         <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email adress"%>
                       </div>

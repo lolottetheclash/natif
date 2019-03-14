@@ -7,18 +7,17 @@
           <div class="card">
             <div class="card-body text-center">
               <img src="../img/user/user.svg" width="100" height="100" alt="User" class="rounded-circle mb-3">
-              <h5 class="bold mb-0">John Thor</h5>
-              <small class="counter">Joined Dec 31, 2017</small>
+              <h5 class="bold mb-0"><%= @user.firstname.capitalize %> <%= @user.lastname.upcase %></h5>
+              <h6 class="bold mb-0">~ <%= @user.username.capitalize %> ~</h6></br>
+              <small class="counter">Member since: <%=@user.created_at.strftime(" %d of %B %Y")%></small>
               <hr>
-              <div class="roboto-condensed bold" data-toggle="tooltip" title="You currently have 1,113 Points to spend.">
-                <i data-feather="award" class="text-warning"></i> Points: 1113</div>
             </div>
             <div class="list-group list-group-flush">
-              <a href="account-profile.html" class="list-group-item list-group-item-action active"><i data-feather="user" class="mr-3"></i> Profile</a>
-              <a href="account-orders.html" class="list-group-item list-group-item-action"><i data-feather="shopping-bag" class="mr-3"></i> Orders</a>
-              <a href="account-wishlist.html" class="list-group-item has-badge list-group-item-action"><i data-feather="heart" class="mr-3"></i> Wishlist <span class="badge rounded badge-primary">2</span></a>
-              <a href="account-address.html" class="list-group-item list-group-item-action"><i data-feather="map" class="mr-3"></i> Address</a>
-              <a href="account-login.html" class="list-group-item list-group-item-action text-danger"><i data-feather="log-out" class="mr-3"></i> Logout</a>
+              <a href="account-profile.html" class="list-group-item list-group-item-action active"><i class="fas fa-user mr-3"></i> Profile</a>
+              <a href="account-orders.html" class="list-group-item list-group-item-action"><i class="fas fa-shopping-bag mr-3"></i> Orders</a>
+              <a href="account-wishlist.html" class="list-group-item has-badge list-group-item-action"><i class="fas fa-heart mr-3"></i> Wishlist <span class="badge rounded badge-primary">2</span></a>
+              <a href="account-address.html" class="list-group-item list-group-item-action"><i class="fas fa-map-signs mr-3"></i> Address</a>
+              <a href="account-login.html" class="list-group-item list-group-item-action text-danger"><i class="fas fa-sign-out-alt mr-3"></i> Logout</a>
             </div>
           </div>
         </div>
@@ -31,19 +30,19 @@
                 <div class="form-row">
                   <div class="form-group col-sm-6">
                     <label for="profileFirstName">First Name</label>
-                    <input type="text" class="form-control" id="profileFirstName" value="John">
+                    <input type="text" class="form-control" id="profileFirstName" value="<%= @user.firstname %>">
                   </div>
                   <div class="form-group col-sm-6">
                     <label for="profileLastName">Last Name</label>
-                    <input type="text" class="form-control" id="profileLastName" value="Thor">
+                    <input type="text" class="form-control" id="profileLastName" value="<%= @user.lastname %>">
                   </div>
                   <div class="form-group col-sm-6">
                     <label for="profileEmail">Email address</label>
-                    <input type="email" class="form-control" id="profileEmail" value="john.thor@example.com">
+                    <input type="email" class="form-control" id="profileEmail" value="<%= @user.email %>">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="profilePhone">Phone Number</label>
-                    <input type="text" class="form-control" id="profilePhone" value="1-787-376-1552">
+                    <label for="profilePhone">Username</label>
+                    <input type="text" class="form-control" id="profilePhone" value="<%= @user.username %>">
                   </div>
                   <div class="form-group col-sm-6">
                     <label for="profileNewPassword">New Password</label>
