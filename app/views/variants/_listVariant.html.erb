@@ -1,0 +1,28 @@
+<% rating = item.review_average %>
+
+<div class="card card-product">
+  <div class="card-header">
+    <div class="row d-flex justify-content-between">
+      <div class="col-6">
+        <%= link_to raw("<i class=\"fas fa-tag\"></i> #{Category.find(item.category_id).name}"), variants_path(:category => Category.find(item.category_id).name), method: "get" %> 
+      </div>
+      <span class="rating" data-value="<%= rating %>"></span>
+    </div>
+  </div>
+  <div class="card-body p-0 mb-3">
+    <div class="card zoom-hover">
+      <a href="<%= variant_path(variant.id) %>"><img class="card-img-top m-0" src="http://lorempixel.com/246/265/" alt="Card image cap"></a>
+    </div>
+    <h5 class="card-title"><%= variant.title %></h5>
+    <div class="price"><span class="h5">€ <%= variant.price %></span></div>
+  </div>
+  <div class="card-header py-1">
+    <div class="row">
+      <a class="col-3" href="#"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+      <div class="col-9">
+        <a class="row text-info" href="#"><small>Posted by: <b><%= User.find_by_id(item.author_id).lastname %></b></small></a>
+        <div class="row"><small class="text-sm"><i class="far fa-clock"></i> <%= item.created_at.strftime("%B %d, %Y") %></small></div>
+      </div>
+    </div> 
+  </div>
+</div>

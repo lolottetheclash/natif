@@ -1,24 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @variant.title %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @variant.item %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @variant.price %>
-</p>
-
-<p>
-  <strong>Stock:</strong>
-  <%= @variant.stock %>
-</p>
-
-<%= link_to 'Edit', edit_variant_path(@variant) %> |
-<%= link_to 'Back', variants_path %>
+<!-- Main Content -->
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <%= render 'oneVariant', variant: @variant, item: Item.find(@variant.item_id) %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Main Content -->

@@ -1,0 +1,86 @@
+<% rating = item.review_average %>
+
+<div class="col-md-6">
+  <div class="swiper-container" id="product-slider">
+    <div class="swiper-wrapper">
+		<img src="http://lorempixel.com/500/500/" data-large="http://lorempixel.com/1000/1000" alt="Product" class="swiper-slide">
+    </div>
+  </div>
+</div>
+<div class="col-md-6 mt-3 mt-md-0">
+  <h3 class="card-title"><%= variant.title %></h3>
+  <h6>
+  	<span class="rating" data-value="<%= rating %>"></span>
+  	<a href="javascript:void(0)"><%= Review.where(item_id: item.id).size %> reviews</a>
+  </h6>
+  <h3 class="price">
+    <span >$<%= variant.price %></span>
+  </h3>
+  <p class="d-none d-lg-block"><%= item.description.split("\n\n", 2)[0] %></p>
+  <form>
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label class="bold">Quantity</label>
+        <div class="w-100 spinner">
+          <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-minus"></i></button>
+          <input type="number" class="form-control" value="1" min="1" max="999">
+          <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+      <div class="form-group col-6 d-flex align-items-end">
+        <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">Add to Cart</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<script>
+$(function () {
+
+  App.rating()
+  App.atcDemo()
+  App.atwDemo()
+  App.colorOption()
+
+  setTimeout(function (argument) {
+    var productSlider = new Swiper('#product-slider', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    })
+  }, 100)
+
+  // Collect items for photoswipe
+  var items = []
+  $('.swiper-wrapper img').each(function () {
+    items.push({
+      src: $(this).data('large'),
+      w: 1395,
+      h: 1500
+    })
+  })
+
+  var openPhotoSwipe = function (items, activeIndex) {
+    activeIndex = typeof activeIndex !== 'undefined' ? activeIndex : 0
+    var pswpElement = document.querySelectorAll('.pswp')[0]
+    var options = {
+      index: activeIndex
+    }
+    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options)
+    gallery.init()
+  }
+
+  $('.zoom').click(function () {
+    openPhotoSwipe(items, $('.swiper-wrapper').find('.swiper-slide-active').data('swiper-slide-index'))
+  })
+
+})
+</script>

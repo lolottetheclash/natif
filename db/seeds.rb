@@ -174,7 +174,7 @@ puts "\nSeed of table Order (5 Past Orders)"
 		stripe_id: "StripeIdGoesHere",
 		address: Faker::Address.full_address,
 		zipcode: Faker::Address.zip_code,
-		user: User.all.sample,
+		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		delivery: Delivery.all.sample
 		)
 	print "\r#{i+1} Order created over 5"
@@ -221,7 +221,7 @@ puts "\nSeed of table Item (100 Items)"
 	Item.create(
 		title: Faker::Book.title,
 		description: Faker::Lorem.paragraph,
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 4).sample.user_id).id,
+		author: User.find_by_id(RoleAssignation.where(role_id: 4).sample.user_id),
 		category: Category.all.sample
 		)
 	print "\r#{i+1} items created over 100"
@@ -252,7 +252,7 @@ puts "\nSeed of table Post (100 Posts)"
 	Post.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		user_id: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id).id,
+		author: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
 		theme: Theme.all.sample
 		)
 	print "\r#{i+1} posts created over 100"
