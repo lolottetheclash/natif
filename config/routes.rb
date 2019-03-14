@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'items#index' 
+  root 'variants#index' 
   resources :wishlists
   resources :variants
   resources :posts
