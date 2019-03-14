@@ -4,7 +4,10 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.all
+    @carts = Cart.where(user_id: 1)#.where(user_id: current_user.id).where(order_id: nil)
+    if @carts.empty?
+      flash.now[:alert] = "Your book was not found"
+    end
   end
 
   # GET /carts/1
@@ -25,6 +28,8 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
+    #@user =current_user.id
+    #@cart.user_id  = current_user.id
 
     respond_to do |format|
       if @cart.save
@@ -57,6 +62,26 @@ class CartsController < ApplicationController
     @cart.destroy
     respond_to do |format|
       format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def additem
+    @cart = Cart.find(params[:id])
+    @qty = @cart.quantity + 1
+    @cart.update(quantity: @qty)
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def removeitem
+    @cart = Cart.find(params[:id])
+    @qty = @cart.quantity - 1
+    @cart.update(quantity: @qty)
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
       format.json { head :no_content }
     end
   end
