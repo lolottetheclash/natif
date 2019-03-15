@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user_id %>
+</p>
+
+<p>
+	<strong>Stripe_id : </strong> <%= @order.stripe_id %>
+	<strong>Adresse : </strong> <%= @order.address %>
+	<strong>Code Postal: </strong> <%= @order.zipcode %>
+	<strong>Status : </strong> <%= Delivery.find(@order.delivery_id).status %>
+</p>
