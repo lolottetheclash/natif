@@ -5,19 +5,43 @@ class RegistrationsController < Devise::RegistrationsController
 	def show
  	end
 
- 	def update
+ 	
+  def update
+    new_params = params.require(:user).permit(
+      :gender,
+      :firstname,
+      :lastname,
+      :username,
+      :age,
+      :email,
+      :password,
+      :password_confirmation,
+      :current_password
+    )
 
-    respond_to do |format|
-      if @user.update(post_params)
-        format.html { redirect_to my_profile(@user), notice: 'Your profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    change_password = true
+    if params[:user][:password].blank?
+      params[:user].delete("password")
+      params[:user].delete("password_confirmation") 
+      new_params = params.require(:user).permit(
+        :gender,
+        :firstname,
+        :lastname,
+        :username,
+        :age,
+        :email,
+        :current_password
+      )
+      change_password = false
     end
 
- 	end
+      @user = User.find(current_user.id)
+      @user.update_with_password(new_params)
+      set_flash_message :notice, :updated
+      sign_in :user, @user, bypass: true
+      redirect_to my_profile_path
+    
+  end
 
 
 
@@ -25,6 +49,9 @@ class RegistrationsController < Devise::RegistrationsController
     # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @user = User.find(current_user.id)
+    end
+    def update_resource(resource, params)
+      resource.update_without_password(params)
     end
 
 end

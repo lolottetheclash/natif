@@ -35,6 +35,9 @@
                       <div class="form-group input-icon">
                         <%= f.password_field :password_confirmation, autocomplete: "password", class: "form-control", placeholder: "Password Confirmation"%>
                       </div>
+                      <div class="form-group input-icon">
+                      <%= f.select(:gender, [ 'Male', 'Female' ], {}, { :class => 'form-control col-4' }) %>
+                      </div>
                       <%= f.submit "SIGN UP", class: "btn btn-primary btn-block"%>
                     </div>
                   <% end %>
