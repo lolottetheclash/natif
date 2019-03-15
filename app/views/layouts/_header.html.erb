@@ -28,13 +28,13 @@
         <li class="nav-item dropdown dropdown-hover">
         <% if user_signed_in? %>
             <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i> Bonjour, <%= current_user.first_name%>  <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-user"></i> Bonjour, <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="media p-2 align-items-center mb-2">
                     <div class="mr-2 size50x50"><img src="http://clipart-library.com/images/8c6o8XKri.png" alt="user" class="img-thumbnail rounded-circle mr-2 size50x50"></div>
                         <div class="media-body">
-                            <strong><%= current_user.first_name%> <%= current_user.last_name.upcase%></strong>
+                            <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
                             <div class="small"><%= current_user.email%></div>
                             <!--<div class="small counter">1113 points</div>-->
                     </div>
