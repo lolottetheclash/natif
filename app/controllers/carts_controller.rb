@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :additem, :removeitem]
 
   # GET /carts
   # GET /carts.json
@@ -67,7 +67,6 @@ class CartsController < ApplicationController
   end
 
   def additem
-    @cart = Cart.find(params[:id])
     @qty = @cart.quantity + 1
     @cart.update(quantity: @qty)
     respond_to do |format|
@@ -77,13 +76,64 @@ class CartsController < ApplicationController
   end
 
   def removeitem
-    @cart = Cart.find(params[:id])
     @qty = @cart.quantity - 1
     @cart.update(quantity: @qty)
     respond_to do |format|
       format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
       format.json { head :no_content }
     end
+  end
+
+  def payment
+    @order = Order.new
+    @amount = 0
+    @carts = Cart.where(user_id: 1)#.where(user_id: current_user.id).where(order_id: nil)
+    i = 0
+
+    @carts.each do |item_in_cart|
+      i +=1
+      @amount += item_in_cart.total_per_item
+    end
+
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"*6
+    puts @amount
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"*6
+    # En centimes
+    @amount *= 100
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      #description renvoie a quel nom est cree le compte (details des payments visibles sur stripe directement, notament le nom)
+      description: 'Rails Stripe customer',
+      currency: 'EUR',
+    })
+
+    @order.stripe_id = params[:stripeToken]
+    @order.address = "4 rue de la colombe endiablée"
+    @order.zipcode = "31000"
+    @order.delivery_id = 2
+    @order.user_id = current_user.id
+
+    respond_to do |format|
+      if @order.save
+        @carts.each do |item_in_cart|
+            item_in_cart.update(order_id: @order.id)
+        end   
+        format.html { redirect_to @order, notice: 'Paiement effectué avec succès' }
+      else
+        format.html { redirect_to request.referer, notice: 'Erreur dans le paiement' }
+      end
+    end
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to :root
   end
 
   private
@@ -96,4 +146,5 @@ class CartsController < ApplicationController
     def cart_params
       params.require(:cart).permit(:order_id, :variant_id, :user_id, :quantity)
     end
+  
 end
