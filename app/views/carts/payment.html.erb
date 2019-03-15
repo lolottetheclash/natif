@@ -1,0 +1,28 @@
+<% order =  Order.find_by_stripe_id(params[:stripeToken]) %>
+<% linked_cart = Cart.where(order_id: order.id) %>
+<% amount = linked_cart.map(&:total_per_item).instance_eval { reduce(:+) } %>
+
+<!-- Main Content -->
+<div class="container my-3">
+  <div class="card">
+    <div class="card-body">
+      <div class="text-center py-3">
+      	<%= image_tag("check.svg", :style => "width:48px;height:48px;") %>
+        <h1>Merci.</h1>
+        <p>Votre commande est prise en compte et sera traitée le plus tôt possible.</p>
+        <p class="mb-0">
+          <span class="text-muted">Numéro de commande : </span>
+          <span class="text-info">#ORD<%= order.id %></span>
+        </p>
+        <p>
+          <span class="text-muted">Montant : </span>
+          <span class="text-info">€ <%= sprintf( "%0.02f", amount) %></span>
+        </p>
+        <p>Un email de confirmation a été envoyé à l'adresse : <u><%= User.find(order.user_id).email %></u></p>
+        <a href="<%= root_path %>" class="btn btn-primary rounded mb-3">Continuer les achats</a>
+        <a href="<%= order_path(order) %>" class="btn btn-outline-secondary rounded mb-3">Voir la commande</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Main Content -->
