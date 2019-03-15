@@ -1,41 +1,131 @@
-<% 
-  rating = 0
-  if not Review.where(item_id: item.id).empty?
-    rating = Review.where(item_id: item.id).map(&:rating).instance_eval { reduce(:+) / size.to_f }
-  end 
-%>
+<% rating = item.review_average %>
 
-<div class="card card-product">
-  <div class="card-header">
-    <div class="row d-flex justify-content-between">
-      <div class="col-6">
-        <%= link_to raw("<i class=\"fas fa-tag\"></i> #{Category.find(item.category_id).name}"), variants_path(:category => Category.find(item.category_id).name), method: "get" %> 
-      </div>
-      <div class="col-6 rating-stars text-warning">
-        <% rating.to_i.times do %>
-          <i class="fas fa-star"></i>
-        <% end %> 
-        <% (5-rating.to_i).times do %>
-          <i class="far fa-star"></i>
-        <% end %> 
-      </div>
+<div class="col-md-6">
+  <div class="swiper-container" id="product-slider">
+    <div class="swiper-wrapper">
+		<img src="http://lorempixel.com/500/500/" data-large="http://lorempixel.com/1000/1000" alt="Product" class="swiper-slide">
     </div>
-  </div>
-  <div class="card-body p-0 mb-3">
-    <div class="card zoom-hover">
-      <a href="<%= variant_path(item.id) %>"><img class="card-img-top m-0" src="http://lorempixel.com/246/265/" alt="Card image cap"></a>
-    </div>
-    <h5 class="card-title"><%= item.title %></h5>
-    <div class="price"><span class="h5">€ <%= variant.price %></span></div>
-  </div>
-  <div class="card-header py-1">
-    <div class="row">
-      <a class="col-3" href="#"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
-      <div class="col-9">
-        <a class="row text-info" href="#"><small>Posted by: <b><%= User.find_by_id(item.author_id).lastname %></b></small></a>
-        <div class="row"><small class="text-sm"><i class="far fa-clock"></i> <%= item.created_at.strftime("%B %d, %Y") %></small></div>
-      </div>
-    </div> 
   </div>
 </div>
+<div class="col-md-6 mt-3 mt-md-0">
+  <h3 class="card-title"><%= variant.title %></h3>
+  <h6>
+  	<span class="rating" data-value="<%= rating %>"></span>
+    <a href="javascript:void(0)"><%= Review.where(item_id: item.id).size %> reviews</a>
+  </h6>
+  <h3 class="price">
+    <span >$<%= variant.price %></span>
+  </h3>
+  <p class="d-none d-lg-block"><%= item.description.split("\n\n", 2)[0] %></p>
+  
+  <form>
+    <div class="form-row">
 
+      
+
+        <% if variant.stock == 0 %>
+          <div class="form-group col-6">
+            <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
+          </div>
+        <%else%>
+          <div class="form-group col-6">
+            <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+              <label class="bold">Quantity : </label>
+            <div class="w-100 spinner">
+              <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-minus"></i></button>
+                <input type="number" class="form-control" value="1" min="1" max="999">
+              <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        <%end%>
+
+      </div>
+
+      <div class="form-group col-6 d-flex">
+
+        <% if variant.stock == 0 %>
+          <div class="row d-flex justify-content-center">
+            <div>
+              <%= form_for Wishlist.new do |f| %>
+                <%= f.hidden_field :variant_id, :value => variant.id %>
+                <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">
+                  <i class="far fa-heart"></i> Ajouter à la wishlist
+                  </button>
+              <% end %>
+            </div>
+          </div>
+
+        <%else%>
+          <div class="row d-flex justify-content-center">
+          <div class="mb-3">
+            <%= form_for Wishlist.new do |f| %>
+              <%= f.hidden_field :variant_id, :value => variant.id %>
+              <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">
+                <i class="far fa-heart"></i> Ajouter à la wishlist
+              </button>
+            <% end %>
+          </div>
+            <div class="mb-3">
+              <%= form_for Cart.new do |f| %>
+                <%= f.hidden_field :variant_id, :value => variant.id %>
+                <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">Ajouter au panier</button>
+              <% end %>
+            </div>
+          </div>
+        <%end%>
+      </div>
+        
+    </div>
+  </form>
+</div>
+
+
+
+<script>
+$(function () {
+
+  App.rating()
+  App.atcDemo()
+  App.atwDemo()
+  App.colorOption()
+
+  setTimeout(function (argument) {
+    var productSlider = new Swiper('#product-slider', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    })
+  }, 100)
+
+  // Collect items for photoswipe
+  var items = []
+  $('.swiper-wrapper img').each(function () {
+    items.push({
+      src: $(this).data('large'),
+      w: 1395,
+      h: 1500
+    })
+  })
+
+  var openPhotoSwipe = function (items, activeIndex) {
+    activeIndex = typeof activeIndex !== 'undefined' ? activeIndex : 0
+    var pswpElement = document.querySelectorAll('.pswp')[0]
+    var options = {
+      index: activeIndex
+    }
+    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options)
+    gallery.init()
+  }
+
+  $('.zoom').click(function () {
+    openPhotoSwipe(items, $('.swiper-wrapper').find('.swiper-slide-active').data('swiper-slide-index'))
+  })
+
+})
+</script>

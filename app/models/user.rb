@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :confirmable
   has_many :role_associations
@@ -16,11 +17,13 @@ class User < ApplicationRecord
   has_many :posted_items, foreign_key: 'author_id', class_name: "Item"
   has_many :posted_articles, foreign_key: 'author_id', class_name: "Post"
 
-  def role
-    #user_role = RoleAssignation.all
-    #user_role.each do |stuff|
-    #stuff.role_id
-    #end
+def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if username = conditions.delete(:username)
+      where(conditions.to_hash).where("lower(username) = :value OR lower(email) = :value", value: username.downcase).first
+    else
+      where(conditions.to_hash).first
+    end
   end
 
 end
