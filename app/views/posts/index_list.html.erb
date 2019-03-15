@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Post - Grid</title>
+    <title>Post - List</title>
   </head>
   <body>
     <!--Header -->
@@ -33,27 +33,23 @@
           </div>
           <!-- /Blog Toolbar -->
 
-          <!-- Blog Grid -->
-          <div class="card-deck card-deck-2-columns mt-3">
-            <% @posts.each do |grElements|%>
-            <div class="card card-blog">
-              <a href="blog-single.html" class="zoom-hover"><img src="https://image.noelshack.com/fichiers/2019/11/3/1552473886-aromatherapy-aromatic-bottle-932577.jpg" alt="test"></a>
-              <div class="card-body">
-                <a href="blog-single.html" class="title h4"><%= grElements.title %></a>
-                <span><%= grElements.content%></span>
+          <!-- Blog List -->
+          <div>
+           <% @posts.each do |liElements|%>
+          <div class="card card-blog card-blog-list mt-3">
+            <a href="blog-single.html" class="zoom-hover"><span data-cover="https://image.noelshack.com/fichiers/2019/11/3/1552473887-adult-artisan-blacksmith-1659748.jpg" data-height="100%"></span></a>
+            <div class="card-body">
+              <a href="blog-single.html" class="title h4"><%= liElements.title %></a>
+              <p class="d-none d-sm-block"><%= liElements.content %><a href="blog-single.html">Read more...</a></p>
+              <div class="small text-muted counter">
+                <i data-feather="heart"></i> 55
+                <i data-feather="message-square" class="ml-3"></i> 15
               </div>
-              <div class="card-footer flex-center">
-                <div class="small text-muted counter">
-                  <i class="far fa-heart"></i> 55
-                  <i class="far fa-comment-dots ml-3"></i> 15
-                </div>
-                <a href="blog-single.html" class="bold">READ MORE</a>
-              </div>
-              
             </div>
-            <% end %>
-          </div>           
-          <!-- /Blog Grid -->
+          </div>
+          <% end %>
+        </div>
+          <!-- /Blog List -->
 
           <!-- Pagination -->
           <div class="card card-pagination">
@@ -197,8 +193,6 @@
     </div>
     <!-- /Menu Modal -->
 
-
     <!-- REQUIRED JS  -->
-  
   </body>
 </html>

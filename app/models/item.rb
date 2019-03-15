@@ -8,4 +8,12 @@ class Item < ApplicationRecord
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
 
+  def review_average
+	  rating = 0
+	  if not Review.where(item_id: self.id).empty?
+	    rating = Review.where(item_id: self.id).map(&:rating).instance_eval { reduce(:+) / size.to_f }
+	  end 
+	  return rating
+  end
+
 end
