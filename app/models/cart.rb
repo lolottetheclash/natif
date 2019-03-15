@@ -4,7 +4,7 @@ class Cart < ApplicationRecord
   belongs_to :user
 
   def total_per_item
-		return self.quantity.to_i * Variant.find_by_id(self.variant_id).price.to_i
+		return self.quantity.to_f * Variant.find_by_id(self.variant_id).price.to_f
 	end
 
 end
