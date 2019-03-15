@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :variants
   resources :posts
   resources :reviews
+  get '/carts/payment' => 'carts#payment'
   resources :carts
   resources :items
   devise_for :users
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
   get '/remove_from_carts/:id' => 'carts#removeitem', as: 'removefromcart'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/index_list.html.erb", to: "posts#index_list"
+  resources :orders
 end
