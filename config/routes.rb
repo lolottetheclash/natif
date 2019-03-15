@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
+
   root 'variants#index' 
-  resources :wishlists
+  
   resources :variants
-  resources :posts
+  resources :wishlists
   resources :reviews
-  get '/carts/payment' => 'carts#payment'
-  resources :carts
+  resources :orders
   resources :items
   devise_for :users
+
+  get '/carts/payment' => 'carts#payment'
+  resources :carts
   get '/add_to_carts/:id' => 'carts#additem', as: 'addtocart'
   get '/remove_from_carts/:id' => 'carts#removeitem', as: 'removefromcart'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :posts
   get "/index_list.html.erb", to: "posts#index_list"
-  resources :orders
+
 end
