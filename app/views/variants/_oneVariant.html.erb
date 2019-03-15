@@ -11,25 +11,70 @@
   <h3 class="card-title"><%= variant.title %></h3>
   <h6>
   	<span class="rating" data-value="<%= rating %>"></span>
-  	<a href="javascript:void(0)"><%= Review.where(item_id: item.id).size %> reviews</a>
+    <a href="javascript:void(0)"><%= Review.where(item_id: item.id).size %> reviews</a>
   </h6>
   <h3 class="price">
     <span >$<%= variant.price %></span>
   </h3>
   <p class="d-none d-lg-block"><%= item.description.split("\n\n", 2)[0] %></p>
+  
   <form>
     <div class="form-row">
-      <div class="form-group col-6">
-        <label class="bold">Quantity</label>
-        <div class="w-100 spinner">
-          <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-minus"></i></button>
-          <input type="number" class="form-control" value="1" min="1" max="999">
-          <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-plus"></i></button>
-        </div>
+
+      
+
+        <% if variant.stock == 0 %>
+          <div class="form-group col-6">
+            <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
+          </div>
+        <%else%>
+          <div class="form-group col-6">
+            <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+              <label class="bold">Quantity : </label>
+            <div class="w-100 spinner">
+              <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-minus"></i></button>
+                <input type="number" class="form-control" value="1" min="1" max="999">
+              <button type="button" class="btn btn-icon rounded-circle"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        <%end%>
+
       </div>
-      <div class="form-group col-6 d-flex align-items-end">
-        <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">Add to Cart</button>
+
+      <div class="form-group col-6 d-flex">
+
+        <% if variant.stock == 0 %>
+          <div class="row d-flex justify-content-center">
+            <div>
+              <%= form_for Wishlist.new do |f| %>
+                <%= f.hidden_field :variant_id, :value => variant.id %>
+                <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">
+                  <i class="far fa-heart"></i> Ajouter à la wishlist
+                  </button>
+              <% end %>
+            </div>
+          </div>
+
+        <%else%>
+          <div class="row d-flex justify-content-center">
+          <div class="mb-3">
+            <%= form_for Wishlist.new do |f| %>
+              <%= f.hidden_field :variant_id, :value => variant.id %>
+              <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">
+                <i class="far fa-heart"></i> Ajouter à la wishlist
+              </button>
+            <% end %>
+          </div>
+            <div class="mb-3">
+              <%= form_for Cart.new do |f| %>
+                <%= f.hidden_field :variant_id, :value => variant.id %>
+                <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">Ajouter au panier</button>
+              <% end %>
+            </div>
+          </div>
+        <%end%>
       </div>
+        
     </div>
   </form>
 </div>

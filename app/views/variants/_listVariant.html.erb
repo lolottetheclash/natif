@@ -15,7 +15,43 @@
     </div>
     <h5 class="card-title"><%= variant.title %></h5>
     <div class="price"><span class="h5">€ <%= variant.price %></span></div>
-  </div>
+    <div>
+      <% if variant.stock == 0 %>
+        <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
+        <div class="row d-flex justify-content-center">
+        <div>
+          <%= form_for Wishlist.new do |f| %>
+            <%= f.hidden_field :variant_id, :value => variant.id %>
+            <%= button_tag(type: button, class: "btn btn-icon rounded-circle") do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+      <%else%>
+        <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+        <div class="row d-flex justify-content-center">
+        <div>
+          <%= form_for Wishlist.new do |f| %>
+            <%= f.hidden_field :variant_id, :value => variant.id %>
+            <%= button_tag(type: button, class: "btn btn-icon rounded-circle") do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="ml-3">
+          <%= form_for Cart.new do |f| %>
+            <%= f.hidden_field :variant_id, :value => variant.id %>
+            <%= button_tag(type: button, class: "btn btn-icon rounded-circle") do %>
+              <i class="fas fa-cart-plus"></i>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+      <%end%>
+    </div>
+  
+    </div>
   <div class="card-header py-1">
     <div class="row">
       <a class="col-3" href="#"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
