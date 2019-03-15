@@ -16,4 +16,11 @@ class User < ApplicationRecord
   has_many :posted_items, foreign_key: 'author_id', class_name: "Item"
   has_many :posted_articles, foreign_key: 'author_id', class_name: "Post"
 
+  def role
+    #user_role = RoleAssignation.all
+    #user_role.each do |stuff|
+    #stuff.role_id
+    #end
+  end
+
 end
