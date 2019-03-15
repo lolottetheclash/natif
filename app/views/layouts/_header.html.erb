@@ -41,9 +41,9 @@
                 </div>
                 <a href="#" class="dropdown-item has-icon"><i class="fas fa-cart-plus"></i> Mes commandes</a>
                 <a href="#" class="dropdown-item has-icon has-badge"><i class="fas fa-heart"></i> Ma wishlist<span class="badge rounded badge-primary">2</span></a>
-                <a href="#" class="dropdown-item has-icon"><i class="fas fa-cogs"></i> Mon compte</a>
+                <a href="<%= my_profile_path %>" class="dropdown-item has-icon"><i class="fas fa-cogs"></i> Mon compte</a>
                 <div class="dropdown-divider"></div>
-                <a href="<%= destroy_user_session_path%>" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                <a href="<%= destroy_user_session_path%>" class="dropdown-item has-icon text-danger" data-method="DELETE"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
             </div>
           
           <% else %>
@@ -76,11 +76,11 @@
       <a class="nav-link nav-icon ml-ni nav-toggler mr-3 d-flex d-lg-none" href="#" data-toggle="modal" data-target="#menuModal"><i class="fas fa-bars"></i></a>
 
       <!-- Logo -->
-      <a class="nav-link nav-logo" href="index.html"><img src="#" alt=""> <strong>NATIVEA</strong></a>
+      <a class="nav-link nav-logo" href="<%= root_path %>"><img src="#" alt=""> <strong>NATIVEA</strong></a>
 
       <!-- Main navigation -->
       <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="<%= root_path %>">Home</a></li>
         <li class="nav-item dropdown dropdown-hover">
           <a class="nav-link dropdown-toggle forwardable active" data-toggle="dropdown" href="shop-categories.html" role="button" aria-haspopup="true" aria-expanded="false">
             Shop <i class="fas fa-chevron-down"></i>
@@ -159,16 +159,21 @@
           </div>
         </li>
         <li class="nav-item dropdown dropdown-hover">
-          <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="account-profile.html" role="button" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
             Account <i class="fas fa-chevron-down"></i>
           </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="account-login.html">Login / Register</a>
-            <a class="dropdown-item" href="account-profile.html">Profile Page</a>
-            <a class="dropdown-item" href="account-orders.html">Orders List</a>
-            <a class="dropdown-item" href="account-order-detail.html">Order Detail</a>
-            <a class="dropdown-item" href="account-wishlist.html">Wishlist</a>
-            <a class="dropdown-item" href="account-address.html">Address</a>
+          <div class="dropdown-menu">        
+            <% if user_signed_in? %>
+              <a class="dropdown-item" href="<%= my_profile_path %>">Profile Page</a>
+              <a class="dropdown-item" href="account-orders.html">Orders List</a>
+              <a class="dropdown-item" href="account-order-detail.html">Order Detail</a>
+              <a class="dropdown-item" href="account-wishlist.html">Wishlist</a>
+              <a class="dropdown-item" href="account-address.html">Address</a>
+              <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="DELETE">Logout</a>
+            <% else %>
+              <a class="dropdown-item" href="<%= new_user_registration_path %>">Sign Up</a>
+              <a class="dropdown-item" href="<%= new_user_session_path %>">Log In </a>
+            <% end %>
           </div>
         </li>
         <li class="nav-item dropdown dropdown-hover">
