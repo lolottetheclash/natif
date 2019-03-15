@@ -73,8 +73,31 @@
       </table>
       <div class="text-center">
         <small class="counter">SUBTOTAL</small>
-        <h3 class="roboto-condensed bold"><%=total%> €</h3>
-        <a href="shipping.html" class="btn btn-primary rounded-pill btn-lg"><i class="fas fa-long-arrow-alt-right"></i> LIVRAISON</a>
+        <h3 class="roboto-condensed bold"><%= total %> €</h3>
+        <%= form_tag({controller: "carts", action: "payment"}, method: "get") do %>
+          <article>
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+            <label class="amount">
+              <span></span>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="Achat"
+                  data-label="Checkout"
+                  data-amount= total
+                  data-locale="auto">
+          </script>
+          <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
+          <button type="submit" class="btn btn-primary rounded-pill btn-lg"><i class="fas fa-long-arrow-alt-right"></i> Paiement</button>
+        <% end %>
+
+        <a href="shipping.html" class="btn btn-primary rounded-pill btn-lg collapse"><i class="fas fa-long-arrow-alt-right"></i> LIVRAISON</a>
       </div>
     </div>
   </div>
