@@ -1,0 +1,46 @@
+<div class="container">
+
+  <%= form_with(model: variant, local: true) do |form| %>
+    <% if variant.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(variant.errors.count, "error") %> prohibited this variant from being saved:</h2>
+      <ul>
+        <% variant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row"><%= form.label :Item %></th>
+          <td class="d-flex justify-content-center"><%= form.collection_select(:item_id, Item.all, :id, :title) %></td>
+        </tr>
+
+        <tr>
+          <th scope="row"><%= form.label :title %></th>
+          <td class="d-flex justify-content-center"><%= form.text_field :title %></td>
+        </tr>
+
+        <tr>
+          <th scope="row"><%= form.label :price %></th>
+          <td class="d-flex justify-content-center"><%= form.number_field :price %></td>
+        </tr>
+
+        <tr>
+          <th scope="row"><%= form.label :stock %></th>
+          <td class="d-flex justify-content-center"><%= form.number_field :stock %></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= submit_tag("Créer/Mettre à jour une variante", :class=>"btn btn-success") %>
+    </div>
+
+  <% end %>
+
+</div>
