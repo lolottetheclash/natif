@@ -1,0 +1,30 @@
+<p id="notice" class="text-success container"><%= notice %></p>
+
+<div class="container">
+<h1>Valeurs d'options</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Valeur d'option</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @option_values.each do |optionvalue| %>
+      <tr>
+        <td class="align-middle"><%= Option.find(optionvalue.option_id).name %></td>
+        <td class="align-middle"><%= optionvalue.name %></td>
+        <td><%= link_to 'Edit', edit_option_value_path(optionvalue), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', optionvalue, method: :delete, data: { confirm: 'Etes vous sûr ?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "Nouvelle Valeur d'option", new_option_value_path, class: "btn btn-success mb-3" %>
+</div>
