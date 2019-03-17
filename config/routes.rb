@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_scope :user do 
     get "/my_profile" => "registrations#show"
   end
+  
   get '/carts/payment' => 'carts#payment'
   resources :carts
   get '/add_to_carts/:id' => 'carts#additem', as: 'addtocart'

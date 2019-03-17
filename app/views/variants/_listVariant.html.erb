@@ -35,7 +35,6 @@
           <%= form_for Wishlist.new do |f| %>
             <%= f.hidden_field :variant_id, :value => variant.id %>
             <%= button_tag(type: button, class: "btn btn-icon rounded-circle") do %>
-              <i class="far fa-heart"></i>
             <% end %>
           <% end %>
         </div>
