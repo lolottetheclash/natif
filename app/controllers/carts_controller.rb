@@ -95,11 +95,9 @@ class CartsController < ApplicationController
       @amount += item_in_cart.total_per_item
     end
 
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"*6
-    puts @amount
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"*6
     # En centimes
     @amount *= 100
+    @amount = @amount.to_i
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -120,16 +118,11 @@ class CartsController < ApplicationController
     @order.delivery_id = 2
     @order.user_id = current_user.id
 
-    respond_to do |format|
-      if @order.save
-        @carts.each do |item_in_cart|
-            item_in_cart.update(order_id: @order.id)
-        end   
-        format.html { redirect_to @order, notice: 'Paiement effectué avec succès' }
-      else
-        format.html { redirect_to request.referer, notice: 'Erreur dans le paiement' }
-      end
-    end
+    @order.save
+    @carts.each do |item_in_cart|
+        item_in_cart.update(order_id: @order.id)
+        Variant.find(item_in_cart.variant_id).stock -= item_in_cart.quantity
+    end   
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
