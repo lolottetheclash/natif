@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_03_15_154438) do
     t.bigint "order_id"
     t.bigint "variant_id"
     t.bigint "user_id"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_carts_on_order_id"
