@@ -4,9 +4,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :confirmable
-
-
-
          
   has_many :role_associations
   has_many :roles, through: :role_associations
@@ -22,8 +19,7 @@ class User < ApplicationRecord
   has_many :posted_articles, foreign_key: 'author_id', class_name: "Post"
   has_one_attached :avatar
 
-
-def self.find_first_by_auth_conditions(warden_conditions)
+  def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if username = conditions.delete(:username)
       where(conditions.to_hash).where("lower(username) = :value OR lower(email) = :value", value: username.downcase).first
@@ -32,6 +28,8 @@ def self.find_first_by_auth_conditions(warden_conditions)
     end
   end
 
-
+  def fullname
+    return self.firstname.capitalize + ' ' + self.lastname.upcase
+  end
 
 end
