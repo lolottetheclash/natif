@@ -1,114 +1,106 @@
+<!-- Top bar -->
+<div class="topbar">
+  <div class="container d-flex">
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <div class="container d-flex">
-
-      <!-- User dropdown -->
-      <ul class="nav ml-auto">
-        <li class="nav-item dropdown dropdown-hover">
+    <!-- User dropdown -->
+    <ul class="nav ml-auto">
+      <li class="nav-item dropdown dropdown-hover">
         <% if user_signed_in? %>
-            <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user"></i> Bonjour, <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <div class="media p-2 align-items-center mb-2">
-                    <div class="mr-2 size50x50"><img src="http://clipart-library.com/images/8c6o8XKri.png" alt="user" class="img-thumbnail rounded-circle mr-2 size50x50"></div>
-                        <div class="media-body">
-                            <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
-                            <div class="small"><%= current_user.email%></div>
-                            <!--<div class="small counter">1113 points</div>-->
-                    </div>
-                </div>
-                <a href="#" class="dropdown-item has-icon"><i class="fas fa-cart-plus"></i> Mes commandes</a>
-                <a href="<%= wishlists_path %>" class="dropdown-item has-icon has-badge"><i class="fas fa-heart"></i>  Ma wishlist<span class="badge rounded badge-primary">2</span></a>
-                <a href="<%= my_profile_path %>" class="dropdown-item has-icon"><i class="fas fa-cogs"></i> Mon compte</a>
-                <div class="dropdown-divider"></div>
-                <a href="<%= destroy_user_session_path%>" class="dropdown-item has-icon text-danger" data-method="DELETE"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-            </div>
-          
-          <% else %>
-          <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i> Bonjour, visiteur  <i class="fas fa-chevron-down"></i>
+          <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i> Bonjour, <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-              <div class="media p-2 align-items-center mb-2">
-                <div class="media-body">
-                    <a class="btn btn-primary btn-sm btn-block" href="<%= new_user_session_path %>">Connexion</a>
-                    <p class="text-sm text-muted mt-3 mb-0"><a href="<%=new_user_registration_path %>">Créer un compte</a></p>
-                </div>
-              </div>
-          </div>
-          <% end %>
-        </li>
-      </ul>
-      <!-- /User dropdown -->
-
-    </div><!-- /.container -->
-  </div>
-  <!-- /Top bar -->
-
-
-  <!--Header -->
-  <header>
-    <div class="container">
-
-      <!-- Logo -->
-      <a class="nav-link nav-logo" href="<%= root_path %>"><img src="#" alt=""> <strong>NATIVEA</strong></a>
-
-      <!-- Main navigation -->
-      <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
-        <li class="nav-item"><a class="nav-link" href="<%= root_path %>">Home</a></li>
-        <li class="nav-item dropdown dropdown-hover">
-          <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-            Account <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="dropdown-menu">        
-            <% if user_signed_in? %>
-              <a class="dropdown-item" href="<%= my_profile_path %>">Profile Page</a>
-              <a class="dropdown-item" href="<%= carts_path %>">Cart</a>
-              <a class="dropdown-item" href="<%= wishlists_path %>">Wishlist</a>
-              <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="DELETE">Logout</a>
-            <% else %>
-              <a class="dropdown-item" href="<%= new_user_registration_path %>">Sign Up</a>
-              <a class="dropdown-item" href="<%= new_user_session_path %>">Log In </a>
-            <% end %>
-          </div>
-        </li>
-      </ul>
-      <!-- /Main navigation -->
-
-
-      <ul class="nav ml-auto ml-sm-0">
-        <!-- Cart dropdown -->
-        <li class="nav-item dropdown dropdown-hover dropdown-cart">
-          <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="<%= carts_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="badge badge-primary">1</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="media">
-              <a href="shop-single.html"><img src="../img/products/1_small.jpg" width="50" height="50" alt="Hanes Hooded Sweatshirt"></a>
+            <div class="media p-2 align-items-center mb-2">
+              <div class="mr-2 size50x50"><img src="http://clipart-library.com/images/8c6o8XKri.png" alt="user" class="img-thumbnail rounded-circle mr-2 size50x50"></div>
               <div class="media-body">
-                <a href="shop-single.html" title="Hanes Hooded Sweatshirt">Hanes Hooded Sweatshirt</a>
-                <span class="qty">1</span> x <span class="price">$18.56</span>
-                <button type="button" class="close" aria-label="Close"><i class="far fa-times-circle"></i></button>
+                <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
+                <div class="small"><%= current_user.email%></div>
               </div>
             </div>
-
-            <div class="d-flex justify-content-between pb-3 pt-2">
-              <span>Total</span>
-              <strong>$135.40</strong>
-            </div>
-            <div class="d-flex justify-content-between pb-2">
-              <div class="w-100 mr-1">
-                <a href="cart.html" class="<%= carts_path %>">View Cart/Checkout</a>
+            <a href="#" class="dropdown-item has-icon"><i class="fas fa-cart-plus"></i> Mes commandes</a>
+            <a href="<%= wishlists_path %>" class="dropdown-item has-icon has-badge"><i class="fas fa-heart"></i>  Ma wishlist<span class="badge rounded badge-primary">2</span></a>
+            <a href="<%= my_profile_path %>" class="dropdown-item has-icon"><i class="fas fa-cogs"></i> Mon compte</a>
+            <div class="dropdown-divider"></div>
+            <a href="<%= destroy_user_session_path%>" class="dropdown-item has-icon text-danger" data-method="DELETE"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+          </div>
+        <% else %>
+          <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i> Bonjour, visiteur  <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="media p-2 align-items-center mb-2">
+              <div class="media-body">
+                <a class="btn btn-primary btn-sm btn-block" href="<%= new_user_session_path %>">Connexion</a>
+                <p class="text-sm text-muted mt-3 mb-0"><a href="<%=new_user_registration_path %>">Créer un compte</a></p>
               </div>
             </div>
           </div>
-        </li>
-        <!-- /Cart dropdown -->
-      </ul>
+        <% end %>
+      </li>
+    </ul>
+    <!-- /User dropdown -->
+  </div>
+</div>
+<!-- /Top bar -->
 
-    </div><!-- /.container -->
-  </header>
-  <!-- /Header -->
+<!--Header -->
+<header>
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="nav-link nav-logo" href="<%= root_path %>"><img src="#" alt=""> <strong>NATIVEA</strong></a>
+
+    <!-- Main navigation -->
+    <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
+      <li class="nav-item"><a class="nav-link" href="<%= root_path %>">Home</a></li>
+      <li class="nav-item dropdown dropdown-hover">
+        <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
+          Account <i class="fas fa-chevron-down"></i>
+        </a>
+        <div class="dropdown-menu">        
+          <% if user_signed_in? %>
+            <a class="dropdown-item" href="<%= my_profile_path %>">Profile Page</a>
+            <a class="dropdown-item" href="<%= carts_path %>">Cart</a>
+            <a class="dropdown-item" href="<%= wishlists_path %>">Wishlist</a>
+            <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="DELETE">Logout</a>
+          <% else %>
+            <a class="dropdown-item" href="<%= new_user_registration_path %>">Sign Up</a>
+            <a class="dropdown-item" href="<%= new_user_session_path %>">Log In </a>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+    <!-- /Main navigation -->
+
+    <ul class="nav ml-auto ml-sm-0">
+      <!-- Cart dropdown -->
+      <li class="nav-item dropdown dropdown-hover dropdown-cart">
+        <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="<%= carts_path %>" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge badge-primary">1</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="media">
+            <a href="shop-single.html"><img src="../img/products/1_small.jpg" width="50" height="50" alt="Hanes Hooded Sweatshirt"></a>
+            <div class="media-body">
+              <a href="shop-single.html" title="Hanes Hooded Sweatshirt">Hanes Hooded Sweatshirt</a>
+              <span class="qty">1</span> x <span class="price">$18.56</span>
+              <button type="button" class="close" aria-label="Close"><i class="far fa-times-circle"></i></button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between pb-3 pt-2">
+            <span>Total</span>
+            <strong>$135.40</strong>
+          </div>
+          <div class="d-flex justify-content-between pb-2">
+            <div class="w-100 mr-1">
+              <a href="<%= carts_path %>" class="btn btn-block rounded-pill btn-secondary">View Cart/Checkout</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <!-- /Cart dropdown -->
+    </ul>
+  </div>
+</header>
+<!-- /Header -->
