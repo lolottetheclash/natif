@@ -61,7 +61,7 @@
     <div class="row">
       <a class="col-3" href="#"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
       <div class="col-9">
-        <a class="row text-info" href="#"><small>Posted by: <b><%= User.find_by_id(item.author_id).lastname %></b></small></a>
+        <a class="row text-info" href="#"><small>Posted by: <b><%= User.find_by_id(item.author_id).fullname %></b></small></a>
         <div class="row"><small class="text-sm"><i class="far fa-clock"></i> <%= item.created_at.strftime("%B %d, %Y") %></small></div>
       </div>
     </div> 
