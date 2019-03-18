@@ -54,6 +54,10 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    varantsofitem = Variant.where(item_id: @item.id)
+    varantsofitem.each do |element|
+      element.destroy
+    end
     @item.destroy
     respond_to do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
