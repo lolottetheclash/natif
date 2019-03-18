@@ -1,0 +1,25 @@
+<h1 style="text-align: center">Mes Commandes</h1><hr>
+<div class="table-responsive">
+  <table class="table table-hover" data-addclass-on-xs="table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Numéro de commande</th>
+        <th scope="col">Date</th>
+        <th scope="col" class="text-right">Total</th>
+        <th scope="col" class="text-center">Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.each do |_order| %>
+        <% linked_cart = Cart.where(order_id: _order.id) %>
+        <% amount = linked_cart.map(&:total_per_item).instance_eval { reduce(:+) } %>
+        <tr>
+          <th scope="row"><a href="">#ORD<%= _order.id %></a></th>
+          <td><%= _order.created_at.strftime(" %d of %B %Y") %></td>
+          <td class="text-right">€ <%= amount == nil ? "0.00" : sprintf( "%0.02f", amount) %></td>
+          <td class="text-center"><span class="badge badge-warning rounded"><%= Delivery.find(_order.delivery_id).status %></span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
