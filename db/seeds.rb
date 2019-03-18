@@ -370,13 +370,13 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table OptionAssociation (100 option_associations)"
-600.times do |i|
+puts "\nSeed of table OptionAssociation (500 option_associations)"
+500.times do |i|
 	OptionAssociation.create(
 		variant: Variant.all.sample,
 		option_value: OptionValue.all.sample
 		)
-	print "\r#{i+1} option_associations created over 600"
+	print "\r#{i+1} option_associations created over 500"
 end
 puts "\nSeed of table OptionAssociation has been successfully performed"
 puts "-" *60
