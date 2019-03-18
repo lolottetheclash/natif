@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :reviews
   resources :orders
   resources :items
+  resources :options
+  resources :option_values
+  resources :option_associations
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do 
     get "/my_profile" => "registrations#show"

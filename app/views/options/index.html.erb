@@ -1,0 +1,28 @@
+<p id="notice" class="text-success container"><%= notice %></p>
+
+<div class="container">
+<h1>Options</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @options.each do |option| %>
+      <tr>
+        <td class="align-middle"><%= option.name %></td>
+        <td><%= link_to 'Edit', edit_option_path(option), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nouvelle Option', new_option_path, class: "btn btn-success mb-3" %>
+</div>

@@ -124,10 +124,10 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table Tag (20 Tags)"
+puts "\nSeed of table Tag (40 Tags)"
 40.times do |i|
 	Tag.create(name: Faker::Commerce.material)
-	print "\r#{i+1} tags created over 20"
+	print "\r#{i+1} tags created over 40"
 end
 puts "\nSeed of table Tag has been successfully performed"
 puts "-" *60
@@ -182,35 +182,36 @@ end
 puts "\nSeed of table Order has been successfully performed"
 puts "-" *60
 
-optionArray = ["Clothe Size"]
+optionArray = ["Size", "Color", "Litre", "Weight"]
 #Then you only need to add a status to the array
 puts "\n"*2
 puts "$" *60
 puts "\nSeed of table Option"
-optionArray.each do |optionseed|
+optionArray.each do |option|
 	Option.create(
-		name: optionseed
+		name: option
 		)
 end
 puts "Created #{optionArray.length}"
 puts "\nSeed of table Option has been successfully performed"
 puts "-" *60
 
-clothesTopSize = ["XS", "S", "M", "L", "XL", "XXL", "3Xl", "4XL"]
-colorsClothes = ["Black", "Dove", "Dark Chocolate", "Milk Chocolate", "Sand", "Peacock", "Tiffany", "Blueberry", "French", "Rain", "Navy", "Plum", "Grape", "Lavender", "Perwinkle", "Merlot", "Scarlet", "Cherry", "lipstick", "Magnolia", "Rust", "Sunset", "Tangerine", "Melon", "Marigold", "Mimosa", "Lemon"]
-perfumeBottle = ["50 ml", "80 ml", "150 ml", "250 ml", "300 ml", "350 ml"]
-itemweight = ["50 gr", "100 gr", "250 gr", "500 gr", "1 kg", "2,5 kg", "5 kg"]
+optionvalueArray = [["XS", "S", "M", "L", "XL", "XXL", "3Xl", "4XL"], ["Black", "Dove", "Dark Chocolate", "Milk Chocolate", "Sand", "Peacock", "Tiffany", "Blueberry", "French", "Rain", "Navy", "Plum", "Grape", "Lavender", "Perwinkle", "Merlot", "Scarlet", "Cherry", "lipstick", "Magnolia", "Rust", "Sunset", "Tangerine", "Melon", "Marigold", "Mimosa", "Lemon"], ["50 ml", "80 ml", "150 ml", "250 ml", "300 ml", "350 ml"], ["50 gr", "100 gr", "250 gr", "500 gr", "1 kg", "2,5 kg", "5 kg"]]
 #Then you only need to add an option to the array
 puts "\n"*2
 puts "$" *60
 puts "\nSeed of table OptionValue"
-clothesTopSize.each do |optionvalueclothesize| #Liee a option plus haut
-	OptionValue.create(
-		name: optionvalueclothesize,
-		option: Option.all.sample
-		)
+$index = 1
+$count = 1
+optionvalueArray.each do |element| #Liee a option plus haut
+	element.each do |value|
+		OptionValue.create(
+			name: value,
+			option: Option.find($index)
+			)
+	end
+	$index +=1
 end
-puts "Created #{clothesTopSize.length}"
 puts "\nSeed of table OptionValue has been successfully performed"
 puts "-" *60
 
@@ -369,13 +370,13 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table OptionAssociation (100 option_associations)"
-100.times do |i|
+puts "\nSeed of table OptionAssociation (500 option_associations)"
+500.times do |i|
 	OptionAssociation.create(
 		variant: Variant.all.sample,
 		option_value: OptionValue.all.sample
 		)
-	print "\r#{i+1} option_associations created over 100"
+	print "\r#{i+1} option_associations created over 500"
 end
 puts "\nSeed of table OptionAssociation has been successfully performed"
 puts "-" *60

@@ -1,37 +1,46 @@
-<%= form_with(model: variant, local: true) do |form| %>
-  <% if variant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(variant.errors.count, "error") %> prohibited this variant from being saved:</h2>
+<div class="container">
 
+  <%= form_with(model: variant, local: true) do |form| %>
+    <% if variant.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(variant.errors.count, "error") %> prohibited this variant from being saved:</h2>
       <ul>
-      <% variant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% variant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row"><%= form.label :"Produit de référence" %></th>
+          <td class="d-flex justify-content-center"><%= form.collection_select(:item_id, Item.all, :id, :title) %></td>
+        </tr>
 
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.text_field :item_id %>
-  </div>
+        <tr>
+          <th scope="row"><%= form.label :Nom %></th>
+          <td class="d-flex justify-content-center"><%= form.text_field :title %></td>
+        </tr>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
+        <tr>
+          <th scope="row"><%= form.label :Prix %></th>
+          <td class="d-flex justify-content-center"><%= form.number_field :price %></td>
+        </tr>
 
-  <div class="field">
-    <%= form.label :stock %>
-    <%= form.number_field :stock %>
-  </div>
+        <tr>
+          <th scope="row"><%= form.label :Stock %></th>
+          <td class="d-flex justify-content-center"><%= form.number_field :stock %></td>
+        </tr>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= submit_tag("Créer/Mettre à jour une variante", :class=>"btn btn-success") %>
+    </div>
+
+  <% end %>
+
+</div>
