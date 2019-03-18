@@ -1,10 +1,10 @@
 class CartsController < ApplicationController
-  #before_action :set_cart, only: [:show, :edit, :update, :destroy, :additem, :removeitem]
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :additem, :removeitem]
 
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.where(user_id: 1)#.where(user_id: current_user.id).where(order_id: nil)
+    @carts = Cart.where(user_id: current_user.id).where(order_id: nil).order(:id)
     if @carts.empty?
       flash.now[:alert] = "Your book was not found"
     end
@@ -33,7 +33,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Cart was successfully created.' }
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }
@@ -87,7 +87,7 @@ class CartsController < ApplicationController
   def payment
     @order = Order.new
     @amount = 0
-    @carts = Cart.where(user_id: 1)#.where(user_id: current_user.id).where(order_id: nil)
+    @carts = Cart.where(user_id: current_user.id).where(order_id: nil)
     i = 0
 
     @carts.each do |item_in_cart|
