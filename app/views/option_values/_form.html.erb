@@ -1,0 +1,37 @@
+<div class="container">
+
+  <%= form_with(model: option_value, local: true) do |form| %>
+    <% if option_value.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(option_value.errors.count, "error") %> prohibited this option_value from being saved:</h2>
+      <ul>
+        <% option_value.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <table class="table table-striped">
+      <tbody>
+      
+        <tr>
+          <th scope="row"><%= form.label :"Produit de référence" %></th>
+          <td class="d-flex justify-content-center"><%= form.collection_select(:option_id, Option.all, :id, :name) %></td>
+        </tr>
+
+        <tr>
+          <th scope="row"><%= form.label :Nom %></th>
+          <td class="d-flex justify-content-center"><%= form.text_field :name %></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= submit_tag("Créer/Mettre à jour une valeur d'option", :class=>"btn btn-success") %>
+    </div>
+
+  <% end %>
+
+</div>

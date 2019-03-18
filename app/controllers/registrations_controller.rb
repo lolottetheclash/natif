@@ -13,6 +13,7 @@ class RegistrationsController < Devise::RegistrationsController
       :lastname,
       :username,
       :age,
+      :avatar,
       :email,
       :password,
       :password_confirmation,
@@ -29,6 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
         :lastname,
         :username,
         :age,
+        :avatar,
         :email,
         :current_password
       )

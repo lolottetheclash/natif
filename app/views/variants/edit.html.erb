@@ -1,6 +1,13 @@
-<h1>Editing Variant</h1>
+<div class="container">
+    <h1 class="mt-3">Mettre à jour une variante</h1>
+</div>
 
 <%= render 'form', variant: @variant %>
 
-<%= link_to 'Show', @variant %> |
-<%= link_to 'Back', variants_path %>
+<div class="container">
+    <div class="d-flex justify-content-between mb-3">
+    <%= link_to 'Aller à la variante ', @variant, class: "btn btn-warning" %>
+
+    <%= link_to 'Revenir ', variants_path, class: "btn btn-warning" %>
+    </div>
+</div>

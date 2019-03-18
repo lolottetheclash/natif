@@ -13,13 +13,21 @@
                 <label for="profileAge">Age</label>
                 <%= f.text_field :age, autofocus: true, autocomplete: "age", class: "form-control", type: "number" %>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label for="profileUsername">Username</label>
                 <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control" %>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label for="profileEmail">Email address</label>
                 <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="profileGender">Gender</label>
+                <%= f.text_field :gender, autofocus: true, autocomplete: "gender", class: "form-control" %>
+              </div>
+              <div class="form-group col-sm-5">
+                <label for="profileAvatar">Change My Avatar</label>
+                <%= f.file_field :avatar, class: 'form-control' %>
               </div>
             </div>
           </div>
@@ -39,6 +47,7 @@
                 <label for="profileEmail">Password Confirmation</label>
                 <%= f.password_field :password_confirmation, autocomplete: "password", class: "form-control", placeholder: "Password Confirmation"%>
               </div>
+            </div>
           </div>
           </br><hr>
           <h3>Confirm My Changes</h3><hr>
@@ -51,5 +60,5 @@
             <div class="form-group col-sm-12">
                 <%= f.submit "Update My Profile", class: "btn btn-primary col-sm-12" %>
             </div> 
-              </div>
-              <% end %>
+          </div>
+  <% end %>
