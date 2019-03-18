@@ -1,5 +1,5 @@
 class WishlistsController < ApplicationController
-  before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
+  #before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
 
   # GET /wishlists
   # GET /wishlists.json

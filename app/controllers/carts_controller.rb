@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy, :additem, :removeitem]
+  #before_action :set_cart, only: [:show, :edit, :update, :destroy, :additem, :removeitem]
 
   # GET /carts
   # GET /carts.json
