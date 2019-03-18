@@ -1,4 +1,173 @@
-<p id="notice"><%= notice %></p>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Post - Show</title>
+  </head>
+  <body>
+    <!-- Main Content -->
+    <div class="container my-3">
+      <div class="row">
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body" lang="zxx"> <!-- because 'lorem ipsum' is not english language, so we add lang="zxx" attribute, remove it on production environment -->
+
+              <!-- Blog Info -->
+              <ul class="list-inline">
+                <li class="list-inline-item"><small><i class="fas fa-clock"></i> Jan 01, 18</small></li>
+                <li class="list-inline-item"><small><i class="fas fa-user"></i> <a href="javascript:void(0)" class="text-muted">Admin</a></small></li>
+                <li class="list-inline-item"><small><i class="fas fa-tag"></i> <a href="javascript:void(0)" class="text-muted">Fashion</a></small></li>
+              </ul>
+
+              <!-- Blog Content -->
+              <h2 class="bold">5 Coolest Winter Outfits You Can Steal</h2>
+              <img src="https://image.noelshack.com/fichiers/2019/11/3/1552473886-adult-art-blue-312591.jpg" alt="Blog" class="img-fluid my-3">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla ipsa fuga et tenetur dolore, maxime consequuntur! Adipisci sed eligendi reprehenderit alias, beatae perspiciatis, id dolore laborum aliquam praesentium excepturi odio quas aut enim, libero sit minus blanditiis veritatis repellat cum suscipit non obcaecati qui iure? Voluptates a perspiciatis sunt quaerat.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas asperiores rem dolorem vitae reiciendis rerum, id a dicta labore ea, est sed odio animi nostrum veniam, inventore vel. Delectus, ex, qui. Quidem ea, natus aut nihil quaerat suscipit vel fuga numquam excepturi nemo minus quae at, ab qui rerum cum!</p>
+              <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipiscing elit</li>
+                <li>Integer molestie lorem at massa</li>
+                <li>Facilisis in pretium nisl aliquet</li>
+                <li>Nulla volutpat aliquam velit
+                  <ul>
+                    <li>Phasellus iaculis neque</li>
+                    <li>Purus sodales ultricies</li>
+                    <li>Vestibulum laoreet porttitor sem</li>
+                    <li>Ac tristique libero volutpat at</li>
+                  </ul>
+                </li>
+                <li>Faucibus porta lacus fringilla vel</li>
+                <li>Aenean sit amet erat nunc</li>
+                <li>Eget porttitor lorem</li>
+              </ul>
+              <!-- /Blog Content -->
+
+              <!-- Share Button -->
+              <div class="d-flex align-items-center">
+                <span class="text-muted">Share post: </span>
+                <a href="javascript:void(0)" class="btn btn-light btn-icon rounded-circle border ml-2" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="javascript:void(0)" class="btn btn-light btn-icon rounded-circle border ml-2" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="javascript:void(0)" class="btn btn-light btn-icon rounded-circle border ml-2" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+              <!-- /Share Button -->
+
+              <hr>
+
+              <!-- Blog Comments -->
+              <h3>Comments</h3>
+              <div class="media my-4">
+                <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+                <div class="media-body ml-2 ml-sm-3">
+                  <textarea rows="2" placeholder="Leave a comment" class="form-control border autosize"></textarea>
+                  <button class="btn btn-sm btn-light border border-top-0 btn-block">Post</button>
+                </div>
+              </div>
+              <div class="media">
+                <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+                <div class="media-body ml-2 ml-sm-3">
+                  <div class="d-flex flex-wrap">
+                    <a href="javascript:void(0)" class="mr-2">Alex</a>
+                    <span class="text-muted">17 minutes ago</span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
+                  <ul class="list-inline">
+                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote up">5 <i data-feather="chevron-up"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote down"><i data-feather="chevron-down"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted">Reply</a></li>
+                  </ul>
+                  <hr>
+                  <div class="media">
+                    <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+                    <div class="media-body ml-2 ml-sm-3">
+                      <div class="d-flex flex-wrap">
+                        <a href="javascript:void(0)" class="mr-2">Twink</a>
+                        <span class="text-muted">5 minutes ago</span>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
+                      <ul class="list-inline">
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote up"><i data-feather="chevron-up"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote down"><i data-feather="chevron-down"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted">Reply</a></li>
+                      </ul>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="media">
+                <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+                <div class="media-body ml-2 ml-sm-3">
+                  <div class="d-flex flex-wrap">
+                    <a href="javascript:void(0)" class="mr-2">Steve</a>
+                    <span class="text-muted">an hour ago</span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
+                  <ul class="list-inline">
+                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote up"><i data-feather="chevron-up"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote down"><i data-feather="chevron-down"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted">Reply</a></li>
+                  </ul>
+                  <hr>
+                </div>
+              </div>
+              <!-- /Blog Comments -->
+
+            </div>
+          </div>
+        </div>
+    
+
+        <!-- Blog Sidebar -->
+        <div class="col-md-4 col-lg-4 mt-3 mt-md-0">
+          <div class="card">
+            <div class="card-header bg-white border-bottom bold roboto-condensed">
+              <h5 class="bold mb-0">POPULAR THIS <span class="text-primary">WEEK</span></h5>
+            </div>
+            <% i = 0 %>
+            <% while i < 3 do %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-sm-6 col-md-12">
+                  <div class="card card-blog shadow-none">
+                    <a href="blog-single.html" class="zoom-hover"><img src="https://image.noelshack.com/fichiers/2019/11/3/1552473977-ceramics-clay-handmade-22823.jpg" alt="Blog"></a>
+                    <div class="card-body p-0 text-center">
+                      <a href="blog-single.html" class="title h5 mt-3"><%=   %></a>
+                      <div class="small text-muted">
+                        <i class="far fa-heart"></i> 55 Likes
+                        <i class="far fa-comment-dots ml-3"></i> 15 Comments
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% i += 1 %>
+             <% end %>
+            </div>
+          </div>
+
+          <div class="card mt-3">
+            <div class="card-header bg-white border-bottom bold roboto-condensed">
+              <h5 class="bold mb-0">POPULAR <span class="text-primary">TAGS</span></h5>
+            </div>
+            <div class="card-body">
+              <div class="btn-group-scatter">
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Design</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Fashion</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Beauty</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Travel</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Sport</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill active">Active tag</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Cooking</a>
+                <a href="javascript:void(0)" class="btn btn-light rounded-pill">Technology</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Blog Sidebar -->
+
+      </div>
+    </div>
+    <!-- /Main Content -->
+  </body>
+</html>
