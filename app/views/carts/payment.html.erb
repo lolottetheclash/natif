@@ -20,7 +20,8 @@
         </p>
         <p>Un email de confirmation a été envoyé à l'adresse : <u><%= User.find(order.user_id).email %></u></p>
         <a href="<%= root_path %>" class="btn btn-primary rounded mb-3">Continuer les achats</a>
-        <a href="<%= order_path(order) %>" class="btn btn-outline-secondary rounded mb-3">Voir la commande</a>
+
+        <a href="<%= my_profile_path %>#orders" class="btn btn-outline-secondary rounded mb-3">Voir la commande</a>
       </div>
     </div>
   </div>

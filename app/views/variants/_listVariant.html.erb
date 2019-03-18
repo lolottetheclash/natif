@@ -6,7 +6,14 @@
       <div class="col-6">
         <%= link_to raw("<i class=\"fas fa-tag\"></i> #{Category.find(item.category_id).name}"), variants_path(:category => Category.find(item.category_id).name), method: "get" %> 
       </div>
-      <span class="rating" data-value="<%= rating %>"></span>
+      <div class="col-6 rating-stars text-warning">
+        <% rating.to_i.times do %>
+          <i class="fas fa-star"></i>
+        <% end %> 
+        <% (5-rating.to_i).times do %>
+          <i class="far fa-star"></i>
+        <% end %> 
+      </div>
     </div>
   </div>
   <div class="card-body p-0 mb-3">

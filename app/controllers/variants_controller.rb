@@ -62,6 +62,10 @@ class VariantsController < ApplicationController
   # DELETE /variants/1
   # DELETE /variants/1.json
   def destroy
+    optionsofvariant = OptionAssociation.where(variant_id: @variant.id)
+    optionsofvariant.each do |element|
+      element.destroy
+    end
     @variant.destroy
     respond_to do |format|
       format.html { redirect_to variants_url, notice: 'Variant was successfully destroyed.' }
