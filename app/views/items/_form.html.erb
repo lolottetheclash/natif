@@ -1,32 +1,43 @@
-<%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<div class="container">
 
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_with(model: item, local: true) do |form| %>
+    <% if item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+        <ul>
+        <% item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <table class="table table-striped">
+      <tbody>
+
+      <tr>
+        <th scope="row"><%= form.label :Nom %></th>
+        <td class="d-flex justify-content-center"><%= form.text_field :title %></td>
+      </tr>
+
+      <tr>
+        <th scope="row"><%= form.label :Description %></th>
+        <td class="d-flex justify-content-center"><%= form.text_area :description, class: "w-50" %></td>
+      </tr>
+
+      <tr>
+      <th scope="row"><%= form.label :"Catégorie" %></th>
+      <td class="d-flex justify-content-center"><%= form.collection_select(:category_id, Category.all, :id, :name) %></td>
+    </tr>
+
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= submit_tag("Créer/Mettre à jour une option", :class=>"btn btn-success") %>
     </div>
+
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
