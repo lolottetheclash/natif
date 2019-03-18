@@ -17,8 +17,3 @@
  *= require noty.min
  *= require style.min
  */
-
-.absolute-footer { 
-    position:absolute; 
-    bottom:0;
-}
