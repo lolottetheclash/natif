@@ -29,7 +29,7 @@
 
           <!-- Blog List -->
           <div>
-            <% @posts.each do |liElements|%>
+            <% @posts.order("created_at DESC").each do |liElements|%>
               <%= render 'listPost', elements: liElements %>
             <% end %>
           </div>
