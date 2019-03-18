@@ -14,7 +14,7 @@
         <% linked_cart = Cart.where(order_id: _order.id) %>
         <% amount = linked_cart.map(&:total_per_item).instance_eval { reduce(:+) } %>
         <tr>
-          <th scope="row"><a href="">#ORD<%= _order.id %></a></th>
+          <th scope="row"><a href="<%= order_path(_order) %>">#ORD<%= _order.id %></a></th>
           <td><%= _order.created_at.strftime(" %d of %B %Y") %></td>
           <td class="text-right">€ <%= amount == nil ? "0.00" : sprintf( "%0.02f", amount) %></td>
           <td class="text-center"><span class="badge badge-warning rounded"><%= Delivery.find(_order.delivery_id).status %></span></td>
