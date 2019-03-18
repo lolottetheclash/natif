@@ -22,7 +22,6 @@ class User < ApplicationRecord
   has_many :posted_articles, foreign_key: 'author_id', class_name: "Post"
   has_one_attached :avatar
 
-
 def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if username = conditions.delete(:username)
@@ -31,7 +30,5 @@ def self.find_first_by_auth_conditions(warden_conditions)
       where(conditions.to_hash).first
     end
   end
-
-
 
 end
