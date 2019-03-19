@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :option_association do
-    variant { nil }
-    option_value { nil }
+    variant { FactoryBot.create(:variant) }
+    option_value { FactoryBot.create(:option_value) }
   end
 end
