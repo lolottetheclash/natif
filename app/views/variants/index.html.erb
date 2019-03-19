@@ -17,8 +17,18 @@
 
       <!-- Shop Grid -->
       <div class="card-deck card-deck-product with-sidebar mt-3"> 
-        <% @variants.order(:id).each do |current_variant| %>
-         <%= render 'listVariant', variant: current_variant, item: Item.find(current_variant.item_id) %> 
+        <% if @variants.empty? %>
+          <div class="card card-product">
+            <div class="card-body">
+                <p>Votre recherche ne correspond à aucun de nos articles.</p>
+                <p>Vous pouvez effectuer une nouvelle recherche ou revenir sur la page d'accueil.</p>
+                <%= link_to "Revenir à l'accueil", variants_path, class: "btn btn-primary"%>
+            </div>
+          </div>
+        <% else %>
+          <% @variants.order(:id).each do |current_variant| %>
+            <%= render 'listVariant', variant: current_variant, item: Item.find(current_variant.item_id) %> 
+          <% end %>
         <% end %>
       </div>
       <!-- /Shop Grid -->
