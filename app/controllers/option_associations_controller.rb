@@ -55,7 +55,7 @@ class OptionAssociationsController < ApplicationController
         end
     
         def option_params
-        params.require(:option_association).permit(:variant_id, :option_id)
+        params.require(:option_association).permit(:variant_id, :option_value_id)
         end       
 
 end

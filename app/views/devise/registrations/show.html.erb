@@ -5,20 +5,24 @@
       <div class="card">
         <div class="card-body text-center">
           <%if @user.avatar.attached?%>
-            <%= image_tag @user.avatar, alt: @user.firstname, :class => "rounded-circle mb-3", :style => "width:100px;height:100px;" %>
+            <%= image_tag @user.avatar, alt: @user.fullname, :class => "rounded-circle mb-3", :style => "width:100px;height:100px;" %>
           <%elsif @user.gender == "Male" %>
-            <%= image_tag ("mister.jpg"), alt: @user.firstname, :class => "rounded-circle mb-3", :style => "width:100px;height:100px;" %>
+            <%= image_tag ("mister.jpg"), alt: @user.fullname, :class => "rounded-circle mb-3", :style => "width:100px;height:100px;" %>
           <% else %>
-            <%= image_tag ("miss.jpg"), alt: @user.firstname, :class => "rounded-circle mb-3", :style => "width:100px;height:100px;" %>
+            <%= image_tag ("miss.jpg"), alt: @user.fullname, :class => "rounded-circle mb-3", :style => "width:100px;height:100px;" %>
           <%end%>
-          <h5 class="bold mb-0"><%= @user.firstname.capitalize %> <%= @user.lastname.upcase %></h5>
+          <h5 class="bold mb-0"><%= @user.fullname %></h5>
           <h6 class="bold mb-0">~ <%= @user.username.capitalize %> ~</h6></br>
           <small class="counter">Member since: <%=@user.created_at.strftime(" %d of %B %Y")%></small>
           <hr>
         </div>
-        <div class="list-group list-group-flush">
-          <a href="<%= my_profile_path%>" class="list-group-item list-group-item-action active"><i class="fas fa-user mr-3"></i> Profile</a>
-          <a href="<%= order_path(current_user.id)%>" class="list-group-item list-group-item-action"><i class="fas fa-shopping-bag mr-3"></i> Orders</a>
+        <div class="list-group list-group-flush" id="myTabs" role="tablist">
+          <a class="list-group-item list-group-item-action active" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">
+            <i class="fas fa-user mr-3"></i> Profile
+          </a>
+          <a class="list-group-item list-group-item-action" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="true">
+            <i class="fas fa-shopping-bag mr-3"></i> Orders
+          </a>
           <a href="<%= wishlist_path(current_user.id)%>" class="list-group-item has-badge list-group-item-action"><i class="fas fa-heart mr-3"></i> Wishlist <span class="badge rounded badge-primary">2</span></a>
           <a href="<%= destroy_user_session_path%>" class="list-group-item list-group-item-action text-danger" data-method="DELETE"><i class="fas fa-sign-out-alt mr-3"></i>Logout</a>
         </div>
@@ -27,18 +31,24 @@
     <div class="col mt-3 mt-md-0">
       <div class="card">
         <div class="card-body">
-          <h1 style="text-align: center">My Profile</h1><hr>
-          <h3>My Informations</h3><hr>
-          <div class="form-style-1">
-            <%= render 'form_show' %>
+          <div class="tab-content">
+            <div class="card-body tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <h1 style="text-align: center">My Profile</h1><hr>
+              <h3>My Informations</h3><hr>
+              <div class="form-style-1">
+                <%= render 'form_show' %>
+              </div>
+            </div>
+            <div class="card-body tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+              <% if Order.where(user_id: current_user.id).order(:id).blank? %>
+                No order
+              <% else %>
+                <%= render 'orderlist', order: Order.where(user_id: current_user.id).order(:id) %> 
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>  
 </div>
-
-
-
-
-

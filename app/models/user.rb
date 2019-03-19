@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :confirmable
 
+
   has_many :role_assignations
   has_many :roles, through: :role_assignations
   has_many :orders
@@ -48,9 +49,7 @@ class User < ApplicationRecord
   def fullname
     full_name = "#{self.firstname} #{self.lastname}"
     return full_name
-
   end
-
 
   def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
@@ -60,7 +59,4 @@ class User < ApplicationRecord
         where(conditions.to_hash).first
       end
     end
-
-
-
 end

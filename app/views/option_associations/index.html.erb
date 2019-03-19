@@ -23,7 +23,7 @@
       <% Variant.where(item_id: product.id).each do |element| %>
         <tr>
           <th scope="row" class="align-middle"><%= element.title %></th>
-            <td class="align-middle"><%= link_to "Nouvelle option", edit_option_association_path(element), class: "btn btn-success btn-sm" %></td>
+            <td class="align-middle"><%= link_to "Nouvelle option", new_option_association_path(element), class: "btn btn-success btn-sm" %></td>
           <% @option_associations.where(variant_id: element.id).each do |association|%>
             <td class="align-middle">
               <divclass="align-middle"><%= Option.find(OptionValue.find(association.option_value_id).option_id).name %> : 

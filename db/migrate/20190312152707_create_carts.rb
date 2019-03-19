@@ -4,7 +4,7 @@ class CreateCarts < ActiveRecord::Migration[5.2]
       t.belongs_to :order, index: true
       t.belongs_to :variant, index: true
       t.belongs_to :user, index: true
-      t.integer :quantity
+      t.integer :quantity, default: 1
 
       t.timestamps
     end
