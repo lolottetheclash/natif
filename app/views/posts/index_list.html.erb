@@ -30,7 +30,7 @@
           <!-- Blog List -->
           <div>
             <% @posts.order("created_at DESC").each do |liElements|%>
-              <%= render 'listPost', elements: liElements %>
+              <%= render 'listPost', elements: liElements, post: Post.find(liElements.id)%>
             <% end %>
           </div>
           <!-- /Blog List -->
