@@ -10,10 +10,11 @@
     <div class="card-body">
       <ul class="list-tree">
         <li>
-          <a href="#" class="has-arrow">Men's Fashion <small class="counter">(120)</small></a>
+          <a href="#"> Nos catégories <small class="counter">(<%= Item.all.length %>)</small></a>
           <ul>
-            <li class="mm-active"><a href="javascript:void(0)">Clothing <small class="counter">(40)</small></a></li>
-            <li><a href="javascript:void(0)">Shoes <small class="counter">(20)</small></a></li>
+            <% Category.all.each do |element|%>
+            <li><a href="javascript:void(0)"><%= element.name %><small class="counter"> (<%= Item.where(category_id: element.id).length %>)</small></a></li>
+            <%end%>
           </ul>
         </li>
        </ul>
@@ -92,29 +93,6 @@
           <input type="checkbox" class="custom-control-input">
           <span class="custom-control-label" style="background-color: #f44336"></span>
         </label>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-header">
-    <a href="#filter-brands" data-toggle="collapse" aria-expanded="true" aria-controls="filter-brands" role="button" class="h6">
-      BRANDS
-    </a>
-  </div>
-  <div id="filter-brands" class="collapse show">
-    <div class="card-body">
-      <div class="input-group input-group-sm input-group-search mb-3">
-        <div class="input-group-prepend">
-          <button class="btn btn-light" type="button"><i data-feather="search"></i></button>
-        </div>
-        <input type="text" class="form-control border-0 bg-light" id="search-brands" placeholder="Search...">
-      </div>
-      <div class="brands-list">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="brand-tommy-hilfiger">
-          <label class="custom-control-label" for="brand-tommy-hilfiger">Tommy Hilfiger <small class="counter">43</small></label>
-        </div>
       </div>
     </div>
   </div>

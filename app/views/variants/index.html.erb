@@ -1,10 +1,12 @@
 <!-- Main Content -->
 <div class="container mt-3 mb-3">
+
   <div class="row gutters-3">
 
     <!-- Shop Filters -->
-    <div class="col-lg-3 col-md-4">
-    </div>
+      <div class="col-lg-3 col-md-4 mt-3">
+      <%= render 'sidebar' %> 
+      </div>
     <!-- /Shop Filters -->
 
     <div class="col-lg-9 col-md-8">
@@ -23,7 +25,7 @@
 
       <!-- Pagination -->
         <div class="d-flex justify-content-center">
-          <%= paginate @variants, window: 1, left: 1 %>
+          <%= paginate @variants, window: 1 %>
         </div>
       <!-- /Pagination -->
 
