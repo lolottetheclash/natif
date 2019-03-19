@@ -3,7 +3,6 @@ class Comment < ApplicationRecord
 	belongs_to :commentable, polymorphic: true 
 	has_many :comments, as: :commentable
 	
-	validates_associated :comments
 	validates :title,
     presence: true, 
     length: { minimum: 2, maximum: 20 }

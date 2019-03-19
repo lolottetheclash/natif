@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :user do
-    firstname { "John" }
-    lastname { "Doe" }
-    username { "johndoe" }   
+    firstname { Faker::Artist.name }
+    lastname { Faker::FunnyName.name }
+    username { Faker::Lorem.characters(10) }   
     age { 30 }
-    email {"laurenzolivier@gmail.com"} 
+    email {Faker::Internet.email} 
     password {"tiptop31"}
     gender {"Female"}
   end

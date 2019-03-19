@@ -2,7 +2,6 @@ class Role < ApplicationRecord
 	has_many :role_assignations
 	has_many :users, through: :role_assignations
 
-	validates_associated :role_assignations
 	validates :name,
     presence: true, 
     length: { minimum: 2, maximum: 30 }

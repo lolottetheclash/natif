@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :cart do
-    order { nil }
-    variant { nil }
-    user { nil }
-    quantity { 1 }
+    order { FactoryBot.create(:order) }
+    variant { FactoryBot.create(:variant) }
+    user { FactoryBot.create(:user) }
+    quantity { 15 }
   end
 end

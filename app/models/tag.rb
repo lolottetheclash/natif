@@ -4,9 +4,11 @@ class Tag < ApplicationRecord
 	has_many :posts, through: :tag_items
 	has_many :items, through: :tag_items
 
-	validates_associated :tag_items
 	validates :name,
     presence: true, 
     length: { minimum: 2, maximum: 20 }
 
 end
+
+
+

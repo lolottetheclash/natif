@@ -13,13 +13,6 @@ class Variant < ApplicationRecord
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
 
-
-  validates_associated :wishlists
-  validates_associated :carts
-  validates_associated :option_associations
-  validates_associated :tag_items
-
-
   validates :title,
     presence: true, 
     length: { minimum: 2, maximum: 30 }

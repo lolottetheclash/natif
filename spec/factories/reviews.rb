@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :review do
     title { "MyString" }
-    content { "MyText" }
-    item { nil }
-    user { nil }
+    content { "MyTextzefzefzefzef zefzefze !!!!" }
+    item { FactoryBot.create(:item) }
+    user { FactoryBot.create(:user) }
     rating { 1 }
   end
 end

@@ -8,9 +8,10 @@ class User < ApplicationRecord
   has_many :role_assignations
   has_many :roles, through: :role_assignations
   has_many :orders
-  has_many :variants
-  has_many :carts, through: :variants
-  has_many :wishlists, through: :variants
+  has_many :carts
+  has_many :variants, through: :carts
+  has_many :wishlists
+  has_many :variants, through: :wishlists
   has_many :reviews
   has_many :likes
   has_many :comments
@@ -41,17 +42,6 @@ class User < ApplicationRecord
     on: :create 
   validates :gender, 
     presence: true
-
-  validates_associated :role_assignations
-  validates_associated :orders
-  validates_associated :variants
-  validates_associated :reviews
-  validates_associated :likes
-  validates_associated :comments
-  validates_associated :posts
-  validates_associated :posted_articles
-  validates_associated :posted_items
-
 
   after_create :fullname
 

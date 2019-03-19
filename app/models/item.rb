@@ -8,10 +8,6 @@ class Item < ApplicationRecord
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
 
-  validates_associated :reviews
-  validates_associated :variants
-  validates_associated :tags_items
-
   validates :title,
     presence: true, 
     length: { minimum: 2, maximum: 30 }

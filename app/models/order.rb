@@ -3,12 +3,11 @@ class Order < ApplicationRecord
   belongs_to :delivery
   has_many :carts
 
-  validates_associated :carts
-
-
-
   validates :address, 
     presence: true
-  
-
+  validates :zipcode,
+  	presence:true,
+  	format: { with: /\A[a-zA-Z0-9_\-]+\z/ }
+  validates :stripe_id,
+    presence:true
 end
