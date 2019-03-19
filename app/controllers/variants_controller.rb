@@ -12,7 +12,7 @@ class VariantsController < ApplicationController
         flash[:notice] = "There are <b>${@variants.count}</b> in this category".html_safe
       end
     else
-      @variants = Variant.page(params[:page]).per(12)
+      @variants = Variant.page(params[:page]).per(6)
     end
   end
 
