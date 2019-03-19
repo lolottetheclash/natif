@@ -82,10 +82,12 @@
         <div class="input-group-prepend">
           <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i data-feather="chevron-left"></i></button>
         </div>
-        <input type="text" class="form-control border-0 bg-light input-search" placeholder="Search...">
-        <div class="input-group-append">
-          <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
-        </div>
+          <%= form_tag variants_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], class: "form-control border-0 bg-light input-search", placeholder: "Search..." %>
+            <%= button_tag(type: "submit", class: "btn btn-light") do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
       </div>
     </form>
   <!-- /Search form -->

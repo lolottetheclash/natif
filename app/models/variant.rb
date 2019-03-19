@@ -12,4 +12,5 @@ class Variant < ApplicationRecord
 
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
+
 end
