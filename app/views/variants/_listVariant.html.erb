@@ -18,7 +18,7 @@
   </div>
   <div class="card-body p-0 mb-3">
     <div class="card zoom-hover">
-      <a href="<%= variant_path(variant.id) %>"><img class="card-img-top m-0" src="http://lorempixel.com/246/265/" alt="Card image cap"></a>
+      <a class="navbar-brand mr-1" href="<%= variant_path(variant.id) %>"><%= image_tag "item.jpg", :class => "w-100" %></a>
     </div>
     <h5 class="card-title"><%= variant.title %></h5>
     <div class="price"><span class="h5">€ <%= variant.price %> </span></div>
