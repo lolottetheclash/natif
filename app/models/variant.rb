@@ -12,4 +12,17 @@ class Variant < ApplicationRecord
 
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
+
+  validates :title,
+    presence: true, 
+    length: { minimum: 2, maximum: 30 }
+    
+  validates :price,
+    presence: true,
+    format: { with: /\A\d+(?:\.\d{0,2})?\z/ }, numericality: { greater_than: 0, less_than: 1000000 }
+ 
+  validates :stock,
+    presence: true, 
+    numericality: { only_integer: true }
+
 end

@@ -8,6 +8,13 @@ class Item < ApplicationRecord
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
 
+  validates :title,
+    presence: true, 
+    length: { minimum: 2, maximum: 30 }
+  validates :description,
+    presence: true, 
+    length: { minimum: 20, maximum: 200 }
+
   def review_average
 	  rating = 0
 	  if not Review.where(item_id: self.id).empty?
