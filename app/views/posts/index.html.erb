@@ -28,7 +28,7 @@
           <!-- Blog Grid -->
           <div class="card-deck card-deck-2-columns mt-3">
             <% @posts.order("created_at DESC").each do |grElements|%>
-             <%=render 'gridPost', elements: grElements %>
+             <%=render 'gridPost', elements: grElements, post: Post.find(grElements.id) %>
             <% end %>
           </div>           
           <!-- /Blog Grid -->
