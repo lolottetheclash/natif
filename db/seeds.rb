@@ -244,8 +244,8 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table Review (50 Reviews)"
-50.times do |i|
+puts "\nSeed of table Review (300 Reviews)"
+300.times do |i|
 	Review.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
@@ -253,7 +253,7 @@ puts "\nSeed of table Review (50 Reviews)"
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		item: Item.all.sample
 		)
-	print "\r#{i+1} reviews created over 50"
+	print "\r#{i+1} reviews created over 300"
 end
 puts "\nSeed of table Review has been successfully performed"
 puts "-" *60

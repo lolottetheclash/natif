@@ -19,6 +19,7 @@ class VariantsController < ApplicationController
   # GET /variants/1
   # GET /variants/1.json
   def show
+    @reviews = Review.where(item_id:(@variant.item_id))
   end
 
   # GET /variants/new
