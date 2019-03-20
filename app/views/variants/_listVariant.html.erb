@@ -29,15 +29,17 @@
         <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
       <% end %>
       <div class="row d-flex justify-content-center">
-        <div>
-          <%= form_for Wishlist.new do |f| %>
-            <%= f.hidden_field :variant_id, :value => variant.id %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= button_tag(class: "btn btn-icon rounded-circle") do %>
-              <i class="far fa-heart"></i>
+        <% if user_signed_in? %>
+          <div>
+            <%= form_for Wishlist.new do |f| %>
+              <%= f.hidden_field :variant_id, :value => variant.id %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= button_tag(class: "btn btn-icon rounded-circle") do %>
+                <i class="far fa-heart"></i>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
         <% if variant.stock != 0 %>
           <div class="ml-3">
             <% if user_signed_in? %>
