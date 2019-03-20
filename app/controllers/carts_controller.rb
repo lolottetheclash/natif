@@ -10,7 +10,7 @@ class CartsController < ApplicationController
     @amount = @carts.map(&:total_per_item).instance_eval { reduce(:+) }
 
     if @carts.empty?
-      flash.now[:alert] = "Your book was not found"
+      flash.now[:alert] = "Votre panier est vide"
     end
   end
 
@@ -35,7 +35,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to root_path, notice: 'Cart was successfully created.' }
+        format.html { redirect_to root_path, notice: "L'article a été rajouté au panier" }
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        format.html { redirect_to @cart, notice: 'Le panier a été mis à jour avec succès' }
         format.json { render :show, status: :ok, location: @cart }
       else
         format.html { render :edit }
@@ -63,17 +63,25 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to carts_url, notice: "L'article a été retiré du panier" }
       format.json { head :no_content }
     end
   end
 
   def additem
-    @qty = @cart.quantity + 1
-    @cart.update(quantity: @qty)
-    respond_to do |format|
-      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
-      format.json { head :no_content }
+    @qty = @cart.quantity
+    if @qty < Variant.find(@cart.variant_id).stock
+      @qty += 1
+      @cart.update(quantity: @qty)
+      respond_to do |format|
+        format.html { redirect_to request.referer, notice: 'Le panier a été mis à jour avec succès' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to request.referer, alert: "Le revendeur ne possède que #{Variant.find(@cart.variant_id).stock} exemplaire(s) de cet article en stock" }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -81,7 +89,7 @@ class CartsController < ApplicationController
     @qty = @cart.quantity - 1
     @cart.update(quantity: @qty)
     respond_to do |format|
-      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
+      format.html { redirect_to request.referer, notice: 'Le panier a été mis à jour avec succès' }
       format.json { head :no_content }
     end
   end
@@ -114,11 +122,11 @@ class CartsController < ApplicationController
 
     @order.stripe_id = params[:stripeToken]
 
-
     @order.save
     @carts.each do |item_in_cart|
+        v = Variant.find(item_in_cart.variant_id)
         item_in_cart.update(order_id: @order.id)
-        Variant.find(item_in_cart.variant_id).stock -= item_in_cart.quantity
+        v.update(stock: v.stock - item_in_cart.quantity)
     end   
 
   rescue Stripe::CardError => e

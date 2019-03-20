@@ -8,8 +8,12 @@
       </td>
       <td class="cart-title">
         <a href="/variants/<%= cart.variant.id %>" class="h6 bold d-inline-block" title="Hanes Hooded Sweatshirt"><%= cart.variant.title %></a>
-        <!--#<div><i data-feather="check-circle" class="text-success"></i> In Stock</div>-->
-        <br/><small class="ml-3"><b>Prix</b>: <%= cart.variant.price%> €</small>
+        <% if Variant.find(cart.variant_id).stock == 0 %>
+          <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
+        <% else %>
+          <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+        <% end %>
+        <small><b>Prix</b>: <%= cart.variant.price%> €</small>
         
       </td>
       <td class="cart-qty nostretch text-center">
@@ -21,7 +25,6 @@
           <% end %>
           <input type="number" class="form-control" value="<%= cart.quantity %>" min="1" max="999">
           <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
-        </div>
         </div>
       </td>
       <td class="cart-price text-right">
