@@ -14,7 +14,6 @@ class Post < ApplicationRecord
     presence: true, 
     length: { minimum: 20, maximum: 2000 }
 
-
-
+paginates_per 6
 
 end

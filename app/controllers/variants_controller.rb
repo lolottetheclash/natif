@@ -6,11 +6,6 @@ class VariantsController < ApplicationController
   def index
     if params[:category]
       @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:title).page(params[:page]).per(6)
-        if @variants.empty?
-          flash[:error] = "There are <b>#{@variants.count}</b> in this category".html_safe
-        else
-          flash[:notice] = "There are <b>${@variants.count}</b> in this category".html_safe
-        end
     else
       @variants = Variant.where(["title ILIKE ?","%#{params[:search]}%"]).page(params[:page]).per(6)
     end

@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-  authenticated do
-    root :to => 'variants#index', as: :authenticated
-  end
-  root :to => 'home#home'
+
+  root 'home#home'
   
   resources :variants
   resources :wishlists
