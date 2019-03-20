@@ -43,8 +43,10 @@
           <!-- /Blog List -->
           
           <!-- Pagination -->
-              
-            <!-- /Pagination -->
+            <div class="d-flex justify-content-center">
+              <%= paginate @posts, window: 2 %>
+            </div>
+          <!-- /Pagination -->
         </div>
 
         <!-- Blog Sidebar -->
