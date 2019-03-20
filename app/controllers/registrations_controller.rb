@@ -4,7 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def show
  	end
-
  	
   def update
     new_params = params.require(:user).permit(

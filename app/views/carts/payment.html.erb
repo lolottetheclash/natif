@@ -1,6 +1,8 @@
-<% order =  Order.find_by_stripe_id(params[:stripeToken]) %>
-<% linked_cart = Cart.where(order_id: order.id) %>
-<% amount = linked_cart.map(&:total_per_item).instance_eval { reduce(:+) } %>
+<% 
+  order =  Order.find_by_stripe_id(params[:stripeToken])
+  linked_cart = Cart.where(order_id: order.id)
+  amount = linked_cart.map(&:total_per_item).instance_eval { reduce(:+) } 
+%>
 
 <!-- Main Content -->
 <div class="container my-3">

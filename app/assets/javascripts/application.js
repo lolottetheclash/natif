@@ -23,3 +23,14 @@
 //= require jquery.countdown.min
 //= require script.min
 //= require_tree .
+
+
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#flash').remove();
+  }, 5000);
+ })
+
+
+

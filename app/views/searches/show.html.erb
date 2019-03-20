@@ -5,7 +5,7 @@
 
     <!-- Shop Filters -->
       <div class="col-lg-3 col-md-4 mt-3">
-      <%= render 'sidebar' %> 
+      <%= render 'variants/sidebar' %> 
       </div>
     <!-- /Shop Filters -->
 
@@ -17,7 +17,7 @@
 
       <!-- Shop Grid -->
       <div class="card-deck card-deck-product with-sidebar mt-3"> 
-        <% if @variants.empty? %>
+        <% if @search.search_elements.empty? %>
           <div class="card card-product">
             <div class="card-body">
                 <p>Votre recherche ne correspond à aucun de nos articles.</p>
@@ -26,37 +26,32 @@
             </div>
           </div>
         <% else %>
-          <% @variants.order(:id).each do |current_variant| %>
-            <%= render 'listVariant', variant: current_variant, item: Item.find(current_variant.item_id) %> 
+          <% @search.search_elements.order(:id).each do |current_variant| %>
+            <%= render 'variants/listVariant', variant: current_variant, item: Item.find(current_variant.item_id) %> 
           <% end %>
         <% end %>
       </div>
       <!-- /Shop Grid -->
 
-      <!-- Pagination -->
-        <div class="d-flex justify-content-center">
-          <%= paginate @variants, window: 1 %>
-        </div>
-      <!-- /Pagination -->
-
+    
     </div>
   </div>
 </div>
 <!-- /Main Content -->
 
 <!-- Filter Modal -->
-<div class="modal fade"id="filterModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <h5 class="modal-title">Shop Filters</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body p-0">
+  <div class="modal fade"id="filterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title">Shop Filters</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+        </div>
       </div>
     </div>
   </div>
-</div>
 <!-- /Filter Modal -->

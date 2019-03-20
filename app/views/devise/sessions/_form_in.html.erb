@@ -11,15 +11,9 @@
     <div class="form-group input-icon">
       <%= f.password_field :password, autocomplete: "password", class: "form-control", placeholder: "Password"%>
     </div>
-    <% if devise_mapping.rememberable? %>
-      <div class="form-group d-flex justify-content-between">
-        <div class="custom-control custom-checkbox">
-          <%= f.check_box :remember_me, class: "custom-control-input", type: "checkbox", id: "loginRemember" %>
-          <label class="custom-control-label" for="loginRemember">Remember me</label>
-        </div>
-        <u><%= link_to "Forgot your password?", new_password_path(:user), class: "text-primary small reset" %></u>
-      </div>
-    <% end %>
+    <div class="form-group d-flex justify-content-between">
+     <%= link_to "Forgot your password?", new_password_path(:user), class: "navi-link" %>
+    </div>
     <%= f.submit "LOGIN", class: "btn btn-primary btn-block"%>
   </div>
 <% end %>
