@@ -11,7 +11,15 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="media p-2 align-items-center mb-2">
-              <div class="mr-2 size50x50"><img src="http://clipart-library.com/images/8c6o8XKri.png" alt="user" class="img-thumbnail rounded-circle mr-2 size50x50"></div>
+              <div class="mr-2 size50x50">
+                <%if current_user.avatar.attached?%>
+                  <%= image_tag @user.avatar, alt: current_user.fullname, :class => "img-thumbnail rounded-circle mr-2 size50x50" %>
+                <%elsif current_user.gender == "Male" %>
+                  <%= image_tag ("mister.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle mr-2 size50x50" %>
+                <% else %>
+                  <%= image_tag ("miss.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle mr-2 size50x50" %>
+                <%end%>
+              </div>
               <div class="media-body">
                 <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
                 <div class="small"><%= current_user.email%></div>
