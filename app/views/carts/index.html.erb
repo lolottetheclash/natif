@@ -23,9 +23,9 @@
 
 <script>
     $(function() {
-        let toggleNavBar = document.querySelectorAll(".main-nav-pills li a")
-        let toggleContent = document.querySelectorAll(".tab-content .card-body")
-        let buttonToChange2 = document.querySelectorAll(".btn.btn-sm.btn-outline-secondary")[1]
+        let toggleNavBar = document.querySelectorAll(".main-nav-pills li a");
+        let toggleContent = document.querySelectorAll(".tab-content .card-body");
+        let buttonToChange2 = document.querySelectorAll(".btn.btn-sm.btn-outline-secondary")[1];
         
         let btnShipping = document.getElementById("btn_shipping");
         let btnPayment = document.getElementById("btn_payment");
@@ -36,11 +36,10 @@
 
         btnShipping.addEventListener("click", changetoShipping);
         function changetoShipping() {
-            toggleNavBar[0].classList.remove("active")
-            toggleNavBar[2].classList.add("active")
-
-            toggleContent[0].classList.remove("show", "active")
-            toggleContent[1].classList.add("show", "active")
+            toggleNavBar[0].classList.remove("active");
+            toggleNavBar[2].classList.add("active");
+            toggleContent[0].classList.remove("show", "active");
+            toggleContent[1].classList.add("show", "active");
         };
     });
 </script>
