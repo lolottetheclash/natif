@@ -5,7 +5,7 @@ class VariantsController < ApplicationController
   # GET /variants.json
   def index
     if params[:category]
-      @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:title)
+      @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:title).page(params[:page]).per(6)
         if @variants.empty?
           flash[:error] = "There are <b>#{@variants.count}</b> in this category".html_safe
         else

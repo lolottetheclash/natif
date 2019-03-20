@@ -13,7 +13,12 @@
           <a href="#"> Nos catégories <small class="counter">(<%= Item.all.length %>)</small></a>
           <ul>
             <% Category.all.each do |element|%>
-            <li><a href="javascript:void(0)"><%= element.name %><small class="counter"> (<%= Item.where(category_id: element.id).length %>)</small></a></li>
+            <li>
+              <div class="row"><a href="javascript:void(0)" class="row">
+                <%= link_to raw("<i class=\"fas fa-tag\"></i> #{element.name}"), variants_path(:category => element.name), method: "get" %>
+                <small class="counter">(<%= Item.where(category_id: element.id).length %>)</small>
+              </a></div>
+            </li>
             <%end%>
           </ul>
         </li>
