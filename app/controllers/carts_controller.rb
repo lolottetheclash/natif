@@ -1,10 +1,14 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy, :additem, :removeitem]
+  before_action :authenticate_user!
 
   # GET /carts
   # GET /carts.json
   def index
     @carts = Cart.where(user_id: current_user.id).where(order_id: nil).order(:id)
+    @carts.empty? ? countCart = 0 : countCart = @carts.size 
+    @amount = @carts.map(&:total_per_item).instance_eval { reduce(:+) }
+
     if @carts.empty?
       flash.now[:alert] = "Your book was not found"
     end
@@ -28,8 +32,6 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-    #@user =current_user.id
-    #@cart.user_id  = current_user.id
 
     respond_to do |format|
       if @cart.save
@@ -85,19 +87,17 @@ class CartsController < ApplicationController
   end
 
   def payment
-    @order = Order.new
-    @amount = 0
-    @carts = Cart.where(user_id: current_user.id).where(order_id: nil)
-    i = 0
-
-    @carts.each do |item_in_cart|
-      i +=1
-      @amount += item_in_cart.total_per_item
+    if params[:country].blank? then
+      order_params = params.permit(:address, :zipcode)
+    else
+      order_params = params.permit(:address, :zipcode, :country)
     end
 
-    # En centimes
-    @amount *= 100
-    @amount = @amount.to_i
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+    @carts = Cart.where(user_id: current_user.id).where(order_id: nil)
+    @amount = ((@carts.map(&:total_per_item).instance_eval { reduce(:+) })*100).to_i
+
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -113,10 +113,7 @@ class CartsController < ApplicationController
     })
 
     @order.stripe_id = params[:stripeToken]
-    @order.address = "4 rue de la colombe endiablée"
-    @order.zipcode = "31000"
-    @order.delivery_id = 2
-    @order.user_id = current_user.id
+
 
     @order.save
     @carts.each do |item_in_cart|

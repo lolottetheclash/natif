@@ -2,103 +2,45 @@
   <div class="card">
     <div class="card-header bg-white border-bottom flex-center p-0">
       <ul class="nav nav-pills card-header-pills main-nav-pills" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" href="cart.html">PANIER</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="javascript:void(0)"><i class="fas fa-long-arrow-alt-right"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="shipping.html">LIVRAISON</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="javascript:void(0)"><i class="fas fa-long-arrow-alt-right"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="payment.html">PAIEMENT</a>
-        </li>
+        <li class="nav-item"><a class="nav-link disabled active" href="#cart" id="cart" data-toggle="tab" role="tab" aria-controls="cart" aria-selected="false">PANIER</a></li>
+        <li class="nav-item"><a class="nav-link disabled" href="javascript:void(0)">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        <li class="nav-item"><a class="nav-link disabled" href="#shipping" id="shipping" data-toggle="tab" role="tab" aria-controls="shipping" aria-selected="false">LIVRAISON</a></li>
       </ul>
     </div>
-    <div class="card-body px-1 px-md-5 pt-5">
-      <table class="table table-borderless table-cart" data-addclass-on-smdown="table-sm">
-        <tbody>
-          
-        <% total = 0 %>
-        
-<!--
-< @carts.order(:id).each do |cart| %>
--->      
-        <% @carts.each do |cart| %>        
-          <tr>
-            <td class="cart-img nostretch">
-              <a href="shop-single.html"><img src="https://image.shutterstock.com/image-vector/oil-drop-isolated-on-white-450w-475939882.jpg" alt="#"></a>
-            </td>
-            <td class="cart-title">
-              <a href="/variants/<%= cart.variant.id %>" class="h6 bold d-inline-block" title="Hanes Hooded Sweatshirt"><%= cart.variant.title %></a>
-              <!--#<div><i data-feather="check-circle" class="text-success"></i> In Stock</div>-->
-              <br/><small class="ml-3"><b>Prix</b>: <%= cart.variant.price%> €</small>
-              
-            </td>
-            <td class="cart-qty nostretch text-center">
-              <div class="spinner" data-addclass-on-smdown="spinner-sm wrap">
-                <% if cart.quantity == 1 %>
-                  <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-icon rounded-circle" %>
-                <% else %>
-                  <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
-                <% end %>
-                <input type="number" class="form-control" value="<%= cart.quantity %>" min="1" max="999">
-                <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
-              </div>
-              </div>
-            </td>
-            <td class="cart-price text-right">
-              <span class="roboto-condensed bold"><% subtotal = cart.quantity*cart.variant.price %><%= subtotal %> €</span>
-            </td>
-            <td class="cart-action nostretch pr-0">
-              <div class="dropdown">
-                <a href="#" class="nav-icon text-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-angle-down"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item text" style="text-decoration:none;" type="button"><i class="fas fa-heart"></i> <%= link_to 'Plus tard (wishlist)', wishlists_path(user_id: cart.user.id, variant_id: cart.variant.id), method: :create %></button>
-                  <button class="dropdown-item text-danger" type="button"> <i class="fas fa-times"></i> <%= link_to 'Enlever', cart, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "text-danger" %></button>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <% total +=subtotal  %>
-        <% end %>
-          
-        </tbody>
-      </table>
-      <div class="text-center">
-        <small class="counter">SUBTOTAL</small>
-        <h3 class="roboto-condensed bold"><%= total %> €</h3>
-        <%= form_tag({controller: "carts", action: "payment"}, method: "get") do %>
-          <article>
-            <% if flash[:error].present? %>
-              <div id="error_explanation">
-                <p><%= flash[:error] %></p>
-              </div>
-            <% end %>
-            <label class="amount">
-              <span></span>
-            </label>
-          </article>
-
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="Achat"
-                  data-label="Checkout"
-                  data-amount= total
-                  data-locale="auto">
-          </script>
-          <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
-          <button type="submit" class="btn btn-primary rounded-pill btn-lg"><i class="fas fa-long-arrow-alt-right"></i> Paiement</button>
-        <% end %>
-
-        <a href="shipping.html" class="btn btn-primary rounded-pill btn-lg collapse"><i class="fas fa-long-arrow-alt-right"></i> LIVRAISON</a>
+    <div class="tab-content">
+      <div class="card-body tab-pane fade show active" id="cart" role="tabpanel" aria-labelledby="cart">
+        <%= render 'cart', carts: @carts, total: @amount %>
+      </div>
+      <div class="card-body tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping">
+        <%= render 'shipping', total: @amount, user: current_user, order: @order %>
+      </div>
+      <div class="card-body tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment">
+        pay
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    $(function() {
+        let toggleNavBar = document.querySelectorAll(".main-nav-pills li a")
+        let toggleContent = document.querySelectorAll(".tab-content .card-body")
+        let buttonToChange2 = document.querySelectorAll(".btn.btn-sm.btn-outline-secondary")[1]
+        
+        let btnShipping = document.getElementById("btn_shipping");
+        let btnPayment = document.getElementById("btn_payment");
+
+        console.log(toggleContent[0]);
+        console.log(toggleContent[1]);
+        console.log(toggleContent[2]);
+
+        btnShipping.addEventListener("click", changetoShipping);
+        function changetoShipping() {
+            toggleNavBar[0].classList.remove("active")
+            toggleNavBar[2].classList.add("active")
+
+            toggleContent[0].classList.remove("show", "active")
+            toggleContent[1].classList.add("show", "active")
+        };
+    });
+</script>
