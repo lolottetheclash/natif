@@ -6,6 +6,10 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
     @posts = Post.all
   end
 
+  def postDashboard
+    @posts = Post.all
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -19,6 +23,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts/1/edit
   def edit
+    @post = Post.new
   end
 
   # POST /posts
