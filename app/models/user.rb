@@ -44,8 +44,6 @@ class User < ApplicationRecord
   validates :gender, 
     presence: true
 
-  after_create :fullname
-
   def fullname
     full_name = "#{self.firstname} #{self.lastname}"
     return full_name

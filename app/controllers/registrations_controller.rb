@@ -37,6 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
       @user = User.find(current_user.id)
+      @user.skip_reconfirmation!
       @user.update_with_password(new_params)
       set_flash_message :notice, :updated
       sign_in :user, @user, bypass: true
