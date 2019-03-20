@@ -19,20 +19,28 @@
                   <button class="dropdown-item" type="button">Popular</button>
                 </div>
               </div>
-              <a href="/posts" class="btn btn-icon rounded-pill btn-sm btn-primary ml-3 post_grid_layout" data-toggle="tooltip" title="Show Grid"><i class="fas fa-th-large"></i></a>
-              <a href="/index_list.html.erb" class="btn btn-icon rounded-pill btn-sm btn-outline-primary ml-1 post_list_layout" data-toggle="tooltip" title="Show List"><i class="fas fa-th-list"></i></a>
+              <a href="" class="btn btn-icon rounded-pill btn-sm btn-primary ml-3 post_grid_layout" data-toggle="tooltip"><i class="fas fa-th-large"></i></a>
+              <a href="" class="btn btn-icon rounded-pill btn-sm btn-outline-primary ml-1 post_list_layout" data-toggle="tooltip"><i class="fas fa-th-list"></i></a>
             </div>
           </div>
           <!-- /Blog Toolbar -->
           
           <!-- Blog Grid -->
-          <div class="card-deck card-deck-2-columns mt-3">
+          <div class="card-deck card-deck-2-columns mt-3" id="grid-layout">
             <% @posts.order("created_at DESC").each do |grElements|%>
              <%=render 'gridPost', elements: grElements, post: Post.find(grElements.id) %>
             <% end %>
           </div>           
           <!-- /Blog Grid -->
-
+          
+          <!-- Blog List -->
+          <div id="list-layout" hidden>
+            <% @posts.order("created_at DESC").each do |liElements|%>
+              <%= render 'listPost', elements: liElements, post: Post.find(liElements.id)%>
+            <% end %>
+          </div>
+          <!-- /Blog List -->
+          
           <!-- Pagination -->
           <div class="card card-pagination">
             <div class="card-body">
@@ -154,3 +162,24 @@
       </div>
     </div>
     <!-- /Menu Modal -->
+
+    <script>
+        $(function () {
+          $('.post_list_layout').click(function (event) {
+            $('#grid-layout').attr('hidden', true)
+            $('#list-layout').attr('hidden', false)
+            $('.post_list_layout').removeClass('btn-outline-primary').addClass('btn-primary');
+            $('.post_grid_layout').removeClass('btn-primary').addClass('btn-outline-primary');
+            event.preventDefault()
+          })
+
+          // Show login form
+          $('.post_grid_layout').click(function (event) {
+            $('#grid-layout').attr('hidden', false)
+            $('#list-layout').attr('hidden', true)
+            $('.post_grid_layout').removeClass('btn-outline-primary').addClass('btn-primary');
+            $('.post_list_layout').removeClass('btn-primary').addClass('btn-outline-primary');
+            event.preventDefault()
+          })
+        })
+    </script>

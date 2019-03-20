@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   get '/add_to_carts/:id' => 'carts#additem', as: 'addtocart'
   get '/remove_from_carts/:id' => 'carts#removeitem', as: 'removefromcart'
   resources :posts
-  get "/index_list.html.erb", to: "posts#index_list"
+  get "/postDashboard", to: "posts#postDashboard"
 
 end

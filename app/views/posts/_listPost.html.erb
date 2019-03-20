@@ -1,8 +1,8 @@
-<div class="card card-blog card-blog-list mt-3">
+<div class="card card-blog card-blog-list mt-3" visible>
   <a href="<%= post_path(post.id) %>" class="zoom-hover"><span data-cover="https://image.noelshack.com/fichiers/2019/11/3/1552473887-adult-artisan-blacksmith-1659748.jpg" data-height="100%"></span></a>
   <div class="card-body">
     <a href="<%= post_path(post.id) %>" class="title h4"><%= elements.title %></a>
-    <p class="d-none d-sm-block"><%= elements.content %><a href="<%= post_path(post.id) %>">Read more...</a></p>
+    <p class="d-none d-sm-block"><%= elements.content[0..25] %>...<a href="<%= post_path(post.id) %>">Read more...</a></p>
     <div class="small text-muted counter">
       <i data-feather="heart"></i> 55
       <i data-feather="message-square" class="ml-3"></i> 15

@@ -6,7 +6,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
     @posts = Post.all
   end
 
-  def index_list
+  def postDashboard
     @posts = Post.all
   end
 
@@ -23,6 +23,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts/1/edit
   def edit
+    @post = Post.new
   end
 
   # POST /posts
