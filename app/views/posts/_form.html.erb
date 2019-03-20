@@ -1,3 +1,5 @@
+<div class="container">
+
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
@@ -11,7 +13,32 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <th scope="row"><%= form.label :"Theme of the Post: " %></th>
+      <td class="d-flex justify-content-center"><%= form.collection_select(:theme_id, Theme.all, :id, :name) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row"><%= form.label :"Title of the Post: " %></th>
+      <td class="d-flex justify-content-center"><%= form.text_field :title %></td>
+    </tr>
+
+    <tr>
+      <th scope="row"><%= form.label :"Content of the Post: " %></th>
+      <td class="d-flex justify-content-center"><%= form.text_area(:content, size: '50x10') %></td>
+    </tr>
+
+    <tr>
+      <th scope="row"><%= form.label :"Author of the Post: " %></th>
+      <td class="d-flex justify-content-center"><%= form.collection_select(:author_id, Role.all, :id, :name) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center mb-3">
+  <%= submit_tag("Add the blog post", :class=>"btn btn-success") %>
+</div>
+ <% end %>
+<div>

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :role_assignation do
-    user { nil }
-    role { nil }
+    user { FactoryBot.create(:user)}
+    role { FactoryBot.create(:role) }
   end
 end

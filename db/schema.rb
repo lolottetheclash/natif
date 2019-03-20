@@ -119,8 +119,9 @@ ActiveRecord::Schema.define(version: 2019_03_20_093932) do
     t.string "stripe_id"
     t.string "address"
     t.string "zipcode"
+    t.string "country", default: "France"
     t.bigint "user_id"
-    t.bigint "delivery_id"
+    t.bigint "delivery_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["delivery_id"], name: "index_orders_on_delivery_id"

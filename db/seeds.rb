@@ -25,29 +25,10 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table User (20 Users)"
-20.times do |i|
-	User.create(
-		gender: Faker::Gender.binary_type,
-		firstname: Faker::Name.first_name,
-		lastname: Faker::Name.last_name,
-		username: Faker::Space.moon,
-		age: rand(18..99),
-		email: Faker::Internet.email,
-		password: "aaaaaa"
-		)
-	RoleAssignation.create(user_id: i, role_id: 2)
-	print "\r#{i+1} user created over 20"
-end
-puts "\nSeed of table User has been successfully performed"
-puts "-" *60
-
-puts "\n"*2
-puts "$" *60
 puts "\nSeed of table User (with other profiles)"
 
 puts "Blog_Manager: username = blog_manager // password = admin123 -- Successfully Created"
-	User.create(
+	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
@@ -56,10 +37,12 @@ puts "Blog_Manager: username = blog_manager // password = admin123 -- Successful
 		email: "blog_manager@gmail.com",
 		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 21, role_id: 3)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 1, role_id: 3)
 
 puts "Product_Manager: username = product_manager // password = admin123 -- Successfully Created"
-	User.create(
+	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
@@ -68,10 +51,12 @@ puts "Product_Manager: username = product_manager // password = admin123 -- Succ
 		email: "product_manager@gmail.com",
 		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 22, role_id: 4)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 2, role_id: 4)
 
 puts "Moderator: username = moderator // password = admin123 -- Successfully Created"
-	User.create(
+	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
@@ -80,10 +65,12 @@ puts "Moderator: username = moderator // password = admin123 -- Successfully Cre
 		email: "moderator@gmail.com",
 		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 23, role_id: 5)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 3, role_id: 5)
 
 puts "Sale_Manager: username = sale_manager // password = admin123 -- Successfully Created"
-	User.create(
+	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
@@ -92,10 +79,12 @@ puts "Sale_Manager: username = sale_manager // password = admin123 -- Successful
 		email: "sale_manager@gmail.com",
 		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 24, role_id: 6)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 4, role_id: 6)
 
 puts "Stock_and_Export_Mangager: username = stock_export_manager // password = admin123 -- Successfully Created"
-	User.create(
+	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
@@ -104,10 +93,12 @@ puts "Stock_and_Export_Mangager: username = stock_export_manager // password = a
 		email: "stock_export_manager@gmail.com",
 		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 25, role_id: 7)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 5, role_id: 7)
 
 puts "Super_Admin: username = super_admin // password = admin123 -- Successfully Created"
-	User.create(
+	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
@@ -116,11 +107,32 @@ puts "Super_Admin: username = super_admin // password = admin123 -- Successfully
 		email: "super_admin@gmail.com",
 		password: "admin123"
 		)
-	RoleAssignation.create(user_id: 26, role_id: 8)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 6, role_id: 8)
 
 puts "\nCreation of one user per profile successfully performed"
 puts "-" *60
 
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table User (1 users)"
+	user = User.new(
+		gender: Faker::Gender.binary_type,
+		firstname: Faker::Name.first_name,
+		lastname: Faker::Name.last_name,
+		username: "user",
+		age: rand(18..99),
+		email: "user@gmail.com",
+		password: "aaaaaa"
+		)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: 7, role_id: 2)
+	print "\r 1 user created over"
+
+puts "\nSeed of table User has been successfully performed"
+puts "-" *60
 
 puts "\n"*2
 puts "$" *60
@@ -152,7 +164,7 @@ end
 puts "\nSeed of table Category has been successfully performed"
 puts "-" *60
 
-deliveryStatusArray = ["Sent", "Not delivered", "Lost", "Delivered"]
+deliveryStatusArray = ["Not delivered", "Sent", "Lost", "Delivered"]
 #Then you only need to add a status to the array
 puts "\n"*2
 puts "$" *60
@@ -222,7 +234,7 @@ puts "\nSeed of table Item (100 Items)"
 	Item.create(
 		title: Faker::Book.title,
 		description: Faker::Lorem.paragraph,
-		author: User.find_by_id(RoleAssignation.where(role_id: 4).sample.user_id),
+		author: User.find_by_id(2),
 		category: Category.all.sample
 		)
 	print "\r#{i+1} items created over 100"
@@ -253,7 +265,7 @@ puts "\nSeed of table Post (100 Posts)"
 	Post.create(
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		author: User.find_by_id(RoleAssignation.where(role_id: 3).sample.user_id),
+		author: User.find_by_id(1),
 		theme: Theme.all.sample
 		)
 	print "\r#{i+1} posts created over 100"
