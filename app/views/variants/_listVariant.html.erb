@@ -65,11 +65,11 @@
       <a class="col-3" href="#">
         <% author = User.find_by_id(item.author_id) %>
         <%if author.avatar.attached?%>
-          <%= image_tag @user.avatar, alt: author.fullname, :class => "img-thumbnail rounded-circle mr-2", :style => "width:28px;height:28px;border-radius:50%;" %>
+          <%= image_tag @user.avatar, alt: author.fullname, :style => "width:28px;height:28px;border-radius:50%;" %>
         <%elsif author.gender == "Male" %>
-          <%= image_tag ("mister.jpg"), alt: author.fullname, :class => "img-thumbnail rounded-circle mr-2", :style => "width:28px;height:28px;border-radius:50%;" %>
+          <%= image_tag ("mister.jpg"), alt: author.fullname, :style => "width:28px;height:28px;border-radius:50%;" %>
         <% else %>
-          <%= image_tag ("miss.jpg"), alt: author.fullname, :class => "img-thumbnail rounded-circle mr-2", :style => "width:28px;height:28px;border-radius:50%;" %>
+          <%= image_tag ("miss.jpg"), alt: author.fullname, :style => "width:28px;height:28px;border-radius:50%;" %>
         <%end%>
       </a>
       <div class="col-9">
