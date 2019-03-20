@@ -76,14 +76,8 @@
     </ul>
     <!-- /Main navigation -->
     
-    <% if user_signed_in? %>
-      <%
-        carts = Cart.where(user_id: current_user.id).where(order_id: nil).order(:id)
-        carts.empty? ? countCart = 0 : countCart = carts.size 
-        amount = carts.map(&:total_per_item).instance_eval { reduce(:+) }
-      %>
 
-<<<<<<< HEAD
+
     <!-- Search form -->
     <form class="form-inline form-search ml-auto mr-0 mr-sm-1 d-none d-sm-flex">
       <div class="input-group input-group-search">
@@ -98,36 +92,13 @@
           <% end %>
       </div>
     </form>
-  <!-- /Search form -->
-
-    <ul class="nav ml-auto ml-sm-0">
-      <!-- Search form toggler -->
-        <li class="nav-item d-block d-sm-none ml-2 ml-lg-0"><a class="nav-link nav-icon search-toggle" href="#"><i class="fas fa-search"></i></a></li>
-
-      <!-- Cart dropdown -->
-      <li class="nav-item dropdown dropdown-hover dropdown-cart">
-        <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="<%= carts_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="badge badge-primary">1</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <div class="media">
-            <a href="shop-single.html"><img src="../img/products/1_small.jpg" width="50" height="50" alt="Hanes Hooded Sweatshirt"></a>
-            <div class="media-body">
-              <a href="shop-single.html" title="Hanes Hooded Sweatshirt">Hanes Hooded Sweatshirt</a>
-              <span class="qty">1</span> x <span class="price">$18.56</span>
-              <button type="button" class="close" aria-label="Close"><i class="far fa-times-circle"></i></button>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between pb-3 pt-2">
-            <span>Total</span>
-            <strong>$135.40</strong>
-          </div>
-          <div class="d-flex justify-content-between pb-2">
-            <div class="w-100 mr-1">
-              <a href="<%= carts_path %>" class="btn btn-block rounded-pill btn-secondary">View Cart/Checkout</a>
-            </div>
-=======
+      
+    <% if user_signed_in? %>
+      <%
+        carts = Cart.where(user_id: current_user.id).where(order_id: nil).order(:id)
+        carts.empty? ? countCart = 0 : countCart = carts.size 
+        amount = carts.map(&:total_per_item).instance_eval { reduce(:+) }
+      %>
       <ul class="nav ml-auto ml-sm-0">
         <!-- Cart dropdown -->
         <li class="nav-item dropdown dropdown-hover dropdown-cart">
@@ -163,10 +134,8 @@
             <% else %>
               No item in the cart
             <% end %>
->>>>>>> 55989cbf28180ed70a7b7b49ddf01cb98a1f8b07
           </div>
         </li>
-        <!-- /Cart dropdown -->
       </ul>
     <% end %>
   </div>
