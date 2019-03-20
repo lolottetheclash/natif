@@ -164,7 +164,7 @@ end
 puts "\nSeed of table Category has been successfully performed"
 puts "-" *60
 
-deliveryStatusArray = ["Sent", "Not delivered", "Lost", "Delivered"]
+deliveryStatusArray = ["Not delivered", "Sent", "Lost", "Delivered"]
 #Then you only need to add a status to the array
 puts "\n"*2
 puts "$" *60

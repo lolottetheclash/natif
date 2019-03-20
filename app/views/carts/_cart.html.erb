@@ -1,0 +1,50 @@
+<table class="table table-borderless table-cart" data-addclass-on-smdown="table-sm">
+  <tbody>
+        
+  <% carts.order(:id).each do |cart| %>        
+    <tr>
+      <td class="cart-img nostretch">
+        <a href="shop-single.html"><img src="https://image.shutterstock.com/image-vector/oil-drop-isolated-on-white-450w-475939882.jpg" alt="#"></a>
+      </td>
+      <td class="cart-title">
+        <a href="/variants/<%= cart.variant.id %>" class="h6 bold d-inline-block" title="Hanes Hooded Sweatshirt"><%= cart.variant.title %></a>
+        <!--#<div><i data-feather="check-circle" class="text-success"></i> In Stock</div>-->
+        <br/><small class="ml-3"><b>Prix</b>: <%= cart.variant.price%> €</small>
+        
+      </td>
+      <td class="cart-qty nostretch text-center">
+        <div class="spinner" data-addclass-on-smdown="spinner-sm wrap">
+          <% if cart.quantity == 1 %>
+            <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-icon rounded-circle" %>
+          <% else %>
+            <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
+          <% end %>
+          <input type="number" class="form-control" value="<%= cart.quantity %>" min="1" max="999">
+          <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
+        </div>
+        </div>
+      </td>
+      <td class="cart-price text-right">
+        <span class="roboto-condensed bold"><% subtotal = cart.quantity*cart.variant.price %><%= subtotal %> €</span>
+      </td>
+      <td class="cart-action nostretch pr-0">
+        <div class="dropdown">
+          <a href="#" class="nav-icon text-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-angle-down"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item text" style="text-decoration:none;" type="button"><i class="fas fa-heart"></i> <%= link_to 'Plus tard (wishlist)', wishlists_path(user_id: cart.user.id, variant_id: cart.variant.id), method: :create %></button>
+            <button class="dropdown-item text-danger" type="button"> <i class="fas fa-times"></i> <%= link_to 'Enlever', cart, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "text-danger" %></button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+    
+  </tbody>
+</table>
+<div class="text-center">
+  <small class="counter">SUBTOTAL</small>
+  <h3 class="roboto-condensed bold"><%= total %> €</h3>
+  <a id="btn_shipping" class="btn btn-primary rounded-pill btn-lg text-white"><i class="fas fa-long-arrow-alt-right"></i> LIVRAISON</a>
+</div>

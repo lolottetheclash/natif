@@ -1,0 +1,43 @@
+<div class="card-body pt-5 flex-center flex-column">
+  <%= form_with(model: order, url: carts_payment_path, method: :get,  class: "form-checkout form-style-1") do |form| %>
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label for="shippingAddress">Adresse</label>
+        <%= form.text_field :address, autofocus: true, autocomplete: "address", class: "form-control", placeholder: "", :required => true %>
+      </div>
+      <div class="form-group col-6 col-sm-6">
+        <label for="shippingCountry">Code Postal</label>
+        <%= form.text_field :zipcode, autofocus: true, autocomplete: "zipcode", class: "form-control", placeholder: "", :required => true %>
+      </div>
+      <div class="form-group col-6 col-sm-6">
+        <label for="shippingCity">Pays</label>
+        <%= form.text_field :country, autofocus: true, autocomplete: "country", class: "form-control", placeholder: "France" %>
+      </div>
+    </div>
+    <hr>
+
+    <div class="text-center">
+      <small class="counter">SUBTOTAL</small>
+      <h3 class="roboto-condensed bold"><%= total %> €</h3>
+      <article>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+        <label class="amount">
+          <span></span>
+        </label>
+      </article>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+        data-description="Nativea"
+        data-label="Paiement"
+        data-amount= total
+        data-locale="auto">
+      </script>
+      <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
+      <button type="submit" class="btn btn-primary rounded-pill btn-lg"><i class="fas fa-long-arrow-alt-right"></i> Paiement</button>
+    </div>
+  <% end %>
+</div>
