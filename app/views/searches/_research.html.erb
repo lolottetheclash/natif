@@ -1,0 +1,10 @@
+<%= form_for(Search.new) do |s| %>
+    <div>
+    <div class="row d-flex justify-content-center">
+        <div class="ml-3 mr-3"><%= s.text_field :min_price, size: 10, class: "form-control form-control-sm rounded-pill text-center bold roboto-condensed bg-light mr-2 minw-0", placeholder: "min."%></div>
+        <div><%= s.text_field :max_price, size: 10, class: "form-control form-control-sm rounded-pill text-center bold roboto-condensed bg-light mr-2 minw-0", placeholder: "max."%></div>
+    </div>
+
+    <div class="ml-3 mt-3"><%= s.submit "Rechercher", class: "btn btn-primary rounded-pill btn-sm btn-block" %></div>
+    </div>
+<% end %>
