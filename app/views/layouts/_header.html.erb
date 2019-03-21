@@ -103,7 +103,7 @@
     <form class="form-inline form-search ml-auto mr-0 mr-sm-1 d-none d-sm-flex">
       <div class="input-group input-group-search">
         <div class="input-group-prepend">
-          <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i data-feather="chevron-left"></i></button>
+          <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i class="fas fa-chevron-left"></i></button>
         </div>
           <%= form_tag variants_path, :method => 'get' do %>
             <%= text_field_tag :search, params[:search], class: "form-control border-0 bg-light input-search", placeholder: "Search..." %>
