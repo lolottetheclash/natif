@@ -1,21 +1,21 @@
 <div class="accordion accordion-caret accordion-sidebar d-none d-md-block">
   <div class="card">
     <div class="card-header">
-      <a href="#filter-categories" data-toggle="collapse" aria-expanded="true" aria-controls="filter-categories" role="button" class="h6">
-        CATEGORIES
-      </a>
+      <%= link_to "CATEGORIES", "#filter-categories", :class => "h6", :data => {:toggle => "collapse"}, :role =>'button', :aria => {:controls => "filter-price", :expanded => "true"} %>
     </div>
     <div id="filter-categories" class="collapse show">
       <div class="card-body">
         <ul class="list-tree">
           <li>
-            <a href="#"> Nos catégories <small class="counter">(<%= Item.all.length %>)</small></a>
+            <%= link_to "javascript:void(0)" do %>
+               Nos catégories <small class="counter">(<%= Item.all.length %>)</small>
+            <% end %>
             <ul>
               <% Category.all.each do |element|%>
               <li>
-                  <%= link_to variants_path(:category => element.name), method: "get"  do %>
-                    <%= element.name %> <small class="counter">(<%= Item.where(category_id: element.id).length %>)</small>
-                  <% end %>
+                <%= link_to variants_path(:category => element.name), method: "get"  do %>
+                  <%= element.name %> <small class="counter">(<%= Item.where(category_id: element.id).length %>)</small>
+                <% end %>
               </li>
               <%end%>
             </ul>
@@ -26,9 +26,7 @@
   </div>
   <div class="card">
     <div class="card-header">
-      <a href="#filter-price" data-toggle="collapse" aria-expanded="true" aria-controls="filter-price" role="button" class="h6">
-        PRIX
-      </a>
+      <%= link_to "PRIX", "#filter-price", :class => "h6", :data => {:toggle => "collapse"}, :role =>'button', :aria => {:controls => "filter-price", :expanded => "true"} %>
     </div>
     <div id="filter-price" class="collapse show">
       <div class="card-body">
@@ -43,9 +41,7 @@
     <% Option.all.each do |_option| %>
       <div class="card">
         <div class="card-header">
-          <a href="#filter-<%= _option.name %>" data-toggle="collapse" aria-expanded="true" aria-controls="filter-<%= _option.name %>" role="button" class="h6">
-            <%= _option.name.upcase %>
-          </a>
+          <%= link_to _option.name.upcase, "#filter-#{_option.name}", :class => "h6", :data => {:toggle => "collapse"}, :role =>'button', :aria => {:controls => "filter-price", :expanded => "true"} %>
         </div>
         <div id="filter-<%= _option.name %>" class="collapse show">
           <div class="card-body">

@@ -11,7 +11,7 @@
         <i class="far fa-heart"></i> 55
         <i class="far fa-comment-dots ml-3"></i> 15
       </div>
-      <a href="<%= post_path(post.id) %>" class="bold">READ MORE</a>
+      <%= link_to "> Read more", post_path(post.id), class: "bold" %>
     </div>
 </div>
 
