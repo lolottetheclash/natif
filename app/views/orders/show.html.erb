@@ -6,25 +6,25 @@
           <h3>ORD<%= @order.id %></h3><hr>
           <ul class="nav nav-pills main-nav-pills" role="tablist">
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 1 ? 'text-success' : 'text-muted'}" %>
+              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 1 ? 'text-success' : 'text-muted'}" do %>
                 <i data-feather="refresh-cw"></i> EN COURS DE PREPARATION
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link disabled" %>
+              <%= link_to "javascript:void(0)", class: "nav-link disabled" do %>
                 <i data-feather="arrow-right"></i>
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 2 ? 'text-success' : 'text-muted'}" %>
+              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 2 ? 'text-success' : 'text-muted'}" do %>
                 <i data-feather="send"></i> EN COURS D'ACHEMINEMENT
               <% end %>
             </li>
-              <%= link_to "javascript:void(0)", class: "nav-link disabled" %>
+              <%= link_to "javascript:void(0)", class: "nav-link disabled" do %>
                 <i data-feather="arrow-right"></i>
               <% end %>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id == 4 ? 'text-success' : 'text-muted'}" %>
+              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id == 4 ? 'text-success' : 'text-muted'}" do %>
                 <i data-feather="gift"></i> LIVREE
               <% end %>
             </li>
@@ -65,7 +65,7 @@
 
           <div class="row">
             <div class="col-lg-6">
-              <h5 class="bold"><u>Shipping Address :</u></h5>
+              <h5 class="bold"><u>Adresse de livraison :</u></h5>
               <strong><%= current_user.fullname %></strong><br/>
               <%= current_user.email %><br/>
               <%= @order.address %>s<br/>
@@ -73,13 +73,13 @@
               <%= @order.country %>
             </div>
             <div class="col-lg-6 mt-4 mt-lg-0">
-              <h5 class="bold"><u>Payment Method :</u></h5>
-              <strong>Credit card</strong>
+              <h5 class="bold"><u>Methode de payment :</u></h5>
+              <strong>Carte de crédit</strong>
             </div>
           </div>
           <div class="d-flex justify-content-between mt-3">
             <%= link_to my_profile_path, class: "btn btn-outline-primary btn-sm rounded-pill" do %>
-              <i data-feather="arrow-left"></i> Back
+              <i data-feather="arrow-left"></i> Retour
             <% end %>
           </div>
         </div>
