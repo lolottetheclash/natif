@@ -32,6 +32,6 @@
   </table>
   <br>
   <div class="row mb-3">
-    <a href="<%= destroy_user_session_path%>" class="btn btn-style-6 btn-danger align-middle" data-method="DELETE">Déconnexion</a>
+    <%= link_to "Déconnexion", destroy_user_session_path, :class => "btn btn-style-6 btn-danger align-middle", :data => {:method => "delete"} %>
   </div>
 </div>

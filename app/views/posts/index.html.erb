@@ -16,8 +16,12 @@
               <button class="dropdown-item" type="button">Anciens</button>
             </div>
           </div>
-          <a href="" class="btn btn-icon rounded-pill btn-sm btn-primary ml-3 post_grid_layout" data-toggle="tooltip"><i class="fas fa-th-large"></i></a>
-          <a href="" class="btn btn-icon rounded-pill btn-sm btn-outline-primary ml-1 post_list_layout" data-toggle="tooltip"><i class="fas fa-th-list"></i></a>
+          <%= link_to "javascript:void(0)", class: "btn btn-icon rounded-pill btn-sm btn-primary ml-3 post_grid_layout", :data => {:toggle => "tooltip"} do %>
+            <i class="fas fa-th-large"></i>
+          <% end %>
+          <%= link_to "javascript:void(0)", class: "btn btn-icon rounded-pill btn-sm btn-outline-primary ml-1 post_list_layout", :data => {:toggle => "tooltip"} do %>
+            <i class="fas fa-th-list"></i>
+          <% end %>
         </div>
       </div>
       <!-- /Blog Toolbar -->

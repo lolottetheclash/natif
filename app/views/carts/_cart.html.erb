@@ -19,12 +19,18 @@
       <td class="cart-qty nostretch text-center">
         <div class="spinner" data-addclass-on-smdown="spinner-sm wrap">
           <% if cart.quantity == 1 %>
-            <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle" %>
+            <%= link_to cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle" do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
           <% else %>
-            <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
+            <%= link_to removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" do %>
+              <i class="fas fa-minus"></i>
+            <% end %>
           <% end %>
           <input type="number" class="form-control" value="<%= cart.quantity %>" min="1" max="999">
-          <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
+          <%= link_to addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" do %>
+            <i class="fas fa-plus"></i>
+          <% end %>
         </div>
       </td>
       <td class="cart-price text-right">
