@@ -13,6 +13,8 @@ class Variant < ApplicationRecord
   has_many :tag_items, as: :taggable
   has_many :tags, through: :tag_items, as: :taggable
 
+  has_one_attached :image_variant
+
   validates :title,
     presence: true, 
     length: { minimum: 2, maximum: 30 }
