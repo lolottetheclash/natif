@@ -1,6 +1,7 @@
 class WishlistsController < ApplicationController
   #before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /wishlists
   # GET /wishlists.json
   def index
@@ -28,15 +29,14 @@ class WishlistsController < ApplicationController
   # POST /wishlists.json
   def create
     @wishlist = Wishlist.new(wishlist_params)
+    @wishlist.user_id = current_user.id
 
     respond_to do |format|
-      if user_signed_in?
-        @wishlist.user_id = current_user.id
-        @wishlist.save
+      if @wishlist.save
         format.html { redirect_to request.referer, notice: "L'article a été rajouté à la wishlist" }
         format.json { render :show, status: :created, location: @wishlist }
       else
-        format.html { redirect_to request.referer, alert: "Vous devez vous connecter pour ajouter un produit à la wishlist" }
+        format.html { render :new }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
@@ -71,7 +71,9 @@ class WishlistsController < ApplicationController
     def set_wishlist
       @wishlist = Wishlist.find(params[:id])
     end
-
+    def set_cart
+      @cart = Cart.find(params[:id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def wishlist_params
       params.require(:wishlist).permit(:variant_id)

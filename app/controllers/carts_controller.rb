@@ -32,6 +32,7 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
+    @cart.user_id = current_user.id
 
     respond_to do |format|
       if @cart.save
@@ -142,7 +143,7 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:order_id, :variant_id, :user_id, :quantity)
+      params.require(:cart).permit(:order_id, :variant_id, :quantity)
     end
   
 end
