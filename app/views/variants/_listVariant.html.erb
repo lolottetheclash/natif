@@ -31,17 +31,13 @@
         <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
       <% end %>
       <div class="row d-flex justify-content-center">
-        <% if user_signed_in? %>
-          <div>
-            <%= form_for Wishlist.new do |f| %>
-              <%= f.hidden_field :variant_id, :value => variant.id %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= button_tag(class: "btn btn-icon rounded-circle") do %>
-                <i class="far fa-heart"></i>
-              <% end %>
-            <% end %>
-          </div>
+        <%= form_for Wishlist.new do |f| %>
+          <%= f.hidden_field :variant_id, :value => variant.id %>
+          <%= button_tag(class: "btn btn-icon rounded-circle") do %>
+            <i class="far fa-heart"></i>
+          <% end %>
         <% end %>
+
         <% if variant.stock != 0 %>
           <div class="ml-3">
             <% if user_signed_in? %>
@@ -49,13 +45,12 @@
                 <%= link_to addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: variant.id).ids), method: "get", class: "btn btn-icon rounded-circle" do %>
                   <i class="fas fa-cart-plus"></i>
                 <% end %> 
-              <% else %>  
-                <%= form_for Cart.new do |f| %>
-                  <%= f.hidden_field :variant_id, :value => variant.id %>
-                  <%= f.hidden_field :user_id, :value => current_user.id %>
-                  <%= button_tag(class: "btn btn-icon rounded-circle") do %>
-                    <i class="fas fa-cart-plus"></i>
-                  <% end %>
+              <% end %> 
+            <% else %> 
+              <%= form_for Cart.new do |f| %>
+                <%= f.hidden_field :variant_id, :value => variant.id %>
+                <%= button_tag(class: "btn btn-icon rounded-circle") do %>
+                  <i class="fas fa-cart-plus"></i>
                 <% end %>
               <% end %>
             <% end %>
@@ -77,7 +72,7 @@
         <% end %>
       </div>
       <div class="col-9">
-        <small class="row text-info">Posted by:&nbsp;<b><%= author.fullname %></b></small>
+        <small class="row text-info">Publié par :&nbsp;<b><%= author.fullname %></b></small>
         <div class="row"><small class="text-sm"><i class="far fa-clock"></i> <%= item.created_at.strftime("%B %d, %Y") %></small></div>
       </div>
     </div> 

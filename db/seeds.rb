@@ -29,7 +29,7 @@ puts "\nSeed of table User (with other profiles)"
 
 puts "Blog_Manager: username = blog_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Homme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "blog_manager",
@@ -43,7 +43,7 @@ puts "Blog_Manager: username = blog_manager // password = admin123 -- Successful
 
 puts "Product_Manager: username = product_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Femme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "product_manager",
@@ -57,7 +57,7 @@ puts "Product_Manager: username = product_manager // password = admin123 -- Succ
 
 puts "Moderator: username = moderator // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Homme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "moderator",
@@ -71,7 +71,7 @@ puts "Moderator: username = moderator // password = admin123 -- Successfully Cre
 
 puts "Sale_Manager: username = sale_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Femme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "sale_manager",
@@ -85,7 +85,7 @@ puts "Sale_Manager: username = sale_manager // password = admin123 -- Successful
 
 puts "Stock_and_Export_Mangager: username = stock_export_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Homme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "stock_export_manager",
@@ -99,7 +99,7 @@ puts "Stock_and_Export_Mangager: username = stock_export_manager // password = a
 
 puts "Super_Admin: username = super_admin // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Femme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "super_admin",
@@ -119,7 +119,7 @@ puts "$" *60
 puts "\nSeed of table User (1 users)"
 
 	user = User.new(
-		gender: Faker::Gender.binary_type,
+		gender: "Homme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "user",
@@ -195,7 +195,7 @@ end
 puts "\nSeed of table Order has been successfully performed"
 puts "-" *60
 
-optionArray = ["Taille", "Couleur", "Litre", "Poids"]
+optionArray = ["taille", "couleur", "litre", "poids"]
 #Then you only need to add a status to the array
 puts "\n"*2
 puts "$" *60
@@ -233,7 +233,7 @@ puts "$" *60
 puts "\nSeed of table Item (100 Items)"
 100.times do |i|
 	Item.create(
-		title: "Title of item #{i+1}",
+		title: "Titre du produit n°#{i+1}",
 		description: Faker::Lorem.paragraph,
 		author: User.find_by_id(2),
 		category: Category.all.sample
@@ -248,7 +248,7 @@ puts "$" *60
 puts "\nSeed of table Review (300 Reviews)"
 300.times do |i|
 	Review.create(
-		title: "Title of review #{i+1}",
+		title: "Titre de la revue n°#{i+1}",
 		content: Faker::Lorem.paragraph,
 		rating: rand(0..5),
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
@@ -264,7 +264,7 @@ puts "$" *60
 puts "\nSeed of table Post (100 Posts)"
 100.times do |i|
 	Post.create(
-		title: "Title of post #{i+1}",
+		title: "Titre de l'article de blog n°#{i+1}",
 		content: Faker::Lorem.paragraph,
 		author: User.find_by_id(1),
 		theme: Theme.all.sample
@@ -279,7 +279,7 @@ puts "$" *60
 puts "\nSeed of table Comments (200 Comments)"
 100.times do |i|
 	Comment.create(
-		title: "Title of post comment #{i+1}",
+		title: "Titre du commentaire de blog n°#{i+1}",
 		content: Faker::Lorem.paragraph,
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		commentable: Post.all.sample
@@ -288,7 +288,7 @@ puts "\nSeed of table Comments (200 Comments)"
 end
 100.times do |i|
 	Comment.create(
-		title: "Title of comment comment #{i+1}",
+		title: "Titre du commentaire de commentaire n°#{i+1}",
 		content: Faker::Lorem.paragraph,
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		commentable: Comment.all.sample
