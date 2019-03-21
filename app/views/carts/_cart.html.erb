@@ -4,10 +4,10 @@
   <% carts.order(:id).each do |cart| %>        
     <tr>
       <td class="cart-img nostretch">
-        <a href="shop-single.html"><img src="https://image.shutterstock.com/image-vector/oil-drop-isolated-on-white-450w-475939882.jpg" alt="#"></a>
+        <%= link_to image_tag("item.jpg"), variant_path(Variant.find(cart.variant_id)) %>
       </td>
       <td class="cart-title">
-        <a href="/variants/<%= cart.variant.id %>" class="h6 bold d-inline-block" title="Hanes Hooded Sweatshirt"><%= cart.variant.title %></a>
+        <%= link_to cart.variant.title, variant_path(Variant.find(cart.variant_id)), class: "h6 bold d-inline-block", title: cart.variant.title  %>
         <% if Variant.find(cart.variant_id).stock == 0 %>
           <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
         <% else %>
@@ -32,7 +32,13 @@
       </td>
       <td class="cart-action nostretch pr-0">
         <div class="dropdown">
-          <a href="#" class="nav-icon text-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!--           
+          <% html_options = {data: {toggle: "dropdown"}, class:"nav-icon text-secondary dropdown-toggle", role: "button", aria:{haspopup: "true", expanded: "false"}} %>
+          <% link_to('javascript:void(0);', html_options) do %>
+            <i class="fas fa-angle-down"></i>
+          <% end %> 
+-->
+          <a href="javascript:void(0)" class="nav-icon text-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-angle-down"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
