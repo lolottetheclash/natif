@@ -31,7 +31,7 @@ class WishlistsController < ApplicationController
 
     respond_to do |format|
       if @wishlist.save
-        format.html { redirect_to @wishlist, notice: 'Wishlist was successfully created.' }
+        format.html { redirect_to @wishlist, notice: 'La wishlist a été créée avec succès.' }
         format.json { render :show, status: :created, location: @wishlist }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class WishlistsController < ApplicationController
   def update
     respond_to do |format|
       if @wishlist.update(wishlist_params)
-        format.html { redirect_to @wishlist, notice: 'Wishlist was successfully updated.' }
+        format.html { redirect_to @wishlist, notice: 'La wishlist est mise à jour avec succès.' }
         format.json { render :show, status: :ok, location: @wishlist }
       else
         format.html { render :edit }
@@ -57,9 +57,9 @@ class WishlistsController < ApplicationController
   # DELETE /wishlists/1
   # DELETE /wishlists/1.json
   def destroy
-    @wishlist.destroy
+    @wishlist.destroy(wishlist)
     respond_to do |format|
-      format.html { redirect_to wishlists_url, notice: 'Wishlist was successfully destroyed.' }
+      format.html { redirect_to wishlists_url, notice: 'Le produit a été retiré de la Wishlist.' }
       format.json { head :no_content }
     end
   end

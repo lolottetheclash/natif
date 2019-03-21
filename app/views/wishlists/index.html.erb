@@ -8,23 +8,22 @@
               <h3>Ma Wishlist</h3><hr>
               <% @wishlists.each do |wishlist| %>
                 <div class="card card-product card-product-list shadow-none border-bottom">
-                  <a href="shop-single.html"> 
-                    <%= image_tag @user.avatar, alt: Variant.find(wishlist.variant_id).title, :class => "card-img-top"%>
-                  <div class="card-body d-flex flex-column justify-content-center">
-                    <a href="shop-single.html" class="card-title"><%= Variant.find(wishlist.variant_id).title %></a>
-                    <div class="attr">
-                      <div class="price mr-3"><span class="h5">$<%= Variant.find(wishlist.variant_id).price %></span></div>
-                      <% if wishlist.variant.stock == 0 %>
-                        <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
-                      <% else %>
-                        <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+                  <%= link_to image_tag("item.jpg", :class => "card-img-top"), variant_path(Variant.find(wishlist.variant_id).id) %>
+                    <div class="card-body d-flex flex-column justify-content-center">
+                      <%= link_to Variant.find(wishlist.variant_id).title, variant_path(Variant.find(wishlist.variant_id).id), class: "card-title" %>
+                      <div class="attr">
+                        <div class="price mr-3"><span class="h5">$<%= Variant.find(wishlist.variant_id).price %></span></div>
+                        <% if wishlist.variant.stock == 0 %>
+                          <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
+                        <% else %>
+                          <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+                        <% end %>
+                      </div>
+                      <p class="d-flex justify-content-between align-items-center">
+                      <%= link_to wishlist, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle" do %>
+                        <i class="fas fa-times"></i>
                       <% end %>
-                    </div>
-                    <p class="d-flex justify-content-between align-items-center">
-
-                    <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/wishlists/<%= wishlist.id %>"><span class="remove-item"><i class="fas fa-times"></i></span></a> 
-                  
-                      <% if wishlist.variant.stock != 0 %>
+                        <% if wishlist.variant.stock != 0 %>
                           <div class="ml-3">
                             <%= form_for Cart.new do |f| %>
                               <%= f.hidden_field :variant_id, :value => wishlist.variant.id %>
