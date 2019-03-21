@@ -29,7 +29,7 @@ puts "\nSeed of table User (with other profiles)"
 
 puts "Blog_Manager: username = blog_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "blog_manager",
@@ -43,7 +43,7 @@ puts "Blog_Manager: username = blog_manager // password = admin123 -- Successful
 
 puts "Product_Manager: username = product_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "product_manager",
@@ -57,7 +57,7 @@ puts "Product_Manager: username = product_manager // password = admin123 -- Succ
 
 puts "Moderator: username = moderator // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "moderator",
@@ -71,7 +71,7 @@ puts "Moderator: username = moderator // password = admin123 -- Successfully Cre
 
 puts "Sale_Manager: username = sale_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "sale_manager",
@@ -85,7 +85,7 @@ puts "Sale_Manager: username = sale_manager // password = admin123 -- Successful
 
 puts "Stock_and_Export_Mangager: username = stock_export_manager // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "stock_export_manager",
@@ -99,7 +99,7 @@ puts "Stock_and_Export_Mangager: username = stock_export_manager // password = a
 
 puts "Super_Admin: username = super_admin // password = admin123 -- Successfully Created"
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "super_admin",
@@ -119,7 +119,7 @@ puts "$" *60
 puts "\nSeed of table User (1 users)"
 
 	user = User.new(
-		gender: rand("Homme","Femme"),
+		gender: rand(["Homme", "Femme"]),
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "user",
