@@ -6,9 +6,9 @@
     <ul class="nav ml-auto">
       <li class="nav-item dropdown dropdown-hover">
         <% if user_signed_in? %>
-          <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
+          <%= link_to "my_profile_path", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
             <i class="fas fa-user"></i> Bonjour <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
-          </a>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="media p-2 align-items-center mb-2">
               <div class="mr-2 size50x50">
@@ -21,19 +21,22 @@
                 <% end %>
               </div>
               <div class="media-body">
-                <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
+                <strong><%= current_user.fullname %></strong>
                 <div class="small"><%= current_user.email%></div>
               </div>
             </div>
+            <%= link_to carts_path, :class => "dropdown-item has-icon has-badge" do %>
+              <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary">2</span>
+            <% end %>  
             <%= link_to wishlists_path, :class => "dropdown-item has-icon has-badge" do %>
-              <i class="fas fa-heart"></i> Wishlist <span class="badge rounded badge-primary">2</span>
+              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary">2</span>
             <% end %>      
-            <%= link_to wishlists_path, :class => "dropdown-item has-icon" do %>
-              <i class="fas fa-cogs"></i> Mon Compte
+            <%= link_to my_profile_path, :class => "dropdown-item has-icon" do %>
+              <i class="fas fa-cogs"></i>&nbsp;&nbsp;Mon Compte
             <% end %>    
             <div class="dropdown-divider"></div>
             <%= link_to destroy_user_session_path, :class => "dropdown-item has-icon text-danger", :data => {:method => "delete"}, :role =>'tab' do %>
-              <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+              <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion</a>
             <% end %> 
           </div>
         <% else %>
