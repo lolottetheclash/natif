@@ -28,16 +28,11 @@
     <% end %>
   </div>
   <div class="row d-flex justify-content-center">
-    <% if user_signed_in? %>
-      <div>
-        <%= form_for Wishlist.new do |f| %>
-          <%= f.hidden_field :variant_id, :value => variant.id %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
-            <i class="far fa-heart"></i> Ajouter à la wishlist
-          <% end %>
-        <% end %>
-      </div>
+    <%= form_for Wishlist.new do |f| %>
+      <%= f.hidden_field :variant_id, :value => variant.id %>
+      <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
+        <i class="far fa-heart"></i> Ajouter à la wishlist
+      <% end %>
     <% end %>
     <% if variant.stock != 0 %>
       <div class="ml-3">
