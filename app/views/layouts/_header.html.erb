@@ -29,7 +29,7 @@
               <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary">2</span>
             <% end %>  
             <%= link_to wishlists_path, :class => "dropdown-item has-icon has-badge" do %>
-              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary">2</span>
+              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary"><%= Wishlist.where(user_id:current_user.id).length%></span>
             <% end %>      
             <%= link_to mon_profil_path, :class => "dropdown-item has-icon" do %>
               <i class="fas fa-cogs"></i>&nbsp;&nbsp;Mon Compte
@@ -78,6 +78,7 @@
       <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "A propos", a_propos_path, class: "nav-link" %></li>
       <li class="nav-item dropdown dropdown-hover">
         <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
           Mon Compte <i class="fas fa-chevron-down"></i>
@@ -102,7 +103,7 @@
     <form class="form-inline form-search ml-auto mr-0 mr-sm-1 d-none d-sm-flex">
       <div class="input-group input-group-search">
         <div class="input-group-prepend">
-          <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i data-feather="chevron-left"></i></button>
+          <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i class="fas fa-chevron-left"></i></button>
         </div>
           <%= form_tag variants_path, :method => 'get' do %>
             <%= text_field_tag :search, params[:search], class: "form-control border-0 bg-light input-search", placeholder: "Search..." %>

@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  #before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(30)
   end
 
   # GET /items/1

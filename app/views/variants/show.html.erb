@@ -18,9 +18,8 @@
     </div>
     <div class="tab-content">
       <div class="card-body tab-pane fade show active" id="description-content" role="tabpanel" aria-labelledby="description">
-        <p>hoodie à capuche, agrémenté du logo saint laurent et d'une poche kangourou.
-Ce produit est destiné aussi bien aux femmes qu'aux hommes, mais de coupe masculine. Nous recommandons donc aux femmes de choisir des petites tailles.</p>
-        <p>orné de studs étoiles, d'une fermeture asymétrique et de deux poches à boutons pressions.</p>
+        <p>hoodie à capuche, agrémenté du logo saint laurent et d'une poche kangourou. Ce produit est destiné aussi bien aux femmes qu'aux hommes, mais de coupe masculine. Nous recommandons donc aux femmes de choisir des petites tailles.</p>
+        <p>Orné de studs étoiles, d'une fermeture asymétrique et de deux poches à boutons pressions.</p>
         <ul>
           <li>50% Cotton, 50% Polyester, 100% Cool</li>
           <li>Importation.</li>
@@ -34,25 +33,25 @@ Ce produit est destiné aussi bien aux femmes qu'aux hommes, mais de coupe mascu
         <div class="row gutters-3 justify-content-center">
           <div class="col-11 col-sm-6 col-md-4 col-lg-3">
             <h5 class="bold roboto-condensed rating">
-              OVERALL RATING: <%= Review.where(item_id: @variant.item_id).map(&:rating).instance_eval { reduce(:+) / size.to_f } %>
+              OVERALL RATING: <%= Item.find(@variant.item_id).review_average %>
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32"><title>star-full</title><path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path></svg>
             </h5>
             <div class="list-group">
               <div class="list-group-item text-muted d-flex justify-content-between">
                 <span class="rating" data-value="5"></span>
-                <span><%= Review.where(item_id:(@variant.item_id), rating:5).size %> review <i data-feather="chevron-right"></i></span>
+                <span><%= Review.where(item_id:(@variant.item_id), rating:5).size %> review <i class="fas fa-chevron-right"></i></span>
               </div>
               <div class="list-group-item text-muted d-flex justify-content-between">
-                <span class="rating" data-value="4"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:4).size %> review <i data-feather="chevron-right"></i></span>
+                <span class="rating" data-value="4"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:4).size %> review <i class="fas fa-chevron-right"></i></span>
               </div>
               <div class="list-group-item text-muted d-flex justify-content-between">
-                <span class="rating" data-value="3"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:3).size %> review <i data-feather="chevron-right"></i></span>
+                <span class="rating" data-value="3"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:3).size %> review <i class="fas fa-chevron-right"></i></span>
               </div>
               <div class="list-group-item text-muted d-flex justify-content-between">
-                <span class="rating" data-value="2"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:2).size %> review <i data-feather="chevron-right"></i></span>
+                <span class="rating" data-value="2"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:2).size %> review <i class="fas fa-chevron-right"></i></span>
               </div>
               <div class="list-group-item text-muted d-flex justify-content-between">
-                <span class="rating" data-value="1"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:1).size %> review <i data-feather="chevron-right"></i></span>
+                <span class="rating" data-value="1"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:1).size %> review <i class="fas fa-chevron-right"></i></span>
               </div>
             </div>
           </div>

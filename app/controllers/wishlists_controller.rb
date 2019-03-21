@@ -1,6 +1,7 @@
 class WishlistsController < ApplicationController
-  #before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  
   # GET /wishlists
   # GET /wishlists.json
   def index
@@ -28,14 +29,15 @@ class WishlistsController < ApplicationController
   # POST /wishlists.json
   def create
     @wishlist = Wishlist.new(wishlist_params)
+    @wishlist.user_id = current_user.id
 
     respond_to do |format|
       if @wishlist.save
-        format.html { redirect_to @wishlist, notice: 'Wishlist was successfully created.' }
+        format.html { redirect_to request.referer, notice: "L'article a été rajouté à la wishlist" }
         format.json { render :show, status: :created, location: @wishlist }
       else
         format.html { render :new }
-        format.json { render json: @wishlist.errors, status: :unprocessable_entity }
+        format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,7 +47,7 @@ class WishlistsController < ApplicationController
   def update
     respond_to do |format|
       if @wishlist.update(wishlist_params)
-        format.html { redirect_to @wishlist, notice: 'Wishlist was successfully updated.' }
+        format.html { redirect_to @wishlist, notice: 'La wishlist est mise à jour avec succès.' }
         format.json { render :show, status: :ok, location: @wishlist }
       else
         format.html { render :edit }
@@ -59,7 +61,7 @@ class WishlistsController < ApplicationController
   def destroy
     @wishlist.destroy
     respond_to do |format|
-      format.html { redirect_to wishlists_url, notice: 'Wishlist was successfully destroyed.' }
+      format.html { redirect_to wishlists_url, notice: 'Le produit a été retiré de la Wishlist.' }
       format.json { head :no_content }
     end
   end
@@ -69,9 +71,11 @@ class WishlistsController < ApplicationController
     def set_wishlist
       @wishlist = Wishlist.find(params[:id])
     end
-
+    def set_cart
+      @cart = Cart.find(params[:id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def wishlist_params
-      params.require(:wishlist).permit(:user_id, :variant_id)
+      params.require(:wishlist).permit(:variant_id)
     end
 end
