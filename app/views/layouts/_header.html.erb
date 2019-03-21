@@ -14,7 +14,7 @@
               <div class="mr-2 size50x50">
                 <% if current_user.avatar.attached? %>
                   <%= image_tag current_user.avatar, alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
-                <% elsif current_user.gender == "Male" %>
+                <% elsif current_user.gender == "Homme" %>
                   <%= image_tag ("mister.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
                 <% else %>
                   <%= image_tag ("miss.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
