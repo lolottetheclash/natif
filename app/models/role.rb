@@ -7,5 +7,6 @@ class Role < ApplicationRecord
     length: { minimum: 2, maximum: 30 }
     validates :description,
     presence: true, 
-    length: { minimum: 20, maximum: 150 }	
+    length: { minimum: 20, maximum: 150 }
+
 end
