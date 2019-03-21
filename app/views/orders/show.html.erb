@@ -6,27 +6,25 @@
           <h3>ORD<%= @order.id %></h3><hr>
           <ul class="nav nav-pills main-nav-pills" role="tablist">
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 1 ? 'text-success' : 'text-muted'}" do %>
-                <i data-feather="refresh-cw"></i> EN COURS DE PREPARATION
-              <% end %>
+              <div class="nav-link <%= @order.delivery_id >= 1 ? 'text-success' : 'text-muted' %>">
+                <i class="fas fa-sync-alt"></i> EN COURS DE PREPARATION
+              </div>
             </li>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link disabled" do %>
-                <i data-feather="arrow-right"></i>
-              <% end %>
+              <div class="nav-link disabled">&nbsp;&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;&nbsp;</div>
             </li>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 2 ? 'text-success' : 'text-muted'}" do %>
-                <i data-feather="send"></i> EN COURS D'ACHEMINEMENT
-              <% end %>
+              <div class="nav-link <%= @order.delivery_id >= 2 ? 'text-success' : 'text-muted' %>">
+                <i class="fas fa-truck"></i> EN COURS D'ACHEMINEMENT
+              </div>
             </li>
-              <%= link_to "javascript:void(0)", class: "nav-link disabled" do %>
-                <i data-feather="arrow-right"></i>
-              <% end %>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id == 4 ? 'text-success' : 'text-muted'}" do %>
-                <i data-feather="gift"></i> LIVREE
-              <% end %>
+              <div class="nav-link disabled">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link <%= @order.delivery_id == 4 ? 'text-success' : 'text-muted' %>">
+                <i class="far fa-check-circle"></i> LIVREE
+              </div>
             </li>
           </ul>
           <hr>
