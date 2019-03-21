@@ -1,5 +1,5 @@
 class WishlistsController < ApplicationController
-  #before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_wishlist, only: [:show, :edit, :update, :destroy]
 
   # GET /wishlists
   # GET /wishlists.json
@@ -57,7 +57,7 @@ class WishlistsController < ApplicationController
   # DELETE /wishlists/1
   # DELETE /wishlists/1.json
   def destroy
-    @wishlist.destroy(wishlist)
+    @wishlist.destroy
     respond_to do |format|
       format.html { redirect_to wishlists_url, notice: 'Le produit a été retiré de la Wishlist.' }
       format.json { head :no_content }
