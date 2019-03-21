@@ -1,8 +1,7 @@
 class Delivery < ApplicationRecord
-	has_many :orders
+  has_many :orders
 	
-	validates :status,
+  validates :status,
     presence: true, 
     length: { minimum: 2, maximum: 30 }
-
 end

@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
-	has_many :items
+  has_many :items
 	
-	validates :name,
+  validates :name,
     presence: true, 
     length: { minimum: 2, maximum: 20 }
 end

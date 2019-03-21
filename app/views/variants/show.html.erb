@@ -6,56 +6,47 @@
         <%= render 'oneVariant', variant: @variant, item: Item.find(@variant.item_id)  %>
       </div>
     </div>
-  </div>
-</div>
-<!-- /Main Content -->
-		
-
-
-        <div class="card-header bg-white border-bottom flex-center p-0 mt-3">
-          <ul class="nav nav-pills card-header-pills main-nav-pills" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="description" data-toggle="tab" href="#description-content" role="tab" aria-controls="description-content" aria-selected="true">DESCRIPTION</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="reviews" data-toggle="tab" href="#review-content" role="tab" aria-controls="review-content" aria-selected="false">REVIEWS (<%= @reviews.size %>)</a>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <div class="card-body tab-pane fade show active" id="description-content" role="tabpanel" aria-labelledby="description">
-            <p>HanesBrands is a socially responsible manufacturer and marketer of leading everyday basic apparel under some of the world's strongest apparel brands in the Americas, Europe and Asia, as well as in Australia and South Africa.</p>
-            <p>Now this medium weight 7.8-o fleece sweatshirt is even better, because it is made with up to 5 percent polyester created from recycled plastic.</p>
-            <ul>
-              <li>50% Cotton, 50% Polyester</li>
-              <li>Imported</li>
-              <li>shirts closure</li>
-              <li>Machine Wash</li>
-              <li>Soft, durable fleece with double-needle cover-seamed neck and armholes stays strong when you work or play hard</li>
-              <li>Machine wash it again and again without hesitation because it's pill-resistant</li>
-              <li>Ribbed waistband and cuffs</li>
-            </ul>
+    <div class="card-header bg-white border-bottom flex-center p-0 mt-3">
+      <ul class="nav nav-pills card-header-pills main-nav-pills" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="description" data-toggle="tab" href="#description-content" role="tab" aria-controls="description-content" aria-selected="true">DESCRIPTION</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="reviews" data-toggle="tab" href="#review-content" role="tab" aria-controls="review-content" aria-selected="false">REVIEWS (<%= @reviews.size %>)</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="card-body tab-pane fade show active" id="description-content" role="tabpanel" aria-labelledby="description">
+        <p>HanesBrands is a socially responsible manufacturer and marketer of leading everyday basic apparel under some of the world's strongest apparel brands in the Americas, Europe and Asia, as well as in Australia and South Africa.</p>
+        <p>Now this medium weight 7.8-o fleece sweatshirt is even better, because it is made with up to 5 percent polyester created from recycled plastic.</p>
+        <ul>
+          <li>50% Cotton, 50% Polyester</li>
+          <li>Imported</li>
+          <li>shirts closure</li>
+          <li>Machine Wash</li>
+          <li>Soft, durable fleece with double-needle cover-seamed neck and armholes stays strong when you work or play hard</li>
+          <li>Machine wash it again and again without hesitation because it's pill-resistant</li>
+          <li>Ribbed waistband and cuffs</li>
+        </ul>
+      </div>
+      <div class="card-body tab-pane fade" id="review-content" role="tabpanel" aria-labelledby="reviews">
+        <div class="row gutters-3 justify-content-center">
+          <div class="col-11 col-sm-6 col-md-4 col-lg-3">
+            <h5 class="bold roboto-condensed rating">
+                  OVERALL RATING: <%= Review.where(item_id: @variant.item_id).map(&:rating).instance_eval { reduce(:+) / size.to_f } %>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32"><title>star-full</title><path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path></svg>
+            </h5>
+            <div class="list-group">
+	                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="5"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:5).size %> review <i data-feather="chevron-right"></i></span></a>
+	                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="4"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:4).size %> review <i data-feather="chevron-right"></i></span></a>
+	                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="3"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:3).size %> review <i data-feather="chevron-right"></i></span></a>
+	                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="2"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:2).size %> review <i data-feather="chevron-right"></i></span></a>
+	                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="1"></span> <span><%= Review.where(item_id:(@variant.item_id), rating:1).size %> review <i data-feather="chevron-right"></i></span></a>
+            </div>
           </div>
-          <div class="card-body tab-pane fade" id="review-content" role="tabpanel" aria-labelledby="reviews">
-            <div class="row gutters-3 justify-content-center">
-              <div class="col-11 col-sm-6 col-md-4 col-lg-3">
-                <h5 class="bold roboto-condensed rating">
-                  OVERALL RATING: 4.5
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32"><title>star-full</title><path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path></svg>
-                </h5>
-                <div class="list-group">
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="5"></span> <span>1 review <i data-feather="chevron-right"></i></span></a>
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="4"></span> <span>1 review <i data-feather="chevron-right"></i></span></a>
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="3"></span> <span>0 review <i data-feather="chevron-right"></i></span></a>
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="2"></span> <span>0 review <i data-feather="chevron-right"></i></span></a>
-                  <a href="javascript:void(0)" class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span class="rating" data-value="1"></span> <span>0 review <i data-feather="chevron-right"></i></span></a>
-                </div>
-                <div class="text-center mt-1">
-                  <button class="btn btn-primary btn-block rounded-pill" data-toggle="modal" data-target="#reviewModal">Write a review</button>
-                </div>
-              </div>
-              <div class="col-md-8 col-lg-9 mt-5 mt-md-0">
-              	<% @reviews.each do |review| %>
+          <div class="col-md-8 col-lg-9 mt-5 mt-md-0">
+           <% @reviews.each do |review| %>
 	                <div class="media">
 	                <%if User.find(review.user_id).avatar.attached?%>
 			            <%= image_tag User.find(review.user_id).avatar, alt: User.find(review.user_id).fullname, :class => "rounded-circle", :style => "width:45px;height:45px;" %>
@@ -67,17 +58,69 @@
 	                  <div class="media-body ml-2 ml-sm-3">
 	                    <h6 class="bold"><%= review.title %></h6>
 	                    <p class="d-flex flex-wrap">
-	                      <span class="rating mr-2" data-value="5"></span>
-	                      <a href="javascript:void(0)" class="mr-2"><%= User.find(review.user_id).fullname%></a>
-	                      <span class="text-muted">3 days ago</span>
+	                      <span class="rating" data-value="<%= review.rating %>"></span>
+	                      <a class="mr-2"><%= User.find(review.user_id).fullname%></a>
+	                      <span class="text-muted"><%= review.created_at.strftime(" %d of %B %Y") %></span>
 	                    </p>
 	                    <p><%= review.content %></p>
 	                    <hr>
 	                  </div>
                		</div>
-               	<% end %>
-              </div>
-
-            </div>
+            <% end %>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$(function () {
+
+  App.rating()
+  App.atcDemo()
+  App.atwDemo()
+  App.colorOption()
+
+  setTimeout(function (argument) {
+    var productSlider = new Swiper('#product-slider', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    })
+  }, 100)
+
+  // Collect items for photoswipe
+  var items = []
+  $('.swiper-wrapper img').each(function () {
+    items.push({
+      src: $(this).data('large'),
+      w: 1395,
+      h: 1500
+    })
+  })
+
+  var openPhotoSwipe = function (items, activeIndex) {
+    activeIndex = typeof activeIndex !== 'undefined' ? activeIndex : 0
+    var pswpElement = document.querySelectorAll('.pswp')[0]
+    var options = {
+      index: activeIndex
+    }
+    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options)
+    gallery.init()
+  }
+
+  $('.zoom').click(function () {
+    openPhotoSwipe(items, $('.swiper-wrapper').find('.swiper-slide-active').data('swiper-slide-index'))
+  })
+
+})
+
+</script>
