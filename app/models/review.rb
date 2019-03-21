@@ -11,5 +11,4 @@ class Review < ApplicationRecord
   validates :content,
     presence: true, 
     length: { minimum: 20, maximum: 80 }
-
 end

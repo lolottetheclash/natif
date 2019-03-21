@@ -19,7 +19,7 @@
       <td class="cart-qty nostretch text-center">
         <div class="spinner" data-addclass-on-smdown="spinner-sm wrap">
           <% if cart.quantity == 1 %>
-            <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-icon rounded-circle" %>
+            <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle" %>
           <% else %>
             <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
           <% end %>
@@ -37,7 +37,7 @@
           <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item text" style="text-decoration:none;" type="button"><i class="fas fa-heart"></i> <%= link_to 'Plus tard (wishlist)', wishlists_path(user_id: cart.user.id, variant_id: cart.variant.id), method: :create %></button>
-            <button class="dropdown-item text-danger" type="button"> <i class="fas fa-times"></i> <%= link_to 'Enlever', cart, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "text-danger" %></button>
+            <button class="dropdown-item text-danger" type="button"> <i class="fas fa-times"></i> <%= link_to 'Enlever', cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "text-danger" %></button>
           </div>
         </div>
       </td>
@@ -47,7 +47,7 @@
   </tbody>
 </table>
 <div class="text-center">
-  <small class="counter">SUBTOTAL</small>
+  <small class="counter">TOTAL</small>
   <h3 class="roboto-condensed bold"><%= total %> €</h3>
   <a id="btn_shipping" class="btn btn-primary rounded-pill btn-lg text-white"><i class="fas fa-long-arrow-alt-right"></i> LIVRAISON</a>
 </div>

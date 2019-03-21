@@ -11,7 +11,7 @@
       <tr>
         <th>Nom</th>
         <th>Description</th>
-        <th>Categorie</th>
+        <th>Catégorie</th>
       </tr>
     </thead>
     <tbody>
@@ -43,9 +43,9 @@
                   <td class="align-middle"><%= variant.title %></td>
                   <td class="align-middle"><%= variant.price %> €</td>
                   <td class="align-middle"><%= variant.stock %></td>
-                  <td><%= link_to 'Show', variant, class: "btn btn-primary" %></td>
-                  <td><%= link_to 'Edit', edit_variant_path(variant), class: "btn btn-warning" %></td>
-                  <td><%= link_to 'Destroy', variant, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn btn-danger" %></td>
+                  <td><%= link_to 'Détail', variant, class: "btn btn-primary" %></td>
+                  <td><%= link_to 'Modifier', edit_variant_path(variant), class: "btn btn-warning" %></td>
+                  <td><%= link_to 'Supprimer', variant, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn btn-danger" %></td>
                 </tr>
             </tbody>
             <% end %>

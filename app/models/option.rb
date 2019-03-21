@@ -1,7 +1,7 @@
 class Option < ApplicationRecord
-	has_many :option_values
+  has_many :option_values
 	
-	validates :name,
+  validates :name,
     presence: true, 
     length: { minimum: 2, maximum: 20 }
-   end
+end
