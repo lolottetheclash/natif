@@ -194,7 +194,7 @@ end
 puts "\nSeed of table Order has been successfully performed"
 puts "-" *60
 
-optionArray = ["Taille", "Couleur", "Litre", "Poid"]
+optionArray = ["Taille", "Couleur", "Litre", "Poids"]
 #Then you only need to add a status to the array
 puts "\n"*2
 puts "$" *60
