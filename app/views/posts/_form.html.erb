@@ -1,9 +1,9 @@
 <div class="container">
-<h1>Create a new Post</h1>
+<h1>Créer un nouvel article</h1>
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(post.errors.count, "error") %> a empeché cette post d'être sauvegardée:</h2>
 
       <ul>
       <% post.errors.full_messages.each do |message| %>
@@ -16,29 +16,29 @@
 <table class="table table-striped">
   <tbody>
     <tr>
-      <th scope="row"><%= form.label :"Theme of the Post: " %></th>
+      <th scope="row"><%= form.label :"Theme de l'article: " %></th>
       <td class="d-flex justify-content-center"><%= form.collection_select(:theme_id, Theme.all, :id, :name) %></td>
     </tr>
 
     <tr>
-      <th scope="row"><%= form.label :"Title of the Post: " %></th>
+      <th scope="row"><%= form.label :"Titre de l'article: " %></th>
       <td class="d-flex justify-content-center"><%= form.text_field :title %></td>
     </tr>
 
     <tr>
-      <th scope="row"><%= form.label :"Content of the Post: " %></th>
+      <th scope="row"><%= form.label :"Contenu de l'article: " %></th>
       <td class="d-flex justify-content-center"><%= form.text_area(:content, size: '50x10') %></td>
     </tr>
 
     <tr>
-      <th scope="row"><%= form.label :"Author of the Post: " %></th>
+      <th scope="row"><%= form.label :"Auteur de l'article: " %></th>
       <td class="d-flex justify-content-center"><%= form.collection_select(:author_id, Role.all, :id, :name) %></td>
     </tr>
   </tbody>
 </table>
 
 <div class="d-flex justify-content-center mb-3">
-  <%= submit_tag("Add the blog post", :class=>"btn btn-success") %>
+  <%= submit_tag("Ajouter l'article", :class=>"btn btn-success") %>
 </div>
  <% end %>
 <div>
