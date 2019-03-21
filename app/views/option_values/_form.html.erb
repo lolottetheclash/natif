@@ -3,7 +3,7 @@
   <%= form_with(model: option_value, local: true) do |form| %>
     <% if option_value.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(option_value.errors.count, "error") %> prohibited this option_value from being saved:</h2>
+        <h2><%= pluralize(option_value.errors.count, "error") %> a empeché cette option_value d'être sauvegardée:</h2>
       <ul>
         <% option_value.errors.full_messages.each do |message| %>
           <li><%= message %></li>

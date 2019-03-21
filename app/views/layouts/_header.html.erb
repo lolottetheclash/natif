@@ -6,40 +6,48 @@
     <ul class="nav ml-auto">
       <li class="nav-item dropdown dropdown-hover">
         <% if user_signed_in? %>
-          <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i> Bonjour, <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
-          </a>
+          <%= link_to "mon_profil_path", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+            <i class="fas fa-user"></i> Bonjour <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="media p-2 align-items-center mb-2">
               <div class="mr-2 size50x50">
-                <%if current_user.avatar.attached?%>
+                <% if current_user.avatar.attached? %>
                   <%= image_tag current_user.avatar, alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
-                <%elsif current_user.gender == "Male" %>
+                <% elsif current_user.gender == "Homme" %>
                   <%= image_tag ("mister.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
                 <% else %>
                   <%= image_tag ("miss.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
-                <%end%>
+                <% end %>
               </div>
               <div class="media-body">
-                <strong><%= current_user.firstname %> <%= current_user.lastname %></strong>
+                <strong><%= current_user.fullname %></strong>
                 <div class="small"><%= current_user.email%></div>
               </div>
             </div>
-            <a href="#" class="dropdown-item has-icon"><i class="fas fa-cart-plus"></i> Mes commandes</a>
-            <a href="<%= wishlists_path %>" class="dropdown-item has-icon has-badge"><i class="fas fa-heart"></i>  Ma wishlist<span class="badge rounded badge-primary">2</span></a>
-            <a href="<%= my_profile_path %>" class="dropdown-item has-icon"><i class="fas fa-cogs"></i> Mon compte</a>
+            <%= link_to carts_path, :class => "dropdown-item has-icon has-badge" do %>
+              <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary">2</span>
+            <% end %>  
+            <%= link_to wishlists_path, :class => "dropdown-item has-icon has-badge" do %>
+              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary">2</span>
+            <% end %>      
+            <%= link_to mon_profil_path, :class => "dropdown-item has-icon" do %>
+              <i class="fas fa-cogs"></i>&nbsp;&nbsp;Mon Compte
+            <% end %>    
             <div class="dropdown-divider"></div>
-            <a href="<%= destroy_user_session_path%>" class="dropdown-item has-icon text-danger" data-method="DELETE"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            <%= link_to destroy_user_session_path, :class => "dropdown-item has-icon text-danger", :data => {:method => "delete"}, :role =>'tab' do %>
+              <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion</a>
+            <% end %> 
           </div>
         <% else %>
-          <a class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <%= link_to "javascript:void(0)", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
             <i class="fas fa-user"></i> Bonjour visiteur  <i class="fas fa-chevron-down"></i>
-          </a>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="media p-2 align-items-center mb-2">
               <div class="media-body">
-                <a class="btn btn-primary btn-sm btn-block" href="<%= new_user_session_path %>">Connexion</a>
-                <p class="text-sm text-muted mt-3 mb-0"><a href="<%=new_user_registration_path %>">Créer un compte</a></p>
+                <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary btn-sm btn-block" %>
+                <p class="text-sm text-muted mt-3 mb-0"><%= link_to "Créer un compte", new_user_registration_path %></p>
               </div>
             </div>
           </div>
@@ -56,29 +64,34 @@
   <div class="container">
 
   <!-- Sidebar toggler -->
-        <a class="nav-link nav-icon ml-ni nav-toggler mr-3 d-flex d-lg-none" href="#" data-toggle="modal" data-target="#menuModal"><i class="fas fa-bars"></i></a>
+  <%= link_to "javascript:void(0)", :class => "nav-link nav-icon ml-ni nav-toggler mr-3 d-flex d-lg-none", :data => {:toggle => "modal", :target => "#menuModal"} do %>
+    <i class="fas fa-bars"></i>
+  <% end %>
 
     <!-- Logo -->
-    <a class="nav-link nav-logo" href="<%= variants_path %>"><img src="#" alt=""> <strong>NATIVEA</strong></a>
+    <%= link_to variants_path, class: "nav-link nav-logo" do %>
+      <strong>NATIVEA</strong>
+    <% end %>
 
     <!-- Main navigation -->
     <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
-      <li class="nav-item"><a class="nav-link" href="<%= root_path %>">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="<%= variants_path %>">Shopping</a></li>
-      <li class="nav-item"><a class="nav-link" href="<%= posts_path %>">Blog</a></li>
+      <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
       <li class="nav-item dropdown dropdown-hover">
-        <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="<%= my_profile_path %>" role="button" aria-haspopup="true" aria-expanded="false">
-          Account <i class="fas fa-chevron-down"></i>
-        </a>
+        <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+          Mon Compte <i class="fas fa-chevron-down"></i>
+        <% end %>
+        
         <div class="dropdown-menu">        
           <% if user_signed_in? %>
-            <a class="dropdown-item" href="<%= my_profile_path %>">Profile Page</a>
-            <a class="dropdown-item" href="<%= carts_path %>">Cart</a>
-            <a class="dropdown-item" href="<%= wishlists_path %>">Wishlist</a>
-            <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="DELETE">Logout</a>
+            <%= link_to "Profil", mon_profil_path, class: "dropdown-item" %>
+            <%= link_to "Panier", carts_path, class: "dropdown-item" %>
+            <%= link_to "Wishlist", wishlists_path, class: "dropdown-item" %>
+            <%= link_to "Déconnexion", destroy_user_session_path, :class => "dropdown-item text-danger", :data => {:method => "delete"} %>
           <% else %>
-            <a class="dropdown-item" href="<%= new_user_registration_path %>">Sign Up</a>
-            <a class="dropdown-item" href="<%= new_user_session_path %>">Log In </a>
+            <%= link_to "Créer un compte", new_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Connexion", new_user_session_path, class: "dropdown-item" %>
           <% end %>
         </div>
       </li>
@@ -109,10 +122,10 @@
       <ul class="nav ml-auto ml-sm-0">
         <!-- Cart dropdown -->
         <li class="nav-item dropdown dropdown-hover dropdown-cart">
-          <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="<%= carts_path %>" role="button" aria-haspopup="true" aria-expanded="false">
+          <%= link_to carts_path, :class => "nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
             <i class="fas fa-shopping-cart"></i>
             <span class="badge badge-primary"><%= countCart %></span>
-          </a>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <% if countCart != 0 %>
               <% carts.each do |cart_item| %>
@@ -121,11 +134,15 @@
                     variant = Variant.find(cart_item.variant_id)
                     item = Item.find(variant.item_id)
                   %>
-                  <a href="<%= variant_path(variant.id) %>"><img src="http://lorempixel.com/1000/1000" width="50" height="50" alt="<%= variant.title %>"></a>
+                  <%= link_to variant_path(variant.id) do %>
+                    <%= image_tag "item.jpg", alt: variant.title, width: "50", height: "50"  %>
+                  <% end %>
                   <div class="media-body">
-                    <a href="<%= variant_path(variant.id) %>" title="<%= variant.title %>"><%= variant.title %></a>
+                    <%= link_to variant.title, variant_path(variant.id), title: variant.title %>
                     <span class="qty"><%= cart_item.quantity %></span> x <span class="price">€ <%= variant.price %></span>
-                    <a class="close" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= cart_path(cart_item.id) %>"><span class="remove-product"><i class="far fa-times-circle"></i></span></a>
+                    <%= link_to cart_path(cart_item.id), :class => "close", :data => {:confirm => "Etes-vous sûr ?", :method => "delete"}, :rel => "nofollow" do %>
+                      <span class="remove-product"><i class="far fa-times-circle"></i></span>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
@@ -135,7 +152,7 @@
               </div>
               <div class="d-flex justify-content-between pb-2">
                 <div class="w-100 mr-1">
-                  <a href="<%= carts_path %>" class="btn btn-block rounded-pill btn-primary">View Cart/Checkout</a>
+                  <%= link_to "Consulter le Panier / Payer", carts_path, class: "btn btn-block rounded-pill btn-primary" %>
                 </div>
               </div>
             <% else %>

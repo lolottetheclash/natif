@@ -4,12 +4,15 @@ class WishlistsController < ApplicationController
   # GET /wishlists
   # GET /wishlists.json
   def index
-    @wishlists = Wishlist.all
+    @wishlists = Wishlist.where(user_id:current_user.id)
+    @user = User.find(current_user.id)
+
   end
 
   # GET /wishlists/1
   # GET /wishlists/1.json
   def show
+    @wishlist = Wishlist.find(params[:id])
   end
 
   # GET /wishlists/new

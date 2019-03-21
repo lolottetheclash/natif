@@ -26,10 +26,10 @@
             <td class="align-middle"><%= link_to "Nouvelle option", new_option_association_path(element), class: "btn btn-success btn-sm" %></td>
           <% @option_associations.where(variant_id: element.id).each do |association|%>
             <td class="align-middle">
-              <divclass="align-middle"><%= Option.find(OptionValue.find(association.option_value_id).option_id).name %> : 
+              <div class="align-middle"><%= Option.find(OptionValue.find(association.option_value_id).option_id).name %> : 
               <%= OptionValue.find(association.option_value_id).name%></div>
-              <div><%= link_to 'Edit', edit_option_association_path(association), class: "btn btn-warning btn-sm" %> 
-              <%= link_to 'Destroy', association, method: :delete, data: { confirm: 'Etes vous sûr ?' }, class: "btn btn-danger btn-sm" %></div>
+              <div><%= link_to 'Modifier', edit_option_association_path(association), class: "btn btn-warning btn-sm" %> 
+              <%= link_to 'Supprimer', association, method: :delete, data: { confirm: 'Etes vous sûr ?' }, class: "btn btn-danger btn-sm" %></div>
             </td>
           <% end%>
         </tr>

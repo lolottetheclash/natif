@@ -31,6 +31,3 @@ $(document).ready(function(){
     $('#flash').remove();
   }, 5000);
  })
-
-
-

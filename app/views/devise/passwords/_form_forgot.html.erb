@@ -2,14 +2,14 @@
   <%= render "devise/shared/error_messages", resource: resource %>
     <div class="form-style-1">
         <div class="form-group text-center">
-          <h2 class="bold">Reset Password</h2>
-          <em>enter your email and to receive instructions</em>
+          <h2 class="bold">Réinitialiser le mot de passe</h2>
+          <em>Tapez votre Email et recevez la confirmation.</em>
         </div>
 		<div class="form-group input-icon">
-			<%= f.email_field :email, autocomplete: "email", class: "form-control",placeholder: "Email address",  autofocus: true  %>
+			<%= f.email_field :email, autocomplete: "email", class: "form-control",placeholder: "Adresse Email",  autofocus: true  %>
 		</div>
 		<div class="actions">
-			<%= f.submit "Reset ", class: "btn btn-danger btn-block reset-done" %>
+			<%= f.submit "Réinitialiser ", class: "btn btn-danger btn-block reset-done" %>
 		</div>
 	</div>
 <% end %>

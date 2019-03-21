@@ -13,7 +13,7 @@
   </div>
   <h6>
   	<span class="rating" data-value="<%= rating %>"></span>
-    <a href="javascript:void(0)"><%= Review.where(item_id: item.id).size %> reviews</a>
+    <a><%= Review.where(item_id: item.id).size %> reviews</a>
   </h6>
   <h3 class="price">
     <span >$<%= variant.price %></span>
@@ -43,7 +43,9 @@
       <div class="ml-3">
         <% if user_signed_in? %>
           <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:variant_id).include?(variant.id) %> 
-            <%= link_to raw("<i class=\"fas fa-cart-plus\"></i> Ajouter au panier"), addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: variant.id).ids), method: "get", class: "btn btn-primary btn-block rounded-pill" %> 
+            <%= link_to addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: variant.id).ids), method: "get", class: "btn btn-primary btn-block rounded-pill" do %>
+              <i class="fas fa-cart-plus"></i> Ajouter au panier
+            <% end %>
           <% else %>  
             <%= form_for Cart.new do |f| %>
               <%= f.hidden_field :variant_id, :value => variant.id %>
@@ -58,54 +60,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-<script>
-$(function () {
-
-  App.rating()
-  App.atcDemo()
-  App.atwDemo()
-  App.colorOption()
-
-  setTimeout(function (argument) {
-    var productSlider = new Swiper('#product-slider', {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      }
-    })
-  }, 100)
-
-  // Collect items for photoswipe
-  var items = []
-  $('.swiper-wrapper img').each(function () {
-    items.push({
-      src: $(this).data('large'),
-      w: 1395,
-      h: 1500
-    })
-  })
-
-  var openPhotoSwipe = function (items, activeIndex) {
-    activeIndex = typeof activeIndex !== 'undefined' ? activeIndex : 0
-    var pswpElement = document.querySelectorAll('.pswp')[0]
-    var options = {
-      index: activeIndex
-    }
-    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options)
-    gallery.init()
-  }
-
-  $('.zoom').click(function () {
-    openPhotoSwipe(items, $('.swiper-wrapper').find('.swiper-slide-active').data('swiper-slide-index'))
-  })
-
-})
-</script>

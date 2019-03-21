@@ -12,6 +12,7 @@ class Order < ApplicationRecord
     presence:true
 
   after_create :confirmation
+  
   def confirmation
     OrderMailer.confirm_cart(self).deliver_now
   end

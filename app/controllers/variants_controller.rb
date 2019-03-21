@@ -1,3 +1,4 @@
+
 class VariantsController < ApplicationController
   before_action :set_variant, only: [:show, :edit, :update, :destroy]
 
@@ -6,14 +7,14 @@ class VariantsController < ApplicationController
   def index
     if params[:category]
       @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:size]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:size])).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:color]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:color])).ids).order(:title).page(params[:page]).per(6)
+    elsif params[:taille]
+      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:taille])).ids).order(:title).page(params[:page]).per(6)
+    elsif params[:couleur]
+      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:couleur])).ids).order(:title).page(params[:page]).per(6)
     elsif params[:litre]
       @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:litre])).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:weight]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:weight])).ids).order(:title).page(params[:page]).per(6)
+    elsif params[:poids]
+      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:poids])).ids).order(:title).page(params[:page]).per(6)
     else
       @variants = Variant.where(["title ILIKE ?","%#{params[:search]}%"]).page(params[:page]).per(6)
     end
