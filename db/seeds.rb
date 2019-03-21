@@ -117,6 +117,7 @@ puts "-" *60
 puts "\n"*2
 puts "$" *60
 puts "\nSeed of table User (1 users)"
+
 	user = User.new(
 		gender: Faker::Gender.binary_type,
 		firstname: Faker::Name.first_name,
