@@ -22,5 +22,4 @@ class Item < ApplicationRecord
 	  end 
 	  return rating
   end
-
 end
