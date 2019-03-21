@@ -3,7 +3,7 @@
   <%= form_with(model: option, local: true) do |form| %>
     <% if option.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(option.errors.count, "error") %> prohibited this option from being saved:</h2>
+        <h2><%= pluralize(option.errors.count, "error") %> a empeché cette option d'être sauvegardée:</h2>
       <ul>
         <% option.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -16,7 +16,7 @@
       <tbody>
 
         <tr>
-          <th scope="row"><%= form.label :name %></th>
+          <th scope="row"><%= form.label :Nom %></th>
           <td class="d-flex justify-content-center"><%= form.text_field :name %></td>
         </tr>
 
