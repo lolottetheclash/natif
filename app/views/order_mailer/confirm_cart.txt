@@ -1,0 +1,10 @@
+Bonjour <%= @user.fullname %>,
+
+Nous vous remercions de votre commande passée sur Nativéa.
+
+Votre commande est actuellement en cours de préparation pour une expédition dans les plus brefs délais. Nous vous tiendrons informés par e-mail lorsque les articles de votre commande auront été expédiés. Vous pouvez suivre l’état de votre commande depuis votre profil sur https://nativea.herokuapp.com. 
+
+Retrouvez le détail de la commande #ORD<%= @order.id %> via ce <%= @url %>.
+A très bientôt sur Nativea,
+---
+L'équipe commerciale Nativéa

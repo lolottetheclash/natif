@@ -12,7 +12,7 @@
     <div class="mr-3"><i class="fas fa-tag"></i> <%= Category.find(item.category_id).name %></div>
   </div>
   <h6>
-    <span class="rating" data-value="<%= rating %>"></span>
+  	<span class="rating" data-value="<%= rating %>"></span>
     <a><%= Review.where(item_id: item.id).size %> reviews</a>
   </h6>
   <h3 class="price">
@@ -58,3 +58,7 @@
     <% end %>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2fa05137008a179051c2388270167f775cfb5e8b
