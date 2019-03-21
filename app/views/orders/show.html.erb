@@ -6,25 +6,25 @@
           <h3>ORD<%= @order.id %></h3><hr>
           <ul class="nav nav-pills main-nav-pills" role="tablist">
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 1 ? 'text-success' : 'text-muted'}" %>
+              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 1 ? 'text-success' : 'text-muted'}" do %>
                 <i data-feather="refresh-cw"></i> EN COURS DE PREPARATION
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link disabled" %>
+              <%= link_to "javascript:void(0)", class: "nav-link disabled" do %>
                 <i data-feather="arrow-right"></i>
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 2 ? 'text-success' : 'text-muted'}" %>
+              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id >= 2 ? 'text-success' : 'text-muted'}" do %>
                 <i data-feather="send"></i> EN COURS D'ACHEMINEMENT
               <% end %>
             </li>
-              <%= link_to "javascript:void(0)", class: "nav-link disabled" %>
+              <%= link_to "javascript:void(0)", class: "nav-link disabled" do %>
                 <i data-feather="arrow-right"></i>
               <% end %>
             <li class="nav-item">
-              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id == 4 ? 'text-success' : 'text-muted'}" %>
+              <%= link_to "javascript:void(0)", class: "nav-link #{@order.delivery_id == 4 ? 'text-success' : 'text-muted'}" do %>
                 <i data-feather="gift"></i> LIVREE
               <% end %>
             </li>
