@@ -1,109 +1,70 @@
 <div class="accordion accordion-caret accordion-sidebar d-none d-md-block">
-
-<div class="card">
-  <div class="card-header">
-    <a href="#filter-categories" data-toggle="collapse" aria-expanded="true" aria-controls="filter-categories" role="button" class="h6">
-      CATEGORIES
-    </a>
-  </div>
-  <div id="filter-categories" class="collapse show">
-    <div class="card-body">
-      <ul class="list-tree">
-        <li>
-          <a href="#"> Nos catégories <small class="counter">(<%= Item.all.length %>)</small></a>
-          <ul>
-            <% Category.all.each do |element|%>
-            <li>
-              <div class="row"><a href="javascript:void(0)" class="row">
-                <%= link_to raw("<i class=\"fas fa-tag\"></i> #{element.name}"), variants_path(:category => element.name), method: "get" %>
-                <small class="counter">(<%= Item.where(category_id: element.id).length %>)</small>
-              </a></div>
-            </li>
-            <%end%>
-          </ul>
-        </li>
-       </ul>
+  <div class="card">
+    <div class="card-header">
+      <a href="#filter-categories" data-toggle="collapse" aria-expanded="true" aria-controls="filter-categories" role="button" class="h6">
+        CATEGORIES
+      </a>
     </div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-header">
-    <a href="#filter-price" data-toggle="collapse" aria-expanded="true" aria-controls="filter-price" role="button" class="h6">
-      PRIX
-    </a>
-  </div>
-  <div id="filter-price" class="collapse show">
-    <div class="card-body">
-      <div class="d-flex justify-content-between mb-3">
-        <%= render 'searches/research' %>
-      </div>
-      <div id="price-slider"></div>
-    </div>
-  </div>
-</div>
-<!--
-<div class="card">
-  <div class="card-header">
-    <a href="#filter-size" data-toggle="collapse" aria-expanded="true" aria-controls="filter-size" role="button" class="h6">
-      SIZE
-    </a>
-  </div>
-  <div id="filter-size" class="collapse show">
-    <div class="card-body">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="size-small">
-        <label class="custom-control-label" for="size-small">Small</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="size-medium" checked>
-        <label class="custom-control-label" for="size-medium">Medium</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="size-large" checked>
-        <label class="custom-control-label" for="size-large">Large</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="size-extra-large">
-        <label class="custom-control-label" for="size-extra-large">Extra Large</label>
+    <div id="filter-categories" class="collapse show">
+      <div class="card-body">
+        <ul class="list-tree">
+          <li>
+            <a href="#"> Nos catégories <small class="counter">(<%= Item.all.length %>)</small></a>
+            <ul>
+              <% Category.all.each do |element|%>
+              <li>
+                  <%= link_to variants_path(:category => element.name), method: "get"  do %>
+                    <%= element.name %> <small class="counter">(<%= Item.where(category_id: element.id).length %>)</small>
+                  <% end %>
+              </li>
+              <%end%>
+            </ul>
+          </li>
+         </ul>
       </div>
     </div>
   </div>
-</div>
-<div class="card">
-  <div class="card-header">
-    <a href="#filter-colors" data-toggle="collapse" aria-expanded="true" aria-controls="filter-colors" role="button" class="h6">
-      COLORS
-    </a>
-  </div>
-  <div id="filter-colors" class="collapse show">
-    <div class="card-body">
-      <div class="color-options">
-        <label class="custom-control custom-checkbox custom-radio-color custom-control-inline">
-          <input type="checkbox" class="custom-control-input" checked>
-          <span class="custom-control-label" style="background-color: #606ddd"></span>
-        </label>
-        <label class="custom-control custom-checkbox custom-radio-color custom-control-inline">
-          <input type="checkbox" class="custom-control-input">
-          <span class="custom-control-label" style="background-color: #4caf50"></span>
-        </label>
-        <label class="custom-control custom-checkbox custom-radio-color custom-control-inline">
-          <input type="checkbox" class="custom-control-input" checked>
-          <span class="custom-control-label" style="background-color: #17a2b8"></span>
-        </label>
-        <label class="custom-control custom-checkbox custom-radio-color custom-control-inline">
-          <input type="checkbox" class="custom-control-input">
-          <span class="custom-control-label" style="background-color: #ffc107"></span>
-        </label>
-        <label class="custom-control custom-checkbox custom-radio-color custom-control-inline">
-          <input type="checkbox" class="custom-control-input">
-          <span class="custom-control-label" style="background-color: #f44336"></span>
-        </label>
+  <div class="card">
+    <div class="card-header">
+      <a href="#filter-price" data-toggle="collapse" aria-expanded="true" aria-controls="filter-price" role="button" class="h6">
+        PRIX
+      </a>
+    </div>
+    <div id="filter-price" class="collapse show">
+      <div class="card-body">
+        <div class="d-flex justify-content-between mb-3">
+          <%= render 'searches/research' %>
+        </div>
+        <div id="price-slider"></div>
       </div>
     </div>
   </div>
-</div>
-<div class="card">
-  <div class="card-header px-5 py-2 text-center"><button class="btn btn-primary rounded-pill btn-sm btn-block" data-dismiss="modal">APPLY</button></div>
-</div>
--->
+  <% if not Option.all.empty? %>
+    <% Option.all.each do |_option| %>
+      <div class="card">
+        <div class="card-header">
+          <a href="#filter-<%= _option.name %>" data-toggle="collapse" aria-expanded="true" aria-controls="filter-<%= _option.name %>" role="button" class="h6">
+            <%= _option.name.upcase %>
+          </a>
+        </div>
+        <div id="filter-<%= _option.name %>" class="collapse show">
+          <div class="card-body">
+            <ul class="list-tree">
+              <li>
+                <ul>
+                  <% OptionValue.where(option_id: _option.id).each do |value| %>
+                    <li>
+                      <%= link_to variants_path(_option.name.downcase => value.name), method: "get"  do %>
+                        <%= value.name %> <small class="counter">(<%= Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find(value.id))).length %>)</small>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

@@ -232,7 +232,7 @@ puts "$" *60
 puts "\nSeed of table Item (100 Items)"
 100.times do |i|
 	Item.create(
-		title: Faker::Book.title,
+		title: "Title of item #{i+1}",
 		description: Faker::Lorem.paragraph,
 		author: User.find_by_id(2),
 		category: Category.all.sample
@@ -247,7 +247,7 @@ puts "$" *60
 puts "\nSeed of table Review (300 Reviews)"
 300.times do |i|
 	Review.create(
-		title: Faker::Book.title,
+		title: "Title of review #{i+1}",
 		content: Faker::Lorem.paragraph,
 		rating: rand(0..5),
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
@@ -263,7 +263,7 @@ puts "$" *60
 puts "\nSeed of table Post (100 Posts)"
 100.times do |i|
 	Post.create(
-		title: Faker::Book.title,
+		title: "Title of post #{i+1}",
 		content: Faker::Lorem.paragraph,
 		author: User.find_by_id(1),
 		theme: Theme.all.sample
@@ -278,7 +278,7 @@ puts "$" *60
 puts "\nSeed of table Comments (200 Comments)"
 100.times do |i|
 	Comment.create(
-		title: Faker::Book.title,
+		title: "Title of post comment #{i+1}",
 		content: Faker::Lorem.paragraph,
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		commentable: Post.all.sample
@@ -287,7 +287,7 @@ puts "\nSeed of table Comments (200 Comments)"
 end
 100.times do |i|
 	Comment.create(
-		title: Faker::Book.title,
+		title: "Title of comment comment #{i+1}",
 		content: Faker::Lorem.paragraph,
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		commentable: Comment.all.sample
@@ -315,7 +315,7 @@ puts "$" *60
 puts "\nSeed of table Variant (200 Variants)"
 200.times do |i|
 	Variant.create(
-		title: Faker::Book.title,
+		title: "Title of variant #{i+1}",
 		price: Faker::Number.decimal(2),
 		stock: rand(0..10),
 		item: Item.all.sample
