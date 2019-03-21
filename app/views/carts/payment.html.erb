@@ -21,9 +21,8 @@
           <span class="text-info">€ <%= sprintf( "%0.02f", amount) %></span>
         </p>
         <p>Un email de confirmation a été envoyé à l'adresse : <u><%= User.find(order.user_id).email %></u></p>
-        <a href="<%= root_path %>" class="btn btn-primary rounded mb-3">Continuer les achats</a>
-
-        <a href="<%= order_path(order) %>" class="btn btn-outline-secondary rounded mb-3">Voir la commande</a>
+        <%= link_to "Continuer les achats", variants_path, class: "btn btn-primary rounded mb-3" %>
+        <%= link_to "Voir la commande", order_path(order), class: "btn btn-outline-secondary rounded mb-3" %>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
 <div class="card card-blog">
-  <a href="<%= post_path(post.id) %>" class="zoom-hover"><img src="https://image.noelshack.com/fichiers/2019/11/3/1552473886-aromatherapy-aromatic-bottle-932577.jpg" alt="test"></a>
+  <%= link_to post_path(post.id), class: "zoom-hover" do %>
+    <img src="https://image.noelshack.com/fichiers/2019/11/3/1552473886-aromatherapy-aromatic-bottle-932577.jpg" alt="test">
+    <% end %>
   <div class="card-body">
-    <a href="<%= post_path(post.id) %>" class="title h4"><%= elements.title %></a>
+    <%= link_to elements.title, post_path(post.id), class: "title h4" %>
     <span><%= elements.content[0..25] %>...</span>
   </div>
     <div class="card-footer flex-center">
@@ -9,7 +11,7 @@
         <i class="far fa-heart"></i> 55
         <i class="far fa-comment-dots ml-3"></i> 15
       </div>
-      <a href="<%= post_path(post.id) %>" class="bold">READ MORE</a>
+      <%= link_to "> Read more", post_path(post.id), class: "bold" %>
     </div>
 </div>
 

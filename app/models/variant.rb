@@ -19,4 +19,5 @@ class Variant < ApplicationRecord
   validates :stock,
     presence: true, 
     numericality: { only_integer: true }
+  paginates_per 6
 end

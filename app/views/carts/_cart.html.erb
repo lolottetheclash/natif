@@ -4,10 +4,10 @@
   <% carts.order(:id).each do |cart| %>        
     <tr>
       <td class="cart-img nostretch">
-        <a href="shop-single.html"><img src="https://image.shutterstock.com/image-vector/oil-drop-isolated-on-white-450w-475939882.jpg" alt="#"></a>
+        <%= link_to image_tag("item.jpg"), variant_path(Variant.find(cart.variant_id)) %>
       </td>
       <td class="cart-title">
-        <a href="/variants/<%= cart.variant.id %>" class="h6 bold d-inline-block" title="Hanes Hooded Sweatshirt"><%= cart.variant.title %></a>
+        <%= link_to cart.variant.title, variant_path(Variant.find(cart.variant_id)), class: "h6 bold d-inline-block", title: cart.variant.title  %>
         <% if Variant.find(cart.variant_id).stock == 0 %>
           <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible</div> 
         <% else %>
@@ -19,12 +19,18 @@
       <td class="cart-qty nostretch text-center">
         <div class="spinner" data-addclass-on-smdown="spinner-sm wrap">
           <% if cart.quantity == 1 %>
-            <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle" %>
+            <%= link_to cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle" do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
           <% else %>
-            <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
+            <%= link_to removefromcart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" do %>
+              <i class="fas fa-minus"></i>
+            <% end %>
           <% end %>
           <input type="number" class="form-control" value="<%= cart.quantity %>" min="1" max="999">
-          <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" %>
+          <%= link_to addtocart_path(cart.id), method: "get", class: "btn btn-icon rounded-circle" do %>
+            <i class="fas fa-plus"></i>
+          <% end %>
         </div>
       </td>
       <td class="cart-price text-right">
@@ -32,9 +38,9 @@
       </td>
       <td class="cart-action nostretch pr-0">
         <div class="dropdown">
-          <a href="#" class="nav-icon text-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= link_to "javascript:void(0)", :class => "nav-icon text-secondary dropdown-toggle", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
             <i class="fas fa-angle-down"></i>
-          </a>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item text" style="text-decoration:none;" type="button"><i class="fas fa-heart"></i> <%= link_to 'Plus tard (wishlist)', wishlists_path(user_id: cart.user.id, variant_id: cart.variant.id), method: :create %></button>
             <button class="dropdown-item text-danger" type="button"> <i class="fas fa-times"></i> <%= link_to 'Enlever', cart, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "text-danger" %></button>

@@ -4,7 +4,9 @@
   <div class="card-header">
     <div class="row d-flex justify-content-between">
       <div class="col-6">
-        <%= link_to raw("<i class=\"fas fa-tag\"></i> #{Category.find(item.category_id).name}"), variants_path(:category => Category.find(item.category_id).name), method: "get" %> 
+        <%= link_to variants_path(:category => Category.find(item.category_id).name), method: "get" do %>
+          <i class="fas fa-tag"></i> <%= Category.find(item.category_id).name %>
+        <% end %> 
       </div>
       <div class="col-6 rating-stars text-warning">
         <% rating.to_i.times do %>
@@ -18,7 +20,7 @@
   </div>
   <div class="card-body p-0 mb-3">
     <div class="card zoom-hover">
-      <a class="navbar-brand mr-1" href="<%= variant_path(variant.id) %>"><%= image_tag "item.jpg", :class => "w-100" %></a>
+      <%= link_to image_tag("item.jpg", :class => "w-100"), variant_path(variant.id), class: "navbar-brand mr-1" %>
     </div>
     <h5 class="card-title"><%= variant.title %></h5>
     <div class="price"><span class="h5">€ <%= variant.price %> </span></div>
@@ -44,7 +46,9 @@
           <div class="ml-3">
             <% if user_signed_in? %>
               <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:variant_id).include?(variant.id) %> 
-                <%= link_to raw("<i class=\"fas fa-cart-plus\"></i>"), addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: variant.id).ids), method: "get", class: "btn btn-icon rounded-circle" %> 
+                <%= link_to addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: variant.id).ids), method: "get", class: "btn btn-icon rounded-circle" do %>
+                  <i class="fas fa-cart-plus"></i>
+                <% end %> 
               <% else %>  
                 <%= form_for Cart.new do |f| %>
                   <%= f.hidden_field :variant_id, :value => variant.id %>
@@ -62,18 +66,18 @@
   </div>
   <div class="card-header py-1">
     <div class="row">
-      <a class="col-3" href="#">
+      <div class="col-3">
         <% author = User.find_by_id(item.author_id) %>
-        <%if author.avatar.attached?%>
+        <% if author.avatar.attached? %>
           <%= image_tag @user.avatar, alt: author.fullname, :style => "width:28px;height:28px;border-radius:50%;" %>
-        <%elsif author.gender == "Male" %>
+        <% elsif author.gender == "Male" %>
           <%= image_tag ("mister.jpg"), alt: author.fullname, :style => "width:28px;height:28px;border-radius:50%;" %>
         <% else %>
           <%= image_tag ("miss.jpg"), alt: author.fullname, :style => "width:28px;height:28px;border-radius:50%;" %>
-        <%end%>
-      </a>
+        <% end %>
+      </div>
       <div class="col-9">
-        <a class="row text-info" href="#"><small>Posted by: <b><%= author.fullname %></b></small></a>
+        <small class="row text-info">Posted by:&nbsp;<b><%= author.fullname %></b></small>
         <div class="row"><small class="text-sm"><i class="far fa-clock"></i> <%= item.created_at.strftime("%B %d, %Y") %></small></div>
       </div>
     </div> 

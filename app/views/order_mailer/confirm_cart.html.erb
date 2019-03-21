@@ -6,13 +6,13 @@
   <body>
     <p>Bonjour <%= @user.fullname %>,</p>
     
-    <p>Nous vous remercions de votre commande passée sur <a href="https://nativea.herokuapp.com/">Nativéa</a>.</p>
+    <p>Nous vous remercions de votre commande passée sur <%= link_to "Nativéa", "https://nativea.herokuapp.com/" %>.</p>
 
     <p>
       Votre commande est actuellement en cours de préparation pour une expédition dans les plus brefs délais. Nous vous tiendrons informés par e-mail lorsque les articles de votre commande auront été expédiés. Vous pouvez suivre l’état de votre commande depuis votre profil sur https://nativea.herokuapp.com. 
     </p>
 
-    <p> Retrouvez le détail de la commande #ORD<%= @order.id %> via ce <a href="<%= @url %>">lien</a>.</p>
+    <p> Retrouvez le détail de la commande #ORD<%= @order.id %> via ce <%= link_to "lien", @url %>.</p>
     <p>A très bientôt sur Nativea,</p>
     <hr/>
     <small>L'équipe commerciale Nativéa</small>
