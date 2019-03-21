@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   get '/remove_from_carts/:id' => 'carts#removeitem', as: 'removefromcart'
   resources :posts, :path => "blog"
   get "/postDashboard", to: "posts#postDashboard"
+  get '/home/about_us', to: 'home#about_us', as: 'a_propos'
 
 end
