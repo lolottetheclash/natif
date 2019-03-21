@@ -6,15 +6,14 @@
       <!-- Blog Toolbar -->
       <div class="card">
         <div class="card-body d-flex justify-content-end align-items-center py-2">
-          <span class="mr-auto bold">Latest Blog</span>
+          <span class="mr-auto bold">Derniers articles</span>
           <div class="dropdown dropdown-hover">
             <button class="btn btn-light btn-sm border rounded-pill dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Newest <i data-feather="chevron-down"></i>
+              Ordre <i data-feather="chevron-down"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right shadow-sm">
-              <button class="dropdown-item" type="button">Newest</button>
-              <button class="dropdown-item" type="button">Oldest</button>
-              <button class="dropdown-item" type="button">Popular</button>
+              <button class="dropdown-item" type="button">Nouveaux</button>
+              <button class="dropdown-item" type="button">Anciens</button>
             </div>
           </div>
           <%= link_to "javascript:void(0)", class: "btn btn-icon rounded-pill btn-sm btn-primary ml-3 post_grid_layout", :data => {:toggle => "tooltip"} do %>
@@ -55,7 +54,7 @@
     <div class="col-md-4 col-lg-4 mt-3 mt-md-0">
       <div class="card">
         <div class="card-header bg-white border-bottom bold roboto-condensed">
-          <h5 class="bold mb-0">POPULAR THIS <span class="text-primary">WEEK</span></h5>
+          <h5 class="bold mb-0">LES PLUS <span class="text-primary">COMMENTÉS</span></h5>
         </div>
         <!--RenderSideBar-->
           <% i = 0 %>
@@ -67,7 +66,7 @@
     </div>
       <div class="card mt-3">
         <div class="card-header bg-white border-bottom bold roboto-condensed">
-          <h5 class="bold mb-0">POPULAR <span class="text-primary">TAGS</span></h5>
+          <h5 class="bold mb-0">TAG <span class="text-primary">POPULAIRES</span></h5>
         </div>
         <div class="card-body">
           <div class="btn-group-scatter">
