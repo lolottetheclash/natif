@@ -5,7 +5,7 @@
         <div class="col mt-3 mt-md-0">
           <div class="card">
             <div class="card-body">
-              <h3>Ma Wishlist</h3><hr>
+              <h2 class="d-flex justify-content-center">Ma Wishlist</h2><hr>
               <% @wishlists.each do |wishlist| %>
                 <div class="card card-product card-product-list shadow-none border-bottom">
                   <%= link_to image_tag("item.jpg", :class => "card-img-top"), variant_path(Variant.find(wishlist.variant_id).id) %>
