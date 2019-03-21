@@ -32,15 +32,9 @@
       </td>
       <td class="cart-action nostretch pr-0">
         <div class="dropdown">
-<!--           
-          <% html_options = {data: {toggle: "dropdown"}, class:"nav-icon text-secondary dropdown-toggle", role: "button", aria:{haspopup: "true", expanded: "false"}} %>
-          <% link_to('javascript:void(0);', html_options) do %>
+          <%= link_to "javascript:void(0)", :class => "nav-icon text-secondary dropdown-toggle", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
             <i class="fas fa-angle-down"></i>
-          <% end %> 
--->
-          <a href="javascript:void(0)" class="nav-icon text-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-angle-down"></i>
-          </a>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item text" style="text-decoration:none;" type="button"><i class="fas fa-heart"></i> <%= link_to 'Plus tard (wishlist)', wishlists_path(user_id: cart.user.id, variant_id: cart.variant.id), method: :create %></button>
             <button class="dropdown-item text-danger" type="button"> <i class="fas fa-times"></i> <%= link_to 'Enlever', cart, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "text-danger" %></button>
