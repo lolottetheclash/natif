@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Variant</th>
+      <th>Utilisateur</th>
+      <th>Variante</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= wishlist.user %></td>
         <td><%= wishlist.variant %></td>
-        <td><%= link_to 'Show', wishlist %></td>
-        <td><%= link_to 'Edit', edit_wishlist_path(wishlist) %></td>
-        <td><%= link_to 'Destroy', wishlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Détail', wishlist %></td>
+        <td><%= link_to 'Modifier', edit_wishlist_path(wishlist) %></td>
+        <td><%= link_to 'Supprimer', wishlist, method: :delete, data: { confirm: 'Etes-vous sur ?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Wishlist', new_wishlist_path %>
+<%= link_to 'Nouvelle Wishlist', new_wishlist_path %>
