@@ -34,7 +34,7 @@ puts "Blog_Manager: username = blog_manager // password = admin123 -- Successful
 		lastname: Faker::Name.last_name,
 		username: "blog_manager",
 		age: rand(18..99),
-		email: "blog_manager@gmail.com",
+		email: "blog_manager@yopmail.com",
 		password: "admin123"
 		)
 	user.skip_confirmation!
@@ -48,7 +48,7 @@ puts "Product_Manager: username = product_manager // password = admin123 -- Succ
 		lastname: Faker::Name.last_name,
 		username: "product_manager",
 		age: rand(18..99),
-		email: "product_manager@gmail.com",
+		email: "product_manager@yopmail.com",
 		password: "admin123"
 		)
 	user.skip_confirmation!
@@ -62,7 +62,7 @@ puts "Moderator: username = moderator // password = admin123 -- Successfully Cre
 		lastname: Faker::Name.last_name,
 		username: "moderator",
 		age: rand(18..99),
-		email: "moderator@gmail.com",
+		email: "moderator@yopmail.com",
 		password: "admin123"
 		)
 	user.skip_confirmation!
@@ -76,7 +76,7 @@ puts "Sale_Manager: username = sale_manager // password = admin123 -- Successful
 		lastname: Faker::Name.last_name,
 		username: "sale_manager",
 		age: rand(18..99),
-		email: "sale_manager@gmail.com",
+		email: "sale_manager@yopmail.com",
 		password: "admin123"
 		)
 	user.skip_confirmation!
@@ -90,7 +90,7 @@ puts "Stock_and_Export_Mangager: username = stock_export_manager // password = a
 		lastname: Faker::Name.last_name,
 		username: "stock_export_manager",
 		age: rand(18..99),
-		email: "stock_export_manager@gmail.com",
+		email: "stock_export_manager@yopmail.com",
 		password: "admin123"
 		)
 	user.skip_confirmation!
@@ -104,7 +104,7 @@ puts "Super_Admin: username = super_admin // password = admin123 -- Successfully
 		lastname: Faker::Name.last_name,
 		username: "super_admin",
 		age: rand(18..99),
-		email: "super_admin@gmail.com",
+		email: "super_admin@yopmail.com",
 		password: "admin123"
 		)
 	user.skip_confirmation!
@@ -116,21 +116,40 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table User (1 users)"
-
+puts "\nSeed of table User (10 users)"
 	user = User.new(
 		gender: "Homme",
 		firstname: Faker::Name.first_name,
 		lastname: Faker::Name.last_name,
 		username: "user",
 		age: rand(18..99),
-		email: "user@gmail.com",
+		email: "user@yopmail.com",
 		password: "aaaaaa"
 		)
 	user.skip_confirmation!
   user.save!
 	RoleAssignation.create(user_id: 7, role_id: 2)
-	print "\r 1 user created over"
+	print "\r 1 user created over 10"
+
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table User (10 users)"
+9.times do |i|
+	user = User.new(
+		gender: "Homme",
+		firstname: Faker::Name.first_name,
+		lastname: Faker::Name.last_name,
+		username: "user#{i}",
+		age: rand(18..99),
+		email: "user#{i}@yopmail.com",
+		password: "aaaaaa"
+		)
+	user.skip_confirmation!
+  user.save!
+	RoleAssignation.create(user_id: "#{i+8}", role_id: 2)
+	print "\r#{i+1} user created over 10"
+end
 
 puts "\nSeed of table User has been successfully performed"
 puts "-" *60
@@ -181,16 +200,16 @@ puts "-" *60
 
 puts "\n"*2
 puts "$" *60
-puts "\nSeed of table Order (5 Past Orders)"
-5.times do |i|
+puts "\nSeed of table Order (20 Past Orders)"
+20.times do |i|
 	Order.create(
-		stripe_id: "StripeIdGoesHere",
+		stripe_id: "StripeIdGoesHere#{i}",
 		address: Faker::Address.full_address,
 		zipcode: Faker::Address.zip_code,
 		user_id: User.find_by_id(RoleAssignation.where(role_id: 2).sample.user_id).id,
 		delivery: Delivery.all.sample
 		)
-	print "\r#{i+1} Order created over 5"
+	print "\r#{i+1} Order created over 20"
 end
 puts "\nSeed of table Order has been successfully performed"
 puts "-" *60

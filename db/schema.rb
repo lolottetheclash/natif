@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 2019_03_20_093932) do
     t.string "firstname"
     t.string "lastname"
     t.string "username"
-    t.integer "age"
+    t.integer "age", default: 1
     t.string "gender"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

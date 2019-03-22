@@ -40,7 +40,7 @@ RSpec.describe Review, type: :model do
 	    end
 
 	    describe "title" do
-	      it { expect(@review).to validate_length_of(:title).is_at_most(20) }
+	      it { expect(@review).to validate_length_of(:title).is_at_most(100) }
 	    end
 
 	    it "should return a string" do
@@ -52,7 +52,7 @@ RSpec.describe Review, type: :model do
 	    end
 
 	    describe "content" do
-	      it { expect(@review).to validate_length_of(:content).is_at_most(80) }
+	      it { expect(@review).to validate_length_of(:content).is_at_most(500) }
 	    end
 
 	    it "should return a string" do
