@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery.min
 //= require bootstrap.bundle.min
 //= require feather.min
@@ -23,11 +22,3 @@
 //= require jquery.countdown.min
 //= require script.min
 //= require_tree .
-
-
-
-$(document).ready(function(){
-  setTimeout(function(){
-    $('#flash').remove();
-  }, 5000);
- })

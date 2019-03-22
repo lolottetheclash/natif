@@ -26,10 +26,10 @@
               </div>
             </div>
             <%= link_to carts_path, :class => "dropdown-item has-icon has-badge" do %>
-              <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary">2</span>
+              <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary"><%= Cart.where(user_id: current_user.id).where(order_id: nil).length %></span>
             <% end %>  
             <%= link_to wishlists_path, :class => "dropdown-item has-icon has-badge" do %>
-              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary"><%= Wishlist.where(user_id:current_user.id).length%></span>
+              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary"><%= Wishlist.where(user_id:current_user.id).length %></span>
             <% end %>      
             <%= link_to mon_profil_path, :class => "dropdown-item has-icon" do %>
               <i class="fas fa-cogs"></i>&nbsp;&nbsp;Mon Compte
@@ -78,7 +78,14 @@
       <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "A propos", a_propos_path, class: "nav-link" %></li>
+      <li class="nav-item dropdown dropdown-hover">
+      <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+        Nous <i class="fas fa-chevron-down"></i>
+      <% end %>
+      <div class="dropdown-menu">        
+          <%= link_to "A propos", a_propos_path, class: "dropdown-item" %>
+          <%= link_to "Contact", contact_path, class: "dropdown-item" %>
+      </div>
       <li class="nav-item dropdown dropdown-hover">
         <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
           Mon Compte <i class="fas fa-chevron-down"></i>

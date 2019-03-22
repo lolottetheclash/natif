@@ -5,8 +5,8 @@ class Comment < ApplicationRecord
 	
   validates :title,
     presence: true, 
-    length: { minimum: 2, maximum: 20 }
+    length: { minimum: 2, maximum: 100 }
   validates :content,
     presence: true, 
-    length: { minimum: 20, maximum: 150 }
+    length: { minimum: 20, maximum: 500 }
 end
