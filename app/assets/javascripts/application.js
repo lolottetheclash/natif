@@ -23,7 +23,6 @@
 //= require script.min
 //= require_tree .
 
-$(function() {
   setTimeout(function(){
     $('#flash').remove();
   }, 5000)
@@ -52,6 +51,5 @@ $(function() {
     $('.post_list_layout').removeClass('btn-primary').addClass('btn-outline-primary');
     event.preventDefault();
   });
-});
 
 
