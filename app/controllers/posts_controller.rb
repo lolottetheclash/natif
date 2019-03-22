@@ -10,7 +10,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.all
   end
 
   def new
@@ -18,7 +17,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.new
   end
 
   def create
@@ -56,11 +54,11 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
-     Post.find(params[:id])
-    end
+  def set_variant
+    @post = Post.find(params[:id])
+  end
 
-    def post_params
-      params.fetch(:post, {})
-    end
+  def variant_params
+    params.require(:post).permit(:title, :content, :theme_id, image_post)
+  end
 end

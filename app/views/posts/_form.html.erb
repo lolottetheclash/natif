@@ -31,9 +31,10 @@
     </tr>
 
     <tr>
-      <th scope="row"><%= form.label :"Auteur de l'article: " %></th>
-      <td class="d-flex justify-content-center"><%= form.collection_select(:author_id, Role.all, :id, :name) %></td>
+      <th scope="row"><%= form.label :Image %></th>
+      <td class="d-flex justify-content-center"><%= form.file_field :image_post %></td>
     </tr>
+
   </tbody>
 </table>
 

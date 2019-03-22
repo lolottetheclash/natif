@@ -13,5 +13,9 @@ class Post < ApplicationRecord
   validates :content,
     presence: true, 
     length: { minimum: 20, maximum: 2000 }
+  
   paginates_per 6
+
+  has_one_attached :image_post
+
 end
