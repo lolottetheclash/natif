@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:title, :description, :category_id)
+      params.require(:item).permit(:title, :description, :category_id, :image_item)
     end
     def check_admin
       if RoleAssignation.find_by_user_id(current_user.id).role_id == 4 or RoleAssignation.find_by_user_id(current_user.id).role_id == 8
