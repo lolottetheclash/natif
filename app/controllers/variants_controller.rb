@@ -1,5 +1,7 @@
 class VariantsController < ApplicationController
   before_action :set_variant, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_admin, only: [:new, :create, :update, :edit, :destroy]
 
   def index
     array = nil
@@ -79,5 +81,15 @@ class VariantsController < ApplicationController
 
     def variant_params
       params.require(:variant).permit(:title, :item_id, :price, :stock, image_variant)
+    end
+
+    def check_admin
+      if RoleAssignation.find_by_user_id(current_user.id).role_id == 4 or RoleAssignation.find_by_user_id(current_user.id).role_id == 8
+      else
+        respond_to do |format|
+          format.html { redirect_to request.referer }
+          format.json { head :no_content }
+        end
+      end
     end
 end

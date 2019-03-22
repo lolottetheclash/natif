@@ -108,15 +108,19 @@
           <%= link_to "javascript:void(0)", :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
             Dashboard <i class="fas fa-chevron-down"></i>
           <% end %>
-          <div class="dropdown-menu">
-            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
-            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
-            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
-            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
-            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
-            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
-
-          </div>
+          <% if RoleAssignation.find_by_user_id(current_user.id).role_id == 4 or RoleAssignation.find_by_user_id(current_user.id).role_id == 8 %>
+            <div class="dropdown-menu">
+              <%= link_to "Créer un Variant", new_variant_path, class: "dropdown-item" %>
+              <%= link_to "Liste des Options", options_path, class: "dropdown-item" %>
+              <%= link_to "Créer une Option", new_option_path, class: "dropdown-item" %>
+              <%= link_to "Liste des OptionValue", option_values_path, class: "dropdown-item" %>
+              <%= link_to "Créer une OptionValue", new_option_value_path, class: "dropdown-item" %>
+              <%= link_to "Liste des OptionAssociation", option_associations_path, class: "dropdown-item" %>
+              <%= link_to "Créer une OptionAssociation", new_option_association_path, class: "dropdown-item" %>
+            </div>
+          <% else %>
+            <div class="dropdown-menu">Pas de dashboard disponible</div>
+          <% end %>
         </li>
       <% end %>
     </ul>
