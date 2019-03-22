@@ -8,7 +8,7 @@
         <ul class="list-tree">
           <li>
             <%= link_to variants_path do %>
-               Nos catégories <small class="counter">(<%= Variant.all.length %>)</small>
+               Tous les produits <small class="counter">(<%= Variant.all.length %>)</small>
             <% end %>
             <ul>
               <% Category.all.each do |element|%>
@@ -41,14 +41,14 @@
     <% Option.all.each do |_option| %>
       <div class="card">
         <div class="card-header">
-          <%= link_to _option.name.upcase, "#filter-#{_option.name}", :class => "h6", :data => {:toggle => "collapse"}, :role =>'button', :aria => {:controls => "filter-price", :expanded => "false"} %>
+          <%= link_to _option.name.upcase, "#filter-#{_option.name}", :class => "h6", :data => {:toggle => "collapse"}, :role =>'button', :aria => {:controls => "filter-price", :expanded => "true"} %>
         </div>
         <div id="filter-<%= _option.name %>" class="collapse show">
           <div class="card-body">
             <ul class="list-tree">
               <li>
                 <%= link_to variants_path do %>
-                   Nos catégories <small class="counter">(<%= Variant.all.length %>)</small>
+                   Tous les produits <small class="counter">(<%= Variant.all.length %>)</small>
                 <% end %>
                 <ul>
                   <% OptionValue.where(option_id: _option.id).each do |value| %>

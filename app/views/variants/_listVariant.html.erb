@@ -31,19 +31,27 @@
         <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
       <% end %>
       <div class="row d-flex justify-content-center">
-        <% if Wishlist.where(user_id: current_user.id).map(&:variant_id).include?(variant.id) %>
-          <div class="btn btn-icon rounded-circle">
-            <i class="fas fa-heart oups"></i>
-          </div>  
+        <% if user_signed_in? %>
+          <% if Wishlist.where(user_id: current_user.id).map(&:variant_id).include?(variant.id) %>
+            <div class="btn btn-icon rounded-circle">
+              <i class="fas fa-heart oups"></i>
+            </div>  
+          <% else %>
+            <%= form_for Wishlist.new do |f| %>
+              <%= f.hidden_field :variant_id, :value => variant.id %>
+              <%= button_tag(class: "btn btn-icon rounded-circle") do %>
+                <i class="far fa-heart"></i>
+              <% end %>
+            <% end %>
+          <% end %>
         <% else %>
           <%= form_for Wishlist.new do |f| %>
             <%= f.hidden_field :variant_id, :value => variant.id %>
-              <%= button_tag(class: "btn btn-icon rounded-circle") do %>
-                 <i class="far fa-heart"></i>
-              <% end %>
+            <%= button_tag(class: "btn btn-icon rounded-circle") do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-
         <% if variant.stock != 0 %>
           <div class="ml-3">
             <% if user_signed_in? %>
