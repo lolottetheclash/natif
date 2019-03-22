@@ -20,7 +20,7 @@ RSpec.describe Comment, type: :model do
 		end
 
 		describe "title" do
-		 	it { expect(@comment).to validate_length_of(:title).is_at_most(20) }
+		 	it { expect(@comment).to validate_length_of(:title).is_at_most(100) }
 		end
 
 		it "should return a string" do
@@ -36,7 +36,7 @@ RSpec.describe Comment, type: :model do
 		end
 
 		describe "content" do
-		 	it { expect(@comment).to validate_length_of(:content).is_at_most(150) }
+		 	it { expect(@comment).to validate_length_of(:content).is_at_most(500) }
 		end
 
 		it "should return a string" do
