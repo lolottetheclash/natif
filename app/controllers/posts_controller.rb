@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.author_id = current_user.id
 
     respond_to do |format|
       if @post.save
@@ -58,12 +58,12 @@ class PostsController < ApplicationController
 
   private
 
-  def set_variant
+  def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :theme_id, image_post)
+    params.require(:post).permit(:title, :content, :theme_id, :image_post)
   end
 
   def check_admin

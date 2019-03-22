@@ -40,5 +40,5 @@ google:
 google_dev:
   service: GCS
   project: nativea
-  credentials: <%= Rails.root.join("config/secrets/todo-pic.json") %>
+  credentials: <%= Rails.root.join("config/secrets/nativea.json") %>
   bucket: nativea
