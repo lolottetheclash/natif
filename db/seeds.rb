@@ -335,7 +335,7 @@ puts "$" *60
 puts "\nSeed of table Variant (200 Variants)"
 200.times do |i|
 	Variant.create(
-		title: "Title of variant #{i+1}",
+		title: "Titre du produit n° #{i+1}",
 		price: Faker::Number.decimal(2),
 		stock: rand(0..10),
 		item: Item.all.sample
