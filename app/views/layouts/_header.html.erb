@@ -87,7 +87,7 @@
           <%= link_to "Contact", contact_path, class: "dropdown-item" %>
       </div>
       <li class="nav-item dropdown dropdown-hover">
-        <%= link_to request.referer, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+        <%= link_to new_user_session_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
           Mon Compte <i class="fas fa-chevron-down"></i>
         <% end %>
         

@@ -17,3 +17,10 @@
  *= require noty.min
  *= require style.min
  */
+
+
+.ego{
+	text-align: center !important; 
+	background-color: #ededed!important; 
+	border-radius: 10px !important; 
+}
