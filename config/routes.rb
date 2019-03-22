@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'errors/internal_server_error'
   root 'home#home'
   
-  resources :variants, :path => "produits"
+  resources :variants, :path => "produits" do 
+    resources :reviews
+  end
   resources :wishlists, :path => "ma_wishlist"
 
   resources :orders, :path => "mes_commandes"
