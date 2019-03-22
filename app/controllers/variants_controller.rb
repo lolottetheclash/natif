@@ -2,41 +2,32 @@
 class VariantsController < ApplicationController
   before_action :set_variant, only: [:show, :edit, :update, :destroy]
 
-  # GET /variants
-  # GET /variants.json
   def index
+    array = nil
+    params.each do |key, value|
+      array = value if Option.all.map(&:name).include?(key)
+    end
+
     if params[:category]
       @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:taille]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:taille])).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:couleur]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:couleur])).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:litre]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:litre])).ids).order(:title).page(params[:page]).per(6)
-    elsif params[:poids]
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(params[:poids])).ids).order(:title).page(params[:page]).per(6)
+    elsif array != nil
+      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(array)).ids).order(:title).page(params[:page]).per(6)
     else
       @variants = Variant.where(["title ILIKE ?","%#{params[:search]}%"]).page(params[:page]).per(6)
     end
   end
 
-  # GET /variants/1
-  # GET /variants/1.json
   def show
     @reviews = Review.where(item_id:(@variant.item_id))
   end
 
-  # GET /variants/new
   def new
     @variant = Variant.new
   end
 
-  # GET /variants/1/edit
   def edit
   end
 
-  # POST /variants
-  # POST /variants.json
   def create
     @variant = Variant.new(variant_params)
 
@@ -51,8 +42,6 @@ class VariantsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /variants/1
-  # PATCH/PUT /variants/1.json
   def update
     respond_to do |format|
       if @variant.update(variant_params)
@@ -65,8 +54,6 @@ class VariantsController < ApplicationController
     end
   end
 
-  # DELETE /variants/1
-  # DELETE /variants/1.json
   def destroy
     optionsofvariant = OptionAssociation.where(variant_id: @variant.id)
     optionsofvariant.each do |element|
@@ -80,12 +67,10 @@ class VariantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_variant
       @variant = Variant.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def variant_params
       params.require(:variant).permit(:title, :item_id, :price, :stock)
     end
