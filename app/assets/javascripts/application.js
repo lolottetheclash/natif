@@ -29,7 +29,7 @@ $(document).ready(function(){
   setTimeout(function(){
     $('#flash').remove();
   }, 5000);
- })
+ });
 
 
 
@@ -62,7 +62,7 @@ $(function () {
       w: 1395,
       h: 1500
     })
-  })
+  });
 
   var openPhotoSwipe = function (items, activeIndex) {
     activeIndex = typeof activeIndex !== 'undefined' ? activeIndex : 0
@@ -78,6 +78,18 @@ $(function () {
     openPhotoSwipe(items, $('.swiper-wrapper').find('.swiper-slide-active').data('swiper-slide-index'))
   })
 
-})
+});
+
+$(function () {
+  let fullHeart = document.querySelectorAll(".oups"); 
+  console.log(fullHeart)
+  function displayAlert() 
+  {
+    alert("Cet article est déjà présent dans votre wishlist!");
+  };
+  for (i = 0; i < fullHeart.length; i++) {
+  fullHeart[i].addEventListener("click", displayAlert);
+  }
+});
 
 
