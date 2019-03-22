@@ -32,3 +32,13 @@ amazon:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+google:
+  service: GCS
+  project: nativea
+  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'] %>
+  bucket: nativea
+google_dev:
+  service: GCS
+  project: nativea
+  credentials: <%= Rails.root.join("config/secrets/todo-pic.json") %>
+  bucket: nativea
