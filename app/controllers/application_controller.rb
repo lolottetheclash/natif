@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
 
-    #load_and_authorize_resource
-	
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -14,6 +12,3 @@ class ApplicationController < ActionController::Base
   	@env['HTTP_REFERER'] || '/'
 	end
 end
-
-
-
