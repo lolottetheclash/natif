@@ -69,6 +69,8 @@
                     <li><%= link_to "Créer une OptionValue", new_option_value_path, class: "dropdown-item" %></li>
                     <li><%= link_to "Liste des OptionAssociation", option_associations_path, class: "dropdown-item" %></li>
                     <li><%= link_to "Créer une OptionAssociation", new_option_association_path, class: "dropdown-item" %></li>
+                  <% elsif RoleAssignation.find_by_user_id(current_user.id).role_id == 3 or RoleAssignation.find_by_user_id(current_user.id).role_id == 8 %>
+                    <li><%= link_to "Créer un Post", new_post_path, class: "dropdown-item" %></li>
                   <% end %>
                 </ul>
               </li>
