@@ -1,9 +1,32 @@
-<!-- Top bar -->
-<div class="topbar">
-  <div class="container d-flex">
+<!--Header -->
+<header>
+  <div class="container">
 
-    <!-- User dropdown -->
-    <ul class="nav ml-auto">
+  <!-- Sidebar toggler -->
+  <%= link_to "javascript:void(0)", :class => "nav-link nav-icon ml-ni nav-toggler mr-3 d-flex d-lg-none", :data => {:toggle => "modal", :target => "#menuModal"} do %>
+    <i class="fas fa-bars"></i>
+  <% end %>
+
+    <!-- Logo -->
+    <%= link_to variants_path, class: "nav-link nav-logo" do %>
+      <strong>NATIVEA</strong>
+    <% end %>
+
+    <!-- Main navigation -->
+    <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
+      <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
+      <li class="nav-item dropdown dropdown-hover">
+      <%= link_to a_propos_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+        Nous <i class="fas fa-chevron-down"></i>
+      <% end %>
+      <div class="dropdown-menu">        
+          <%= link_to "A propos", a_propos_path, class: "dropdown-item" %>
+          <%= link_to "Contact", contact_path, class: "dropdown-item" %>
+      </div>
+      <li class="nav-item dropdown dropdown-hover">
+       <ul class="nav ml-auto">
       <li class="nav-item dropdown dropdown-hover">
         <% if user_signed_in? %>
           <%= link_to "mon_profil_path", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
@@ -54,54 +77,6 @@
         <% end %>
       </li>
     </ul>
-    <!-- /User dropdown -->
-  </div>
-</div>
-<!-- /Top bar -->
-
-<!--Header -->
-<header>
-  <div class="container">
-
-  <!-- Sidebar toggler -->
-  <%= link_to "javascript:void(0)", :class => "nav-link nav-icon ml-ni nav-toggler mr-3 d-flex d-lg-none", :data => {:toggle => "modal", :target => "#menuModal"} do %>
-    <i class="fas fa-bars"></i>
-  <% end %>
-
-    <!-- Logo -->
-    <%= link_to variants_path, class: "nav-link nav-logo" do %>
-      <strong>NATIVEA</strong>
-    <% end %>
-
-    <!-- Main navigation -->
-    <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
-      <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
-      <li class="nav-item dropdown dropdown-hover">
-      <%= link_to a_propos_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
-        Nous <i class="fas fa-chevron-down"></i>
-      <% end %>
-      <div class="dropdown-menu">        
-          <%= link_to "A propos", a_propos_path, class: "dropdown-item" %>
-          <%= link_to "Contact", contact_path, class: "dropdown-item" %>
-      </div>
-      <li class="nav-item dropdown dropdown-hover">
-        <%= link_to new_user_session_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
-          Mon Compte <i class="fas fa-chevron-down"></i>
-        <% end %>
-        
-        <div class="dropdown-menu">        
-          <% if user_signed_in? %>
-            <%= link_to "Profil", mon_profil_path, class: "dropdown-item" %>
-            <%= link_to "Panier", carts_path, class: "dropdown-item" %>
-            <%= link_to "Wishlist", wishlists_path, class: "dropdown-item" %>
-            <%= link_to "Déconnexion", destroy_user_session_path, :class => "dropdown-item text-danger", :data => {:method => "delete"} %>
-          <% else %>
-            <%= link_to "Créer un compte", new_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Connexion", new_user_session_path, class: "dropdown-item" %>
-          <% end %>
-        </div>
       </li>
       <% if user_signed_in? && RoleAssignation.find_by_user_id(current_user.id).role_id > 2 %>
         <li class="nav-item dropdown dropdown-hover">
