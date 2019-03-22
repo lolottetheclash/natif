@@ -103,6 +103,22 @@
           <% end %>
         </div>
       </li>
+      <% if user_signed_in? && RoleAssignation.find_by_user_id(current_user.id).role_id > 2 %>
+        <li class="nav-item dropdown dropdown-hover">
+          <%= link_to "javascript:void(0)", :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+            Dashboard <i class="fas fa-chevron-down"></i>
+          <% end %>
+          <div class="dropdown-menu">
+            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
+            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
+            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
+            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
+            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
+            <%= link_to "Créer un Variant", mon_profil_path, class: "dropdown-item" %>
+
+          </div>
+        </li>
+      <% end %>
     </ul>
     <!-- /Main navigation -->
       

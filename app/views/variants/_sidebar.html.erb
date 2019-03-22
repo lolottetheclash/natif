@@ -76,7 +76,7 @@
                   <% OptionValue.where(option_id: _option.id).each do |value| %>
                     <li>
                       <%= link_to variants_path(_option.name.downcase => value.name), method: "get"  do %>
-                        <%= value.name %> <small class="counter">(<%= Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find(value.id))).length %>)</small>
+                        <%= value.name %> <small class="counter">(<%= Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.where(id: value.id)).map(&:variant_id)).length %>)</small>
                       <% end %>
                     </li>
                   <% end %>

@@ -13,6 +13,9 @@ class OptionAssociationsController < ApplicationController
   end
   
   def create
+    puts "$"*80
+    puts option_params
+    puts "$"*80
     @option_association= OptionAssociation.new(option_params)
 
     respond_to do |format|

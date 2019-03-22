@@ -4,13 +4,20 @@ class VariantsController < ApplicationController
   def index
     array = nil
     params.each do |key, value|
+      puts "-"*80
+        puts "#{key}: #{value}"
+      puts "-"*80
       array = value if Option.all.map(&:name).include?(key)
     end
+    puts "$"*80
+      puts array
+    puts "$"*80
+
 
     if params[:category]
-      @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:title).page(params[:page]).per(6)
-    elsif array != nil
-      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(array)).ids).order(:title).page(params[:page]).per(6)
+      @variants = Variant.where(item_id: Item.where(category_id: Category.where(name: params[:category]).first.id).ids).order(:id).page(params[:page]).per(6)
+    elsif array
+      @variants = Variant.where(id: OptionAssociation.where(option_value_id: OptionValue.find_by_name(array)).map(&:variant_id)).order(:id).page(params[:page]).per(6)
     else
       @variants = Variant.where(["title ILIKE ?","%#{params[:search]}%"]).page(params[:page]).per(6)
     end
