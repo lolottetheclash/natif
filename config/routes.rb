@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   root 'home#home'
   
   resources :variants, :path => "produits"
@@ -28,6 +30,11 @@ Rails.application.routes.draw do
   get '/remove_from_carts/:id' => 'carts#removeitem', as: 'removefromcart'
   resources :posts, :path => "blog"
   get "/postDashboard", to: "posts#postDashboard"
+
   get '/home/about_us', to: 'home#about_us', as: 'a_propos'
+  get "/home/contact", to: "home#contact"
+
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
 end
