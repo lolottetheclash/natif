@@ -25,59 +25,7 @@
           <%= link_to "A propos", a_propos_path, class: "dropdown-item" %>
           <%= link_to "Contact", contact_path, class: "dropdown-item" %>
       </div>
-      <li class="nav-item dropdown dropdown-hover">
-       <ul class="nav ml-auto">
-      <li class="nav-item dropdown dropdown-hover">
-        <% if user_signed_in? %>
-          <%= link_to "mon_profil_path", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
-            <i class="fas fa-user"></i> Bonjour <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
-          <% end %>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="media p-2 align-items-center mb-2">
-              <div class="mr-2 size50x50">
-                <% if current_user.avatar.attached? %>
-                  <%= image_tag current_user.avatar, alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
-                <% elsif current_user.gender == "Homme" %>
-                  <%= image_tag ("mister.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
-                <% else %>
-                  <%= image_tag ("miss.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
-                <% end %>
-              </div>
-              <div class="media-body">
-                <strong><%= current_user.fullname %></strong>
-                <div class="small"><%= current_user.email%></div>
-              </div>
-            </div>
-            <%= link_to carts_path, :class => "dropdown-item has-icon has-badge" do %>
-              <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary"><%= Cart.where(user_id: current_user.id).where(order_id: nil).length %></span>
-            <% end %>  
-            <%= link_to wishlists_path, :class => "dropdown-item has-icon has-badge" do %>
-              <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary"><%= Wishlist.where(user_id:current_user.id).length %></span>
-            <% end %>      
-            <%= link_to mon_profil_path, :class => "dropdown-item has-icon" do %>
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;Mon Compte
-            <% end %>    
-            <div class="dropdown-divider"></div>
-            <%= link_to destroy_user_session_path, :class => "dropdown-item has-icon text-danger", :data => {:method => "delete"}, :role =>'tab' do %>
-              <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion</a>
-            <% end %> 
-          </div>
-        <% else %>
-          <%= link_to "javascript:void(0)", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
-            <i class="fas fa-user"></i> Bonjour visiteur  <i class="fas fa-chevron-down"></i>
-          <% end %>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="media p-2 align-items-center mb-2">
-              <div class="media-body">
-                <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary btn-sm btn-block" %>
-                <p class="text-sm text-muted mt-3 mb-0"><%= link_to "Créer un compte", new_user_registration_path %></p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </li>
-    </ul>
-      </li>
+      
       <% if user_signed_in? && RoleAssignation.find_by_user_id(current_user.id).role_id > 2 %>
         <li class="nav-item dropdown dropdown-hover">
           <%= link_to "javascript:void(0)", :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
@@ -102,6 +50,59 @@
           <% end %>
         </li>
       <% end %>
+      <li class="nav-item dropdown dropdown-hover">
+        <ul class="nav ml-auto">
+          <li class="nav-item dropdown dropdown-hover">
+            <% if user_signed_in? %>
+              <%= link_to "mon_profil_path", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+                <i class="fas fa-user"></i> Bonjour <%= current_user.firstname %>  <i class="fas fa-chevron-down"></i>
+              <% end %>
+              <div class="dropdown-menu dropdown-menu-right">
+                <div class="media p-2 align-items-center mb-2">
+                  <div class="mr-2 size50x50">
+                    <% if current_user.avatar.attached? %>
+                      <%= image_tag current_user.avatar, alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
+                    <% elsif current_user.gender == "Homme" %>
+                      <%= image_tag ("mister.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
+                    <% else %>
+                      <%= image_tag ("miss.jpg"), alt: current_user.fullname, :class => "img-thumbnail rounded-circle" %>
+                    <% end %>
+                  </div>
+                  <div class="media-body">
+                    <strong><%= current_user.fullname %></strong>
+                    <div class="small"><%= current_user.email%></div>
+                  </div>
+                </div>
+                <%= link_to carts_path, :class => "dropdown-item has-icon has-badge" do %>
+                  <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Panier <span class="badge rounded badge-primary"><%= Cart.where(user_id: current_user.id).where(order_id: nil).length %></span>
+                <% end %>  
+                <%= link_to wishlists_path, :class => "dropdown-item has-icon has-badge" do %>
+                  <i class="fas fa-heart"></i>&nbsp;&nbsp;Wishlist <span class="badge rounded badge-primary"><%= Wishlist.where(user_id:current_user.id).length %></span>
+                <% end %>      
+                <%= link_to mon_profil_path, :class => "dropdown-item has-icon" do %>
+                  <i class="fas fa-cogs"></i>&nbsp;&nbsp;Mon Compte
+                <% end %>    
+                <div class="dropdown-divider"></div>
+                <%= link_to destroy_user_session_path, :class => "dropdown-item has-icon text-danger", :data => {:method => "delete"}, :role =>'tab' do %>
+                  <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion</a>
+                <% end %> 
+              </div>
+            <% else %>
+              <%= link_to "javascript:void(0)", :class => "nav-link dropdown-toggle pr-0", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+                <i class="fas fa-user"></i> Bonjour visiteur  <i class="fas fa-chevron-down"></i>
+              <% end %>
+              <div class="dropdown-menu dropdown-menu-right">
+                <div class="media p-2 align-items-center mb-2">
+                  <div class="media-body">
+                    <%= link_to "Connexion", new_user_session_path, class: "btn btn-primary btn-sm btn-block" %>
+                    <p class="text-sm text-muted mt-3 mb-0"><%= link_to "Créer un compte", new_user_registration_path %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      </li>
     </ul>
     <!-- /Main navigation -->
       
