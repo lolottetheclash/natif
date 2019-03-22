@@ -6,6 +6,7 @@
 
 # Ignore .env file
 .env
+config/secrets/*
 
 # Ignore bundler config.
 /.bundle
