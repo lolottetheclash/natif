@@ -79,7 +79,7 @@
       <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
       <li class="nav-item dropdown dropdown-hover">
-      <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+      <%= link_to a_propos_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
         Nous <i class="fas fa-chevron-down"></i>
       <% end %>
       <div class="dropdown-menu">        
@@ -87,7 +87,7 @@
           <%= link_to "Contact", contact_path, class: "dropdown-item" %>
       </div>
       <li class="nav-item dropdown dropdown-hover">
-        <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+        <%= link_to new_user_session_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
           Mon Compte <i class="fas fa-chevron-down"></i>
         <% end %>
         
@@ -105,21 +105,6 @@
       </li>
     </ul>
     <!-- /Main navigation -->
-
-    <!-- Search form -->
-    <form class="form-inline form-search ml-auto mr-0 mr-sm-1 d-none d-sm-flex">
-      <div class="input-group input-group-search">
-        <div class="input-group-prepend">
-          <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i class="fas fa-chevron-left"></i></button>
-        </div>
-          <%= form_tag variants_path, :method => 'get' do %>
-            <%= text_field_tag :search, params[:search], class: "form-control border-0 bg-light input-search", placeholder: "Search..." %>
-            <%= button_tag(type: "submit", class: "btn btn-light") do %>
-              <i class="fas fa-search"></i>
-            <% end %>
-          <% end %>
-      </div>
-    </form>
       
     <% if user_signed_in? %>
       <%

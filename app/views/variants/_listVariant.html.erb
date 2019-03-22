@@ -20,7 +20,8 @@
   </div>
   <div class="card-body p-0 mb-3">
     <div class="card zoom-hover">
-      <%= link_to image_tag("item.jpg", :class => "w-100"), variant_path(variant.id), class: "navbar-brand mr-1" %>
+      <% $pix = ["https://cdn.pixabay.com/photo/2018/07/08/21/48/embroidery-3524900_960_720.jpg", "https://cdn.pixabay.com/photo/2018/07/08/21/48/embroidery-3524900_960_720.jpg", "https://cdn.pixabay.com/photo/2015/09/03/11/54/craft-920393_960_720.jpg", "https://cdn.pixabay.com/photo/2017/12/17/09/31/pottery-3023901_960_720.jpg", "https://cdn.pixabay.com/photo/2018/04/16/17/11/crafts-3325211_960_720.jpg", "https://cdn.pixabay.com/photo/2017/06/12/12/27/spa-2395440_960_720.jpg", "https://cdn.pixabay.com/photo/2018/05/15/17/46/frida-3403761_960_720.jpg"]%>
+      <%= link_to image_tag($pix.sample, :height => '150'), variant_path(variant.id), class: "navbar-brand mr-1" %>
     </div>
     <h5 class="card-title"><%= variant.title %></h5>
     <div class="price"><span class="h5">€ <%= variant.price %> </span></div>

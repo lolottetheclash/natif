@@ -2,7 +2,8 @@
 <div class="col-md-6">
   <div class="swiper-container" id="product-slider">
     <div class="swiper-wrapper">
-      <%= image_tag "item.jpg", :class => "swiper-slide w-100" %>
+      <% $pix = ["https://cdn.pixabay.com/photo/2018/07/08/21/48/embroidery-3524900_960_720.jpg", "https://cdn.pixabay.com/photo/2018/07/08/21/48/embroidery-3524900_960_720.jpg", "https://cdn.pixabay.com/photo/2015/09/03/11/54/craft-920393_960_720.jpg", "https://cdn.pixabay.com/photo/2017/12/17/09/31/pottery-3023901_960_720.jpg", "https://cdn.pixabay.com/photo/2018/04/16/17/11/crafts-3325211_960_720.jpg", "https://cdn.pixabay.com/photo/2017/06/12/12/27/spa-2395440_960_720.jpg", "https://cdn.pixabay.com/photo/2018/05/15/17/46/frida-3403761_960_720.jpg"]%>
+      <%= image_tag $pix.sample, :class => "swiper-slide w-100", :size => '440x290' %>
     </div>
   </div>
 </div>
@@ -16,7 +17,7 @@
     <a><%= Review.where(item_id: item.id).size %> reviews</a>
   </h6>
   <h3 class="price">
-    <span >$<%= variant.price %></span>
+    <span ><%= variant.price %> €</span>
   </h3>
   <p class="d-none d-lg-block"><%= item.description.split("\n\n", 2)[0] %></p>
 
