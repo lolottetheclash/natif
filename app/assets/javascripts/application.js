@@ -78,7 +78,7 @@ $(function () {
     openPhotoSwipe(items, $('.swiper-wrapper').find('.swiper-slide-active').data('swiper-slide-index'))
   })
 
-});
+  });
 
 $(function () {
   let fullHeart = document.querySelectorAll(".oups"); 
