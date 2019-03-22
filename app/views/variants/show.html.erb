@@ -18,16 +18,7 @@
     </div>
     <div class="tab-content">
       <div class="card-body tab-pane fade show active" id="description-content" role="tabpanel" aria-labelledby="description">
-        <p>hoodie à capuche, agrémenté du logo saint laurent et d'une poche kangourou. Ce produit est destiné aussi bien aux femmes qu'aux hommes, mais de coupe masculine. Nous recommandons donc aux femmes de choisir des petites tailles.</p>
-        <p>Orné de studs étoiles, d'une fermeture asymétrique et de deux poches à boutons pressions.</p>
-        <ul>
-          <li>50% Cotton, 50% Polyester, 100% Cool</li>
-          <li>Importation.</li>
-          <li>Lavage Machine.</li>
-          <li>S'adapte au motards et aux agriculteurs.</li>
-          <li>Resiste a toute temperatures.</li>
-          <li>Plus fin qu'un cheveu moyen.</li>
-        </ul>
+        <%= @variant.item.description %>
       </div>
       <div class="card-body tab-pane fade" id="review-content" role="tabpanel" aria-labelledby="reviews">
         <div class="row gutters-3 justify-content-center">
@@ -56,7 +47,37 @@
             </div>
           </div>
           <div class="col-md-8 col-lg-9 mt-5 mt-md-0">
-            <% @reviews.each do |review| %>
+            <div class="media">
+              <% if user_signed_in? %>
+                <div class="container">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <%= form_tag(variant_reviews_path(@variant), method: :post) do %>
+                        <div class="row">
+                          <div class="col-4"><strong>Titre de la revue : </strong></div>
+                          <div class="col-8"><%= text_field_tag 'title', "", class: "form-control" %></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"><strong>Votre note : </strong><span class="text-warning"><i class="fas fa-star"></i></span></div>
+                          <div class="col-8"><%= select_tag 'rating',  options_for_select((1..5).step(1)), class: "form-control" %></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"><strong>Votre note : </strong></div>
+                          <div class="col-8"><%= text_area_tag 'content', "", placeholder: "Votre commentaire...", row: "3", class: "form-control"%></div>
+                        </div>
+                        <%= hidden_field_tag "user_id", current_user.id %>
+                        <%= hidden_field_tag "item_id", @variant.item.id %>
+                        <div class="actions">
+                          <%= button_tag "Soumettre", class: "btn btn-primary" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <hr>
+            <% @reviews.order('id DESC').each do |review| %>
               <div class="media">
                 <% if User.find(review.user_id).avatar.attached?%>
                   <%= image_tag User.find(review.user_id).avatar, alt: User.find(review.user_id).fullname, :class => "rounded-circle", :style => "width:45px;height:45px;" %>
