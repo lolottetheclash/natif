@@ -24,13 +24,17 @@
 //= require_tree .
 
 $(document).ready(function(){
-  setTimeout(function(){
-    $('#flash').remove();
-  }, 5000);
 
   App.rating()
 
-
+  let fullHeart = document.querySelectorAll(".oups"); 
+  function displayAlert() 
+  {
+    alert("Cet article est déjà présent dans votre wishlist!");
+  };
+  for (i = 0; i < fullHeart.length; i++) {
+    fullHeart[i].addEventListener("click", displayAlert);
+  }
 
   $('.post_list_layout').click(function (event) {
     $('#grid-layout').attr('hidden', true);
