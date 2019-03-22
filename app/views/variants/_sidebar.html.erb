@@ -7,14 +7,14 @@
       <div class="card-body">
         <ul class="list-tree">
           <li>
-            <%= link_to "javascript:void(0)" do %>
-               Nos catégories <small class="counter">(<%= Item.all.length %>)</small>
+            <%= link_to variants_path do %>
+               Tous les produits <small class="counter">(<%= Variant.all.length %>)</small>
             <% end %>
             <ul>
               <% Category.all.each do |element|%>
               <li>
                 <%= link_to variants_path(:category => element.name), method: "get"  do %>
-                  <%= element.name %> <small class="counter">(<%= Item.where(category_id: element.id).length %>)</small>
+                  <%= element.name %> <small class="counter">(<%= Variant.where(item_id: Item.where(category_id: element.id)).length %>)</small>
                 <% end %>
               </li>
               <%end%>
@@ -47,6 +47,9 @@
           <div class="card-body">
             <ul class="list-tree">
               <li>
+                <%= link_to variants_path do %>
+                   Tous les produits <small class="counter">(<%= Variant.all.length %>)</small>
+                <% end %>
                 <ul>
                   <% OptionValue.where(option_id: _option.id).each do |value| %>
                     <li>
