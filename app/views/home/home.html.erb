@@ -1,10 +1,23 @@
+<meta name='viewport' content='width=device-width' />
+
+	<style>
+	.bgimg {
+		background-image: url(font.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100vh;
+		background-position: center center;
+		position: relative;
+	}	
+	</style>
+
 <div class="card card-2col text-white">
-  <%= image_tag ('font.jpg'), alt: "font", :class => "card-img img-responsive" %>
+  <%= image_tag ('font.jpg'), alt: "font", :class => "card-img img-responsive w-100 bgimg" %>
   <div class="card-img-overlay card-img-overlay-transparent flex-center flex-column">
     <h2 class="card-title bg-info px-4 py-1" style="font-size:4vw;">Bienvenue sur NATIVEA</h2>
-    <p class="text-center d-none d-lg-block" style="font-size:1vw;">Partout dans le monde des artisans pourtant talentueux n'arrivent pas à vivre du travail de leurs mains.</p>
-    <p class="text-center d-none d-lg-block" style="font-size:1vw;">Détenteurs d'un savoir parfois millénaire, ils sont condamnés à la pauvreté et l'oubli !</p>
-    <p class="text-center d-none d-lg-block" style="font-size:1vw;">Pourtant il suffirait juste de leur accorder la visibilité qu'ils méritent !</p>
+    	<p class="text-center d-none d-lg-block" style="font-size:1vw;">Partout dans le monde des artisans pourtant talentueux n'arrivent pas à vivre du travail de leurs mains.</p>
+    	<p class="text-center d-none d-lg-block" style="font-size:1vw;">Détenteurs d'un savoir parfois millénaire, ils sont condamnés à la pauvreté et l'oubli !</p>
+    	<p class="text-center d-none d-lg-block" style="font-size:1vw;">Pourtant il suffirait juste de leur accorder la visibilité qu'ils méritent !</p>
     <%= link_to "Découvrez les créations de nos artisans", variants_path, class: "btn btn-primary rounded-pill text-white", :data => {"addClass-on-xs" => "btn-sm"} %>
   </div>
 </div>
