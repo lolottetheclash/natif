@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get "/postDashboard", to: "posts#postDashboard"
 
   get '/home/about_us', to: 'home#about_us', as: 'a_propos'
-  get "/home/contact", to: "home#contact"
+  get "/home/contact", to: "home#contact", as: 'contact'
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all

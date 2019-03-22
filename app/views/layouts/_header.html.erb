@@ -78,7 +78,14 @@
       <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Magasin", variants_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Blog", posts_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "A propos", a_propos_path, class: "nav-link" %></li>
+      <li class="nav-item dropdown dropdown-hover">
+      <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
+        Nous <i class="fas fa-chevron-down"></i>
+      <% end %>
+      <div class="dropdown-menu">        
+          <%= link_to "A propos", a_propos_path, class: "dropdown-item" %>
+          <%= link_to "Contact", contact_path, class: "dropdown-item" %>
+      </div>
       <li class="nav-item dropdown dropdown-hover">
         <%= link_to mon_profil_path, :class => "nav-link dropdown-toggle forwardable", :data => {:toggle => "dropdown"}, :role =>'button', :aria => {:haspopup => "true", :expanded => "false"} do %>
           Mon Compte <i class="fas fa-chevron-down"></i>
