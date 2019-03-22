@@ -1,6 +1,6 @@
 <div class="container">
 
-  <%= form_with(model: item, local: true) do |form| %>
+  <%= form_with(model: Review.new, local: true) do |form| %>
     <% if item.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(item.errors.count, "error") %> erreurs ont empeché ce produit d'être sauvegardé:</h2>

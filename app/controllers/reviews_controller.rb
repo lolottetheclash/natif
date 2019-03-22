@@ -13,10 +13,10 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Votre avis à été créé avec succès' }
+        format.html { redirect_to request.referer, notice: 'Votre avis à été créé avec succès' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        format.html { redirect_to request.referer, alert: 'Une erreur a été détectée lors de la création de votre avis' }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -48,6 +48,6 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:title, :content, :item_id, :user_id, :rating)
+      params.permit(:title, :content, :item_id, :user_id, :rating)
     end
 end
