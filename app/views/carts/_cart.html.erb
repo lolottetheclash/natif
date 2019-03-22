@@ -1,6 +1,5 @@
 <table class="table table-borderless table-cart" data-addclass-on-smdown="table-sm">
   <tbody>
-        
   <% carts.order(:id).each do |cart| %>        
     <tr>
       <td class="cart-img nostretch">
@@ -34,7 +33,7 @@
         </div>
       </td>
       <td class="cart-price text-right">
-        <span class="roboto-condensed bold"><% subtotal = cart.quantity*cart.variant.price %><%= subtotal %> €</span>
+        <span class="roboto-condensed bold"><% subtotal = cart.quantity*cart.variant.price %><%= subtotal %>€</span>
       </td>
       <td class="cart-action nostretch pr-0">
         <div class="dropdown">
@@ -49,7 +48,7 @@
       </td>
     </tr>
   <% end %>
-    
+      
   </tbody>
 </table>
 <div class="text-center">
