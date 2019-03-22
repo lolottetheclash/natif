@@ -67,4 +67,4 @@ gem 'cancancan', '~> 2.0'
 gem 'omniauth'
 gem 'stripe'
 gem 'kaminari'
-gem "google-cloud-storage", "~> 1.8", require: false
+gem "google-cloud-storage"
