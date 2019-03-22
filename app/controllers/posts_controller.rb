@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.all
   end
 
   def new
@@ -20,7 +19,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.new
   end
 
   def create
@@ -59,20 +57,23 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
-     Post.find(params[:id])
-    end
 
-    def post_params
-      params.fetch(:post, {})
-    end
-    def check_admin
-      if RoleAssignation.find_by_user_id(current_user.id).role_id == 3 or RoleAssignation.find_by_user_id(current_user.id).role_id == 8
-      else
-        respond_to do |format|
-          format.html { redirect_to request.referer }
-          format.json { head :no_content }
-        end
+  def set_variant
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content, :theme_id, image_post)
+  end
+
+  def check_admin
+    if RoleAssignation.find_by_user_id(current_user.id).role_id == 3 or RoleAssignation.find_by_user_id(current_user.id).role_id == 8
+    else
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.json { head :no_content }
       end
     end
+  end
+
 end
