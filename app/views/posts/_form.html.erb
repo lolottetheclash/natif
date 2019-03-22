@@ -29,11 +29,6 @@
       <th scope="row"><%= form.label :"Contenu de l'article: " %></th>
       <td class="d-flex justify-content-center"><%= form.text_area(:content, size: '50x10') %></td>
     </tr>
-
-    <tr>
-      <th scope="row"><%= form.label :"Auteur de l'article: " %></th>
-      <td class="d-flex justify-content-center"><%= form.collection_select(:author_id, Role.all, :id, :name) %></td>
-    </tr>
   </tbody>
 </table>
 
