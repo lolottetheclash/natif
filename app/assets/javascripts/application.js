@@ -22,9 +22,3 @@
 //= require jquery.countdown.min
 //= require script.min
 //= require_tree .
-
-
-
-
-
-

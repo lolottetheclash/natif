@@ -5,50 +5,57 @@
         <div class="col mt-3 mt-md-0">
           <div class="card">
             <div class="card-body">
-              <h2 class="d-flex justify-content-center">Ma Wishlist</h2><hr>
-              <% @wishlists.each do |wishlist| %>
-                <div class="card card-product card-product-list shadow-none border-bottom">
-                  <%= link_to image_tag("item.jpg", :class => "card-img-top"), variant_path(Variant.find(wishlist.variant_id).id) %>
-                    <div class="card-body d-flex flex-column justify-content-center">
-                      <div class="row d-flex justify-content-between">
-                        <%= link_to Variant.find(wishlist.variant_id).title, variant_path(Variant.find(wishlist.variant_id).id), class: "card-title col-11" %>
-                        <%= link_to wishlist, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle col-1" do %>
-                          <i class="fas fa-times"></i>
-                        <% end %>
-                      </div> 
-                      <div class="attr">
-                        <div class="price mr-3"><span class="h5">$<%= Variant.find(wishlist.variant_id).price %></span></div>
-                        <% if wishlist.variant.stock == 0 %>
-                          <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible </div> 
-                        <% else %>
-                          <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
-                        <% end %>
-                        </div>
-                        <p class="d-flex justify-content-between">
-                        <% if wishlist.variant.stock != 0 %>
-                          <div class="col-3 " style="justify-content: flex-start;">
-                            <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:variant_id).include?(wishlist.variant.id) %> 
-                              <%= link_to addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: wishlist.variant.id).ids), method: "get", class: "btn btn-primary btn-block rounded-pill" do %>
-                                <i class="fas fa-cart-plus"></i> Ajouter au panier
-                              <% end %>
-                            <% else %>
-                              <%= form_for Cart.new do |f| %>
-                                <%= f.hidden_field :variant_id, :value => wishlist.variant.id %>
-                                <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
+              <h1 class="d-flex justify-content-center">Ma Wishlist</h1><hr>
+              <% if @wishlists.size == 0 %>
+                <%= render 'no_wishlist' %> 
+              <% else %>
+                <% @wishlists.each do |wishlist| %>
+                  <div class="card card-product card-product-list shadow-none border-bottom">
+                    <%= link_to image_tag("item.jpg", :class => "card-img-top"), variant_path(Variant.find(wishlist.variant_id).id) %>
+                      <div class="card-body d-flex flex-column justify-content-center">
+                        <div class="row d-flex justify-content-between">
+                          <%= link_to Variant.find(wishlist.variant_id).title, variant_path(Variant.find(wishlist.variant_id).id), class: "card-title col-11" %>
+                          <%= link_to wishlist, method: :delete, data: { confirm: 'Etes-vous sûr ?' }, class: "btn btn-icon rounded-circle col-1" do %>
+                            <i class="fas fa-times"></i>
+                          <% end %>
+                        </div> 
+                        <div class="attr">
+                          <div class="price mr-3"><span class="h5">$<%= Variant.find(wishlist.variant_id).price %></span></div>
+                          <% if wishlist.variant.stock == 0 %>
+                            <div><span class="text-danger"><i class="fas fa-times-circle"></i></span> Indisponible </div> 
+                          <% else %>
+                            <div><span class="text-success"><i class="fas fa-check-circle"></i></span> Disponible </div>
+                          <% end %>
+                          <p class="d-flex justify-content-between">
+                          <% if wishlist.variant.stock != 0 %>
+                            <div class="col-3 justify-content-flex-start" >
+                              <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:variant_id).include?(wishlist.variant.id) %> 
+                                <%= link_to addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(variant_id: wishlist.variant.id).ids), method: "get", class: "btn btn-primary btn-block rounded-pill" do %>
                                   <i class="fas fa-cart-plus"></i> Ajouter au panier
                                 <% end %>
-                              <% end %>
-                            <% end %> 
-                          </div>
-                        <% end %>
-                        </p>
+                              <% else %>
+                                <%= form_for Cart.new do |f| %>
+                                  <%= f.hidden_field :variant_id, :value => wishlist.variant.id %>
+                                  <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
+                                    <i class="fas fa-cart-plus"></i> Ajouter au panier
+                                  <% end %>
+                                <% end %>
+                              <% end %> 
+                            </div>
+                          <% end %>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
+      </div>
+  </div>
+
+
+
 
          
