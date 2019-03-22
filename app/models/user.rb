@@ -30,7 +30,6 @@ class User < ApplicationRecord
     length: { minimum: 3 },
     format: {with: /\A[a-zA-Z0-9_]{2,20}\z/ }  
   validates :age, 
-    presence: true,
     numericality: { greater_than: 0, less_than_or_equal_to: 100 }
   validates :email,
     presence: true,
@@ -41,8 +40,6 @@ class User < ApplicationRecord
     length: { in: 6..20},
     confirmation: true,
     on: :create 
-  validates :gender, 
-    presence: true
 
   def fullname
     full_name = "#{self.firstname} #{self.lastname}"
