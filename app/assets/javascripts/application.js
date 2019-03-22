@@ -23,18 +23,20 @@
 //= require script.min
 //= require_tree .
 
-$(document).ready(function(){
+$(function() {
+  setTimeout(function(){
+    $('#flash').remove();
+  }, 5000)
 
   App.rating()
 
   let fullHeart = document.querySelectorAll(".oups"); 
-  function displayAlert() 
-  {
+  function displayAlert() {
     alert("Cet article est déjà présent dans votre wishlist!");
   };
   for (i = 0; i < fullHeart.length; i++) {
     fullHeart[i].addEventListener("click", displayAlert);
-  }
+  };
 
   $('.post_list_layout').click(function (event) {
     $('#grid-layout').attr('hidden', true);
@@ -42,14 +44,14 @@ $(document).ready(function(){
     $('.post_list_layout').removeClass('btn-outline-primary').addClass('btn-primary');
     $('.post_grid_layout').removeClass('btn-primary').addClass('btn-outline-primary');
     event.preventDefault();
-  })
+  });
   $('.post_grid_layout').click(function (event) {
     $('#grid-layout').attr('hidden', false);
     $('#list-layout').attr('hidden', true);
     $('.post_grid_layout').removeClass('btn-outline-primary').addClass('btn-primary');
     $('.post_list_layout').removeClass('btn-primary').addClass('btn-outline-primary');
     event.preventDefault();
-  })
+  });
 });
 
 
