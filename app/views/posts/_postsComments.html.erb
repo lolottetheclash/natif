@@ -1,58 +1,81 @@
 <div class="media my-4">
-      <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
-      <div class="media-body ml-2 ml-sm-3">
-        <textarea rows="2" placeholder="Leave a comment" class="form-control border autosize"></textarea>
-        <button class="btn btn-sm btn-light border border-top-0 btn-block">Post</button>
-      </div>
+  <%= link_to image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;"), "javascript:void(0)" %>
+  <div class="media-body ml-2 ml-sm-3">
+    <textarea rows="2" placeholder="Leave a comment" class="form-control border autosize"></textarea>
+    <button class="btn btn-sm btn-light border border-top-0 btn-block">Post</button>
+  </div>
+</div>
+<div class="media">
+  <%= link_to image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;"), "javascript:void(0)" %>
+  <div class="media-body ml-2 ml-sm-3">
+    <div class="d-flex flex-wrap">
+      <%= link_to "Auteur", "javascript:void(0)", class: "mr-2" %>
+      <span class="text-muted">17 minutes ago</span>
     </div>
-    <div class="media">
-    	
-      <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
-      <div class="media-body ml-2 ml-sm-3">
-        <div class="d-flex flex-wrap">
-          <a href="javascript:void(0)" class="mr-2">Alex</a>
-          <span class="text-muted">17 minutes ago</span>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote up">5 <i data-feather="chevron-up"></i></a></li>
-          <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote down"><i data-feather="chevron-down"></i></a></li>
-          <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted">Reply</a></li>
-        </ul>
-        <hr>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <%= link_to "javascript:void(0)", class: "text-muted", title: "vote positif" do %>
+          5 <i class="fas fa-chevron-up"></i></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "javascript:void(0)", class: "text-muted", title: "vote négatif" do %>
+          <i class="fas fa-chevron-down"></i></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item"><%= link_to "Répondre", "javascript:void(0)", class: "text-muted" %></li>
+    </ul>
+    <hr>
        
-        <div class="media">
-          <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
-          <div class="media-body ml-2 ml-sm-3">
-            <div class="d-flex flex-wrap">
-              <a href="javascript:void(0)" class="mr-2">Twink</a>
-              <span class="text-muted">5 minutes ago</span>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
-            <ul class="list-inline">
-              <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote up"><i data-feather="chevron-up"></i></a></li>
-              <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote down"><i data-feather="chevron-down"></i></a></li>
-              <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted">Reply</a></li>
-            </ul>
-            <hr>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="media">
-      <a href="javascript:void(0)"><%= image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;") %></a>
+      <%= link_to image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;"), "javascript:void(0)" %>
       <div class="media-body ml-2 ml-sm-3">
         <div class="d-flex flex-wrap">
-          <a href="javascript:void(0)" class="mr-2">Steve</a>
-          <span class="text-muted">an hour ago</span>
+          <%= link_to "Répondeur wesh", "javascript:void(0)", class: "mr-2" %>
+          <span class="text-muted">5 minutes ago</span>
         </div>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
         <ul class="list-inline">
-          <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote up"><i data-feather="chevron-up"></i></a></li>
-          <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted" title="vote down"><i data-feather="chevron-down"></i></a></li>
-          <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted">Reply</a></li>
+          <li class="list-inline-item">
+            <%= link_to "javascript:void(0)", class: "text-muted", title: "vote positif" do %>
+              <i class="fas fa-chevron-up"></i></i>
+            <% end %>
+          </li>
+          <li class="list-inline-item">
+            <%= link_to "javascript:void(0)", class: "text-muted", title: "vote négatif" do %>
+              <i class="fas fa-chevron-down"></i></i>
+            <% end %>
+          </li>
+          <li class="list-inline-item"><%= link_to "Répondre", "javascript:void(0)", class: "text-muted" %></li>
         </ul>
         <hr>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="media">
+  <%= link_to image_tag("default_avatar.svg", :style => "width:28px;height:28px;border-radius:50%;"), "javascript:void(0)" %>
+  <div class="media-body ml-2 ml-sm-3">
+    <div class="d-flex flex-wrap">
+      <%= link_to "Autre auteur", "javascript:void(0)", class: "mr-2" %>
+      <span class="text-muted">il y a une heure</span>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et suscipit vitae eius incidunt odit nulla, repellat harum, repudiandae doloremque expedita.</p>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <%= link_to "javascript:void(0)", class: "text-muted", title: "vote positif" do %>
+          <i class="fas fa-chevron-up"></i></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "javascript:void(0)", class: "text-muted", title: "vote négatif" do %>
+          <i class="fas fa-chevron-down"></i></i>
+        <% end %>
+      </li>
+      <li class="list-inline-item"><%= link_to "Répondre", "javascript:void(0)", class: "text-muted" %></li>
+    </ul>
+    <hr>
+  </div>
+</div>

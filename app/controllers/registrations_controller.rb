@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 	before_action :set_registration, only: [:show, :edit, :update]
 
-
 	def show
  	end
  	
@@ -41,20 +40,18 @@ class RegistrationsController < Devise::RegistrationsController
       @user.update_with_password(new_params)
       set_flash_message :notice, :updated
       sign_in :user, @user, bypass: true
-      redirect_to my_profile_path
+      redirect_to mon_profil_path
     
   end
 
-
  	private
-    # Use callbacks to share common setup or constraints between actions.
     def set_registration
       @user = User.find(current_user.id)
     end
+
     def update_resource(resource, params)
       resource.update_without_password(params)
     end
-
 end
 
 

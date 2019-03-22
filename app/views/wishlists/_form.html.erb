@@ -1,7 +1,7 @@
 <%= form_with(model: wishlist, local: true) do |form| %>
   <% if wishlist.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h2>
+      <h2><%= pluralize(wishlist.errors.count, "error") %> a empeché cette whislist d'être sauvegardée:</h2>
 
       <ul>
       <% wishlist.errors.full_messages.each do |message| %>
@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
+    <%= form.label :id_utilisateur %>
     <%= form.text_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :variant_id %>
+    <%= form.label :id_variante %>
     <%= form.text_field :variant_id %>
   </div>
 

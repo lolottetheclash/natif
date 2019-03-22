@@ -15,8 +15,8 @@
     <% @options.each do |option| %>
       <tr>
         <td class="align-middle"><%= option.name %></td>
-        <td><%= link_to 'Edit', edit_option_path(option), class: "btn btn-warning" %></td>
-        <td><%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to 'Modifier', edit_option_path(option), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Supprimer', option, method: :delete, data: { confirm: 'Etes-vous sûr?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

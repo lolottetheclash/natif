@@ -7,9 +7,8 @@ class Review < ApplicationRecord
     numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
   validates :title,
     presence: true, 
-    length: { minimum: 2, maximum: 20 }
+    length: { minimum: 2, maximum: 100 }
   validates :content,
     presence: true, 
-    length: { minimum: 20, maximum: 80 }
-
+    length: { minimum: 20, maximum: 500 }
 end

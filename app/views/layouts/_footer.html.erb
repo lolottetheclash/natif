@@ -1,5 +1,5 @@
 <!-- Footer -->
-  <div class="footer w-100">
+  <div class="footer w-100 collapse">
     <div class="container">
       <div class="row no-gutters">
         <div class="col-sm-6 col-lg-4 text-center px-3 mb-5">
@@ -17,29 +17,29 @@
         <div class="col-6 col-lg-3 d-none d-sm-block">
           <h6 class="bold">Service client</h6>
           <div class="list-group list-group-flush list-group-no-border list-group-sm">
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Aide</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Comment acheter?</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Livraison</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Retourner un article ?</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Méthodes de paiement</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Modalités de livraison</a>
+            <%= link_to "Aide", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Comment acheter ?", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Livraison", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Retourner un article ?", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Méthodes de paiement", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Modalités de livraison", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
           </div>
         </div>
         <div class="col-6 col-lg-3 d-none d-sm-block">
           <h6 class="bold">Nativea</h6>
           <div class="list-group list-group-flush list-group-no-border list-group-sm">
-            <a href="about.html" class="list-group-item list-group-item-action">About us</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Termes et Conditions</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Politique de confidentialité</a>
-            <a href="faq.html" class="list-group-item list-group-item-action">FAQs</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Notre histoire</a>
-            <a href="javascript:void(0)" class="list-group-item list-group-item-action">Services</a>
+            <%= link_to "A propos", a_propos_path, class: "list-group-item list-group-item-action" %>
+            <%= link_to "Termes et Conditions", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Politique de confidentialité", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "FAQ", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Notre histoire", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
+            <%= link_to "Services", "javascript:void(0)", class: "list-group-item list-group-item-action" %>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="copyright pt-3">
+  <div class="copyright pt-3 fixed-bottom">
     <div>Copyright © 2019 Nativea - All right reserved</div>
     <div>Réalisé avec <i class="fas fa-heart"></i> par les kittens</div>
   </div>

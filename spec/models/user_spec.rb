@@ -78,20 +78,16 @@ require 'rails_helper'
   end
 
   context "associations" do
-   
-      it { should have_many(:orders) }
-      it { should have_many(:reviews) }
-      it { should have_many(:likes) }
-      it { should have_many(:comments) }
-      it { should have_many(:posted_articles) }
-      it { should have_many(:role_assignations) }
-      it { should have_many(:roles).through(:role_assignations) }
-      it { should have_many(:carts) }
-      it { should have_many(:wishlists) }
-      it { should have_many(:variants).through(:wishlists) }
-
-
-
+    it { should have_many(:orders) }
+    it { should have_many(:reviews) }
+    it { should have_many(:likes) }
+    it { should have_many(:comments) }
+    it { should have_many(:posted_articles) }
+    it { should have_many(:role_assignations) }
+    it { should have_many(:roles).through(:role_assignations) }
+    it { should have_many(:carts) }
+    it { should have_many(:wishlists) }
+    it { should have_many(:variants).through(:wishlists) }
   end
 end
 

@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :firstname
       t.string :lastname
       t.string :username
-      t.integer :age
+      t.integer :age, default: 1
       t.string :gender
 
 
