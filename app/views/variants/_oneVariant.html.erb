@@ -2,8 +2,12 @@
 <div class="col-md-6">
   <div class="swiper-container" id="product-slider">
     <div class="swiper-wrapper">
-      <% $pix = ["https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-craft-920393-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pottery-3023901-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-yarn-1325766-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-sew-3490492-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pitcher-2320354-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-china-1515579-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-shell-921124-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-embroidery-3524900-960-720.jpg"]%>
-      <%= image_tag $pix.sample, :class => "swiper-slide w-100", :size => '440x290' %>
+      <% if variant.image_variant.attached? %>
+        <%= image_tag(variant.image_variant, alt: variant.title, :height => '290') %>
+      <% else %>
+        <% $pix = ["https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-craft-920393-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pottery-3023901-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-yarn-1325766-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-sew-3490492-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pitcher-2320354-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-china-1515579-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-shell-921124-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-embroidery-3524900-960-720.jpg"]%>
+        <%= image_tag($pix.sample, :size => '440x290') %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -29,12 +33,29 @@
     <% end %>
   </div>
   <div class="row d-flex justify-content-center">
-    <%= form_for Wishlist.new do |f| %>
-      <%= f.hidden_field :variant_id, :value => variant.id %>
-      <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
-        <i class="far fa-heart"></i> Ajouter à la wishlist
+    <div class="ml-3">
+      <% if user_signed_in? %>
+        <% if Wishlist.where(user_id: current_user.id).map(&:variant_id).include?(variant.id) %>
+          <%= button_tag(class: "btn btn-primary btn-block rounded-pill oups") do %>
+            <i class="fas fa-heart"></i> Déjà présent dans la Wishlist
+          <% end %>
+        <% else %>
+          <%= form_for Wishlist.new do |f| %>
+            <%= f.hidden_field :variant_id, :value => variant.id %>
+            <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
+              <i class="far fa-heart"></i> Ajouter à la wishlist
+            <% end %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= form_for Wishlist.new do |f| %>
+          <%= f.hidden_field :variant_id, :value => variant.id %>
+          <%= button_tag(class: "btn btn-primary btn-block rounded-pill") do %>
+            <i class="far fa-heart"></i> Ajouter à la wishlist
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
     <% if variant.stock != 0 %>
       <div class="ml-3">
         <% if user_signed_in? %>
@@ -62,5 +83,3 @@
     <% end %>
   </div>
 </div>
-
-

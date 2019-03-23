@@ -1,6 +1,11 @@
 <div class="card card-blog card-blog-list mt-3" visible>
   <%= link_to post_path(post.id), class: "zoom-hover" do %>
-  	<span data-cover="https://image.noelshack.com/fichiers/2019/11/3/1552473887-adult-artisan-blacksmith-1659748.jpg" data-height="100%"></span>
+    <% if post.image_post.attached? %>
+      <%= image_tag(post.image_post, alt: post.title, :height => '290') %>
+    <% else %>
+      <% $pix = ["https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-craft-920393-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pottery-3023901-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-yarn-1325766-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-sew-3490492-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pitcher-2320354-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-china-1515579-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-shell-921124-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-embroidery-3524900-960-720.jpg"]%>
+      <%= image_tag($pix.sample, :size => '440x290') %>
+    <% end %>
   <% end %>
   <div class="card-body">
   	<%= link_to elements.title, post_path(post.id), class: "title h4" %>

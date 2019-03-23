@@ -1,53 +1,38 @@
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
-  <!-- Main Content -->
-  <div class="container my-3">
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body" lang="zxx">
-            <!-- Blog Info -->
-            <ul class="list-inline">
-              <li class="list-inline-item"><small><i class="fas fa-clock"></i> Jan 01, 18</small></li>
-              <li class="list-inline-item"><small><i class="fas fa-user"></i><%= link_to "Admin", "javascript:void(0)", class: "text-muted" %></small></li>
-              <li class="list-inline-item"><small><i class="fas fa-tag"></i><%= link_to "Fashion", "javascript:void(0)", class: "text-muted" %></small></li>
-            </ul>
+<!-- Main Content -->
+<div class="container my-3">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body" lang="zxx">
+          <!-- Blog Info -->
+          <ul class="list-inline">
+            <li class="list-inline-item"><small><i class="fas fa-clock"></i> Jan 01, 18</small></li>
+            <li class="list-inline-item"><small><i class="fas fa-user"></i><%= link_to "Admin", "javascript:void(0)", class: "text-muted" %></small></li>
+            <li class="list-inline-item"><small><i class="fas fa-tag"></i><%= link_to "Fashion", "javascript:void(0)", class: "text-muted" %></small></li>
+          </ul>
 
-            <!-- Blog Content -->
-            <h2 class="bold">5 Coolest Winter Outfits You Can Steal</h2>
-            
-            <img src="https://image.noelshack.com/fichiers/2019/11/3/1552473886-adult-art-blue-312591.jpg" alt="Blog" class="img-fluid my-3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla ipsa fuga et tenetur dolore, maxime consequuntur! Adipisci sed eligendi reprehenderit alias, beatae perspiciatis, id dolore laborum aliquam praesentium excepturi odio quas aut enim, libero sit minus blanditiis veritatis repellat cum suscipit non obcaecati qui iure? Voluptates a perspiciatis sunt quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas asperiores rem dolorem vitae reiciendis rerum, id a dicta labore ea, est sed odio animi nostrum veniam, inventore vel. Delectus, ex, qui. Quidem ea, natus aut nihil quaerat suscipit vel fuga numquam excepturi nemo minus quae at, ab qui rerum cum!</p>
-            <ul>
-              <li>Lorem ipsum dolor sit amet</li>
-              <li>Consectetur adipiscing elit</li>
-              <li>Integer molestie lorem at massa</li>
-              <li>Facilisis in pretium nisl aliquet</li>
-              <li>Nulla volutpat aliquam velit
-                <ul>
-                  <li>Phasellus iaculis neque</li>
-                  <li>Purus sodales ultricies</li>
-                  <li>Vestibulum laoreet porttitor sem</li>
-                  <li>Ac tristique libero volutpat at</li>
-                </ul>
-              </li>
-              <li>Faucibus porta lacus fringilla vel</li>
-              <li>Aenean sit amet erat nunc</li>
-              <li>Eget porttitor lorem</li>
-            </ul>
-            <!-- /Blog Content -->
+          <!-- Blog Content -->
+          <h2 class="bold"><%= @post.title %></h2>
+          
+          <% if @post.image_post.attached? %>
+            <%= image_tag(@post.image_post, alt: @post.title, :class => 'img-fluid my-3') %>
+          <% else %>
+            <% $pix = ["https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-craft-920393-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pottery-3023901-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-yarn-1325766-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-clogs-968486-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-sew-3490492-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-pitcher-2320354-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-china-1515579-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-shell-921124-960-720.jpg", "https://image.noelshack.com/fichiers/2019/12/5/1553285219-embroidery-3524900-960-720.jpg"]%>
+            <%= image_tag($pix.sample, :class => 'img-fluid my-3') %>
+          <% end %>
 
-            <hr>
+          <%= @post.content %>
+          <!-- /Blog Content -->
 
-            <!-- Blog Comments -->
-            <h3>Comments</h3>
-            <%= render 'postsComments' %>
-            <!-- /Blog Comments -->
-          </div>
+          <hr>
+
+          <!-- Blog Comments -->
+          <h3>Comments</h3>
+          <%= render 'postsComments' %>
+          <!-- /Blog Comments -->
         </div>
       </div>
+    </div>
 
       <!-- Blog Sidebar -->
       <div class="col-md-4 col-lg-4 mt-3 mt-md-0">
