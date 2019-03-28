@@ -9,6 +9,7 @@ require 'bundler'
 Bundler.require
 
 
+
 puts "\n"*2
 puts "$" *60
 puts "\nCreation of the profiles Guest, User, Blog_Manager, Product_Manager, Moderator, Sale_Manager, Stock_and_Export_Mangager & Super_Admin"
